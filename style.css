@@ -1,9 +1,14 @@
 body {
-	background-color: #0f201e;
+	background-color: #1f3734;
+	height: 100%;
+	width: 100%;
+	display: table;
+	margin: 0;
 }
 
 #doc-header-content {
 	color: #5fcfbf;
+	display: table-row;
 }
 
 #doc-header-content h1 {
@@ -20,6 +25,12 @@ body {
 	background-color: #5fcfbf;
 }
 
+#doc-main {
+	margin: 0px;
+	background-color: #0f201e;
+	display: table-row;
+}
+
 #doc-main-content {
 	color: #9fc2af;
 	font-size: 24px;
@@ -30,7 +41,7 @@ body {
 	text-decoration: underline;
 	font-size: 30px;
 	font-family: Arial, sans-serif;
-	margin-left: 15px;
+	padding-left: 15px;
 }
 
 .doc-main-mod-links a {
