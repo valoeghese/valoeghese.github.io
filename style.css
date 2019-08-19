@@ -7,10 +7,38 @@ body {
 }
 
 #doc-header-content h1 {
-	font-size: 50px;
+	font-size: 52px;
+}
+
+#doc-header-line {
+	display: block;
+	position: relative;
+	text-align: left;
+	width: 80%;
+	height: 50%;
+	border-color: #5fcfbf;
+	background-color: #5fcfbf;
 }
 
 #doc-main-content {
-	color: #9fa2bf;
+	color: #9fc2af;
 	font-size: 24px;
+	font-family: Courier New, Courier, monospace;
+}
+
+.doc-main-mod-header h2 {
+	text-decoration: underline;
+	font-size: 30px;
+	font-family: Arial, sans-serif;
+	margin-left: 15px;
+}
+
+.doc-main-mod-links a {
+	color: #7fb28f;
+	text-decoration: none;
+}
+
+.doc-main-mod-links a:hover {
+	color: #7ee236;
+	text-decoration: underline;
 }
