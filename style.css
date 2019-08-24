@@ -9,6 +9,7 @@ body {
 #doc-header-content {
 	color: #5fcfbf;
 	display: table-row;
+	text-align: center;
 }
 
 #doc-header-content h1 {
@@ -18,7 +19,6 @@ body {
 #doc-header-line {
 	display: block;
 	position: relative;
-	text-align: left;
 	width: 80%;
 	border-color: #5fcfbf;
 	background-color: #5fcfbf;
