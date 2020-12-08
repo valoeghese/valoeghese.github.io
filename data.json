@@ -1,0 +1,116 @@
+{
+  "v": 26,
+  "h": 25,
+  "q": [
+    {
+	  "t": "It is vital that modders add configurations to their mods in order to provide users the best experience.",
+	  "a": 0,
+	  "s": 0
+	},
+	{
+	  "t": "Modding is an art.",
+	  "a": 0,
+	  "s": 1
+	},
+	{
+	  "t": "Politics should be kept out of mods as it intefers with the user experience.",
+	  "a": 2,
+	  "s": 2
+	},
+	{
+	  "t": "Modders can use mods as a way of expressing their personal thoughts and feelings.",
+	  "a": 0,
+	  "s": 1
+	},
+	{
+	  "t": "Configuration comes secondary to providing a developed and functional user experience in a mod.",
+	  "a": 2,
+	  "s": 2
+	},
+	{
+	  "t": "Modders should show an unbiased front to their community and refrain from making opinionated and political statements.",
+	  "a": 2,
+	  "s": 3
+	},
+	{
+	  "t": "Making a custom client is fine as long as you don't use it to break server rules.",
+	  "a": 0,
+	  "s": 1
+	},
+	{
+	  "t": "Modding should only be used to enhance the game experience.",
+	  "a": 2,
+	  "s": 2
+	},
+	{
+	  "t": "Modding is a valid platform for adding to LGBTQ awareness.",
+	  "a": 0,
+	  "s": 1
+	},
+	{
+	  "t": "Meme mods don't contribute to the community.",
+	  "a": 2,
+	  "s": 3
+	},
+	{
+	  "t": "Parody mods support a socially healthy community.",
+	  "a": 0,
+	  "s": 3
+	},
+	{
+	  "t": "It's a modder's job to prioritise stabilising existing content over adding new content.",
+	  "a": 2,
+	  "s": 1
+	},
+	{
+	  "t": "Open sourcing is vital for a positive modder-user relationship.",
+	  "a": 0,
+	  "s": 3
+	},
+	{
+	  "t": "Making your mods open source is an important part of increasing stability and maintainability.",
+	  "a": 2,
+	  "s": 2
+	},
+	{
+	  "t": "Making parts of your mod data-driven is essential for user customisation and consequently a good user experience.",
+	  "a": 0,
+	  "s": 0
+	},
+	{
+	  "t": "The developers of the game you are modding have the right to use your code in their product, regardless of your licence, if you accept such terms in the EULA.",
+	  "a": 2,
+	  "s": 1
+	},
+	{
+	  "t": "Creative commons licences are valid licences for mods.",
+	  "a": 0,
+	  "s": 3
+	},
+	{
+	  "t": "Mods should ideally be free for everyone.",
+	  "a": 2,
+	  "s": 3
+	},
+	{
+	  "t": "Modders should be able to make money from downloads on their mods, if they choose.",
+	  "a": 0,
+	  "s": 3
+	},
+	{
+	  "t": "Supporting multiple languages to make the mod more accessible is equally or almost just as important as developing the mod content.",
+	  "a": 2,
+	  "s": 2
+	},
+	{
+	  "t": "It's not a modder's requirement to make their mods - they do it in their free time - so if they want to put spending the time and effort to fix difficult bugs behind a paywall it's their right to do so.",
+	  "a": 0,
+	  "s": 3
+	},
+	{
+	  "t": "The programmer and the designer are more important than the music composer and the artist.",
+	  "a": 2,
+	  "s": 3
+	}
+  ]
+}
