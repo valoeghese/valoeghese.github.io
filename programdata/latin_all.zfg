@@ -1,0 +1,22 @@
+files = [
+  "latin_all_a.zfg";
+  "latin_all_b.zfg";
+  "latin_all_c.zfg";
+  "latin_all_d.zfg";
+  "latin_all_e.zfg";
+  "latin_all_f.zfg";
+  "latin_all_g.zfg";
+  "latin_all_h.zfg";
+  "latin_all_i.zfg";
+  "latin_all_l.zfg";
+  "latin_all_m.zfg";
+  "latin_all_n.zfg";
+  "latin_all_o.zfg";
+  "latin_all_p.zfg";
+  "latin_all_q.zfg";
+  "latin_all_r.zfg";
+  "latin_all_s.zfg";
+  "latin_all_t.zfg";
+  "latin_all_u.zfg";
+  "latin_all_v.zfg";
+]
