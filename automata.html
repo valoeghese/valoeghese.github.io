@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head><meta charset="UTF-8"/><title>Cellular Automata</title></head>
+	<style>
+	input {
+	}
+	</style>
+	<body>
+		<div id = "list">
+			<input/><br/>
+		</div>
+		<button onclick = "next()">+</button>
+		<br/>
+		<canvas width="400" height = "400" style="display: None;" id = "game"></canvas><br/>
+		<button onclick = "start(this)">Next</button>
+		<script>
+		function next() {
+			let inputs = document.getElementById("list");
+			inputs.appendChild(document.createElement("input"));
+			inputs.appendChild(document.createElement("br"));
+		}
+		
+		const size = 20;
+		var grid = [];
+		const game = document.getElementById("game");
+		var ctx;
+		var mode = 0;
+		
+		function render() {
+			for (let x = 0; x < size; ++x) {
+				for (let y = 0; y < size; ++y) {
+					let intensity = 255 * grid[x][y];
+					ctx.fillStyle = "rgba(" + intensity + "," + intensity + "," + intensity + ",255)";
+					ctx.fillRect(x * size, y * size, (x + 1) * size, (y + 1) * size);
+				}
+			}
+		}
+
+		function start(bn) {
+			if (mode == 1) {
+				mode = 2;
+				bn.remove();
+			} else {
+				mode = 1;
+				bn.innerHTML = "Start";
+				fn = ""
+				
+				let inputs = document.getElementById("list");
+				
+				for (let i = 0; i < inputs.length; ++i) {
+					fn += inputs[i].value + ";";
+				}
+				
+				fn += "\n";
+				// haha yes
+				// there's no server so shouldn't have xss
+				var nextObj = Function("north, east, south, west, centre", fn);
+				
+				inputs.style = "display: None;"
+				let buttons = document.getElementsByTagName("button");
+
+				for (let i = 0; i < buttons.length; ++i) {
+					buttons[i].remove();
+				}
+				
+				game.style = "border:1px solid #000000;";
+				game.width = size * 20;
+				game.height = size * 20;
+				
+				ctx = game.getContext("2d");
+				
+				for (let x = 0; x < size; ++x) {
+					let row = grid[x] = [];
+					
+					for (let y = 0; y < size; ++y) {
+						row[y] = 0;
+					}
+				}
+				
+				render();
+				// Move on to initial construction
+				
+				game.addEventListener('mousedown', function(e) {
+					if (mode == 1) {
+						// Place (1, 1, 1) populations on a 20x20x20 (0, 0, 0) grid
+						let pos = getCursorPos(e);
+						let gx = Math.floor(pos[0]/size);
+						let gy = Math.floor(pos[1]/size);
+						grid[gx][gy] = grid[gx][gy] == 0 ? 1 : 0;
+						render();
+					} else {
+						// Pause/Play
+					}
+				});
+			}
+		}
+		
+		function getCursorPos(evnt) {
+			let rect = game.getBoundingClientRect();
+			let x = evnt.clientX - rect.left;
+			let y = evnt.clientY - rect.top;
+			return [x, y];
+		}
+		</script>
+	</body>
+</html>
