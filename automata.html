@@ -36,6 +36,7 @@
 			</div>
 			<canvas width="400" height = "400" style="display: None;" id = "game"></canvas><br/>
 			<button onclick = "start(this)">Next</button>
+			<h1 id = "pause" style = "display:None;">Paused!</h1>
 		</div>
 		<div class = "positioned" id = "settings">
 			<h1>&emsp;</h1>
@@ -47,11 +48,19 @@
 				<br/><br/>
 				<input id = "min" placeholder = "Override Input Mininum (default:0)" style = "width: 40%"></input><br/>
 				<input id = "max" placeholder = "Override Input Maxinum (default:1)" style = "width: 40%"></input>
+				<br/><br/>
+				<input id = "highRes" type = "checkbox">High Resolution</input>
 			</div>
 		</div>
-		<h1 id = "pause" style = "display:None;">Paused!</h1>
 		<script>
-			const size = 20;
+			var size;
+			var len;
+			
+			function setSize(resolution) {
+				size = resolution;
+				len = 400 / size;
+			}
+
 			var grid = [];
 			const game = document.getElementById("game");
 			var ctx;
@@ -111,7 +120,7 @@
 						} else {
 							ctx.fillStyle = "hsl(" + intensity + ", 100%, 50%)";
 						}
-						ctx.fillRect(x * size, y * size, (x + 1) * size, (y + 1) * size);
+						ctx.fillRect(x * len, y * len, (x + 1) * len, (y + 1) * len);
 					}
 				}
 			}
@@ -133,9 +142,9 @@
 					str = str.replaceAll(/ or /g, " || ");
 					str = str.replaceAll(/ not /g, " ! ");
 					return replaceExpressions(str);
-				} else if (/.+\->.+/.test(str)) {
-					let parts = str.split(/->/);
-					return "if(" + transpile(parts[0], true) + "){" + transpile(parts[1], false) + ";}";
+				} else if (/.+ where .+/.test(str)) {
+					let parts = str.split(/ where /);
+					return "if(" + transpile(parts[1], true) + "){" + transpile(parts[0], false) + ";}";
 				} else if (/.+=.+/.test(str)) {
 					return replaceExpressions(str);
 				} else {
@@ -207,6 +216,9 @@
 				} else {
 					mode = 1;
 					bn.innerHTML = "Start";
+
+					setSize(document.getElementById("highRes").checked ? 40 : 20);
+
 					fn = "nextObj = function(NW, N, NE, W, C, E, SW, S, SE) {";
 					
 					let inputDiv = document.getElementById("list");
@@ -243,8 +255,6 @@
 					
 					// set up canvas
 					game.style = "border:1px solid #000000;";
-					game.width = size * 20;
-					game.height = size * 20;
 					
 					ctx = game.getContext("2d");
 					
@@ -262,8 +272,8 @@
 					
 					game.addEventListener('mousedown', function(e) {
 						let pos = getCursorPos(e);
-						let gx = Math.floor(pos[0]/size); // grid x
-						let gy = Math.floor(pos[1]/size); // grid y
+						let gx = Math.floor(pos[0]/len); // grid x
+						let gy = Math.floor(pos[1]/len); // grid y
 						grid[gx][gy] = grid[gx][gy] == 0 ? 1 : 0;
 						render();
 					});
