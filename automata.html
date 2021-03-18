@@ -123,7 +123,7 @@
 			});
 			
 			function transpile(str, isBoolean) {
-				if (str == "" || /\s+/.test(str)) {
+				if (str.trim() == "") {
 					return "";
 				}
 
