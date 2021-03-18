@@ -2,210 +2,261 @@
 <html>
 	<head><meta charset="UTF-8"/><title>Cellular Automata</title></head>
 	<style>
-	input {
+	.code {
 		font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
-		width: 50%;
+		width: 96%;
 		padding: 10px;
+	}
+	.positioned {
+		display: inline-block;
+		position: absolute;
+		width: 45%;
+	}
+	.dotted {
+		border-style: dotted;
+		padding: 10px;
+	}
+	h2 {
+		display: inline-block;
+	}
+	#settings {
+		margin-left: 50%;
+		margin-top: 0%;
+		float: right;
 	}
 	</style>
 	<body>
-		<div id = "list">
+		<div class = "positioned">
+			<h1>Mekal Covic's Cellular Automata Simulator</h1>
+
+			<div class = "dotted">
+				<h2>Iteration Function</h2>&emsp;<button onclick = "next()">+</button>
+				<div id = "list">
+				</div>
+			</div>
+			<button onclick = "start(this)">Next</button>
 		</div>
-		<button onclick = "next()">+</button>
-		<br/>
+		<div class = "positioned" id = "settings">
+			<h1>&emsp;</h1>
+			<div class = "dotted">
+				<h2>Display Settings</h2><br/>
+				<input type="radio" name="display" onclick="displayMode(0)" id = "checkme">Greyscale</input><br/>
+				<input type="radio" name="display" onclick="displayMode(1)">Hue</input><br/>
+				<input type="radio" name="display" onclick="displayMode(2)">Hue (with 0 = black)</input>
+				<br/><br/>
+				<input id = "min" placeholder = "Override Input Mininum"></input>
+				<input id = "max" placeholder = "Override Input Maxinum"></input>
+			</div>
+		</div>
 		<canvas width="400" height = "400" style="display: None;" id = "game"></canvas><br/>
-		<button onclick = "start(this)">Next</button>
 		<h1 id = "pause" style = "display:None;">Paused!</h1>
 		<script>
-		function handleKey(e) { // check if enter is pressed
-			if (e.keyCode == 13) {
-				next();
+			const size = 20;
+			var grid = [];
+			const game = document.getElementById("game");
+			var ctx;
+			var mode = 0;
+			var nextObj;
+			var pause = false;
+			var colourDisplay = 0;
+			
+			function handleKey(e) { // check if enter is pressed
+				if (e.keyCode == 13) {
+					next();
+				}
 			}
-		}
 
-		function next() {
-			let inputs = document.getElementById("list");
-			let node = inputs.appendChild(document.createElement("input"));
-			node.addEventListener('keypress', handleKey);
-			node.addEventListener('paste', function(e) {
-				let text = e.clipboardData.getData('text');
-				
-				if (/\n/.test(text)) {
-					e.preventDefault();
-					e.stopPropagation();
-
-					let pastedText = text.split("\n");
-					node.value = pastedText[0];
+			function displayMode(mode) {
+				colourDisplay = mode;
+			}
+			
+			function next() {
+				let inputs = document.getElementById("list");
+				let node = inputs.appendChild(document.createElement("input"));
+				node.classList.add("code");
+				node.addEventListener('keypress', handleKey);
+				node.addEventListener('paste', function(e) {
+					let text = e.clipboardData.getData('text');
 					
-					for (let i = 1; i < pastedText.length; ++i) {
-						next().value = pastedText[i];
+					if (/\n/.test(text)) {
+						e.preventDefault();
+						e.stopPropagation();
+
+						let pastedText = text.split("\n");
+						node.value = pastedText[0];
+						
+						for (let i = 1; i < pastedText.length; ++i) {
+							next().value = pastedText[i];
+						}
 					}
+				});
+				
+				inputs.appendChild(document.createElement("br"));
+				return node;
+			}
+			
+			function render() {
+				for (let x = 0; x < size; ++x) {
+					for (let y = 0; y < size; ++y) {
+						let intensity = 255 * grid[x][y];
+						ctx.fillStyle = "rgba(" + intensity + "," + intensity + "," + intensity + ",255)";
+						ctx.fillRect(x * size, y * size, (x + 1) * size, (y + 1) * size);
+					}
+				}
+			}
+
+			document.addEventListener('keydown', function(e) {
+				if (mode == 2 && e.keyCode == 32) {
+					document.getElementById("pause").style = (pause = !pause) ? "" : "display:None;";
 				}
 			});
 			
-			inputs.appendChild(document.createElement("br"));
-			return node;
-		}
-		
-		const size = 20;
-		var grid = [];
-		const game = document.getElementById("game");
-		var ctx;
-		var mode = 0;
-		var nextObj;
-		var pause = false;
-		
-		function render() {
-			for (let x = 0; x < size; ++x) {
-				for (let y = 0; y < size; ++y) {
-					let intensity = 255 * grid[x][y];
-					ctx.fillStyle = "rgba(" + intensity + "," + intensity + "," + intensity + ",255)";
-					ctx.fillRect(x * size, y * size, (x + 1) * size, (y + 1) * size);
+			function transpile(str, isBoolean) {
+				if (str == "" || /\s+/.test(str)) {
+					return "";
+				}
+
+				if (isBoolean) {
+					str = str.replaceAll(/=/g, "==");
+					str = str.replaceAll(/ and /g, " && ");
+					str = str.replaceAll(/ or /g, " || ");
+					str = str.replaceAll(/ not /g, " ! ");
+					return replaceExpressions(str);
+				} else if (/.+\->.+/.test(str)) {
+					let parts = str.split(/->/);
+					return "if(" + transpile(parts[0], true) + "){" + transpile(parts[1], false) + ";}";
+				} else if (/.+=.+/.test(str)) {
+					return replaceExpressions(str);
+				} else {
+					return "return " + replaceExpressions(str);
 				}
 			}
-		}
 
-		document.addEventListener('keydown', function(e) {
-			if (mode == 2 && e.keyCode == 32) {
-				document.getElementById("pause").style = (pause = !pause) ? "" : "display:None;";
+			function replaceExpressions(str) {
+				str = str.replaceAll(/sin\(/g, "Math.sin(");
+				str = str.replaceAll(/cos\(/g, "Math.cos(");
+				str = str.replaceAll(/tan\(/g, "Math.tan(");
+				
+				str = str.replaceAll(/floor\(/g, "Math.floor(");
+				str = str.replaceAll(/ceil\(/g, "Math.ceil(");
+				
+				str = str.replaceAll(/\^/g, "**");
+				return str;
 			}
-		});
-		
-		function transpile(str, isBoolean) {
-			if (isBoolean) {
-				str = str.replaceAll(/=/g, "==");
-				str = str.replaceAll(/ and /g, " && ");
-				str = str.replaceAll(/ or /g, " || ");
-				str = str.replaceAll(/ not /g, " ! ");
-				return replaceExpressions(str);
-			} else if (/.+\->.+/.test(str)) {
-				let parts = str.split(/->/);
-				return "if(" + transpile(parts[0], true) + "){" + transpile(parts[1], false) + ";}";
-			} else if (/.+=.+/.test(str)) {
-				return replaceExpressions(str);
-			} else {
-				return "return " + replaceExpressions(str);
-			}
-		}
-
-		function replaceExpressions(str) {
-			str = str.replaceAll(/sin\(/g, "Math.sin(");
-			str = str.replaceAll(/cos\(/g, "Math.cos(");
-			str = str.replaceAll(/tan\(/g, "Math.tan(");
 			
-			str = str.replaceAll(/floor\(/g, "Math.floor(");
-			str = str.replaceAll(/ceil\(/g, "Math.ceil(");
-			
-			str = str.replaceAll(/\^/g, "**");
-			return str;
-		}
-		
-		function start(bn) {
-			if (mode == 1) {
-				mode = 2;
-				bn.remove();
-				
-				setInterval(function() {
-					if (!pause) {
-						let nextGrid = [];
-						
-						for (let x = 0; x < size; ++x) {
-							nextGrid[x] = [];
-							let prev = 0;
-							let current = grid[x][0];
-							
-							let prevEast = 0;
-							let currentEast = x == size - 1 ? 0 : grid[x + 1][0];
-							
-							let prevWest = 0;
-							let currentWest = x == 0 ? 0 : grid[x - 1][0];
-							
-							for (let y = 0; y < size; ++y) {
-								let next = 0;
-								let nextEast = 0;
-								let nextWest = 0;
-
-								if (y < size - 1) {
-									next = grid[x][y + 1];
-									nextEast = x == size - 1 ? 0 : grid[x + 1][y + 1];
-									nextWest = x == 0 ? 0 : grid[x - 1][y + 1];
-								}
-
-								nextGrid[x][y] = nextObj(prevWest, prev, prevEast, currentWest, current, currentEast, nextWest, next, nextEast);
-								
-								prev = current;
-								prevEast = currentEast;
-								prevWest = currentWest;
-								
-								current = next;
-								currentEast = nextEast;
-								currentWest = nextWest;
-							}
-						}
-						
-						grid = nextGrid;
-						
-						render();
-					}
-				}, 250);
-			} else {
-				mode = 1;
-				bn.innerHTML = "Start";
-				fn = "nextObj = function(NW, N, NE, W, C, E, SW, S, SE) {";
-				
-				let inputDiv = document.getElementById("list");
-				let inputs = inputDiv.children;
-				
-				for (let i = 0; i < inputs.length; i += 2) {
-					fn += transpile(inputs[i].value, false) + ";";
-				}
-				
-				fn += "}";
-				console.log(fn);
-				// haha yes
-				// there's no server so shouldn't have xss
-				eval(fn);
-				
-				inputDiv.style = "display: None;"
-				let buttons = document.getElementsByTagName("button");
-
-				for (let i = 0; i < buttons.length; ++i) {
-					buttons[i].remove();
-				}
-				
-				game.style = "border:1px solid #000000;";
-				game.width = size * 20;
-				game.height = size * 20;
-				
-				ctx = game.getContext("2d");
-				
-				for (let x = 0; x < size; ++x) {
-					let row = grid[x] = [];
+			function start(bn) {
+				if (mode == 1) {
+					mode = 2;
+					bn.remove();
 					
-					for (let y = 0; y < size; ++y) {
-						row[y] = 0;
+					setInterval(function() {
+						if (!pause) {
+							let nextGrid = [];
+							
+							for (let x = 0; x < size; ++x) {
+								nextGrid[x] = [];
+								let prev = 0;
+								let current = grid[x][0];
+								
+								let prevEast = 0;
+								let currentEast = x == size - 1 ? 0 : grid[x + 1][0];
+								
+								let prevWest = 0;
+								let currentWest = x == 0 ? 0 : grid[x - 1][0];
+								
+								for (let y = 0; y < size; ++y) {
+									let next = 0;
+									let nextEast = 0;
+									let nextWest = 0;
+
+									if (y < size - 1) {
+										next = grid[x][y + 1];
+										nextEast = x == size - 1 ? 0 : grid[x + 1][y + 1];
+										nextWest = x == 0 ? 0 : grid[x - 1][y + 1];
+									}
+
+									nextGrid[x][y] = nextObj(prevWest, prev, prevEast, currentWest, current, currentEast, nextWest, next, nextEast);
+									
+									prev = current;
+									prevEast = currentEast;
+									prevWest = currentWest;
+									
+									current = next;
+									currentEast = nextEast;
+									currentWest = nextWest;
+								}
+							}
+							
+							grid = nextGrid;
+							
+							render();
+						}
+					}, 250);
+				} else {
+					mode = 1;
+					bn.innerHTML = "Start";
+					fn = "nextObj = function(NW, N, NE, W, C, E, SW, S, SE) {";
+					
+					let inputDiv = document.getElementById("list");
+					let inputs = inputDiv.children;
+					
+					for (let i = 0; i < inputs.length; i += 2) {
+						fn += transpile(inputs[i].value, false) + ";";
 					}
-				}
-				
-				render();
-				// Move on to initial construction
-				
-				game.addEventListener('mousedown', function(e) {
-					let pos = getCursorPos(e);
-					let gx = Math.floor(pos[0]/size);
-					let gy = Math.floor(pos[1]/size);
-					grid[gx][gy] = grid[gx][gy] == 0 ? 1 : 0;
+					
+					fn += "}";
+					console.log(fn);
+					// haha yes
+					// there's no server so shouldn't have xss
+					eval(fn);
+					
+					let divs = document.getElementsByClassName("dotted");
+					
+					for (let i = 0; i < divs.length; ++i) {
+						divs[i].style = "display: None;";
+					}
+
+					let buttons = document.getElementsByTagName("button");
+
+					for (let i = 0; i < buttons.length; ++i) {
+						buttons[i].remove();
+					}
+					
+					game.style = "border:1px solid #000000;";
+					game.width = size * 20;
+					game.height = size * 20;
+					
+					ctx = game.getContext("2d");
+					
+					for (let x = 0; x < size; ++x) {
+						let row = grid[x] = [];
+						
+						for (let y = 0; y < size; ++y) {
+							row[y] = 0;
+						}
+					}
+					
 					render();
-				});
+					// Move on to initial construction
+					
+					game.addEventListener('mousedown', function(e) {
+						let pos = getCursorPos(e);
+						let gx = Math.floor(pos[0]/size);
+						let gy = Math.floor(pos[1]/size);
+						grid[gx][gy] = grid[gx][gy] == 0 ? 1 : 0;
+						render();
+					});
+				}
 			}
-		}
-		
-		function getCursorPos(evnt) {
-			let rect = game.getBoundingClientRect();
-			let x = evnt.clientX - rect.left;
-			let y = evnt.clientY - rect.top;
-			return [x, y];
-		}
+			
+			function getCursorPos(evnt) {
+				let rect = game.getBoundingClientRect();
+				let x = evnt.clientX - rect.left;
+				let y = evnt.clientY - rect.top;
+				return [x, y];
+			}
+			
+			document.getElementById("checkme").checked = true;
 		</script>
 	</body>
 </html>
