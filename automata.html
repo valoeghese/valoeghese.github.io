@@ -27,13 +27,14 @@
 	</style>
 	<body>
 		<div class = "positioned">
-			<h1>Mekal Covic's Cellular Automata Simulator</h1>
+			<h1 id = "title">Mekal Covic's Cellular Automata Simulator</h1>
 
 			<div class = "dotted">
 				<h2>Iteration Function</h2>&emsp;<button onclick = "next()">+</button>
 				<div id = "list">
 				</div>
 			</div>
+			<canvas width="400" height = "400" style="display: None;" id = "game"></canvas><br/>
 			<button onclick = "start(this)">Next</button>
 		</div>
 		<div class = "positioned" id = "settings">
@@ -42,13 +43,12 @@
 				<h2>Display Settings</h2><br/>
 				<input type="radio" name="display" onclick="displayMode(0)" id = "checkme">Greyscale</input><br/>
 				<input type="radio" name="display" onclick="displayMode(1)">Hue</input><br/>
-				<input type="radio" name="display" onclick="displayMode(2)">Hue (with 0 = black)</input>
+				<input type="radio" name="display" onclick="displayMode(2)">Hue (with input min = black)</input>
 				<br/><br/>
-				<input id = "min" placeholder = "Override Input Mininum"></input>
-				<input id = "max" placeholder = "Override Input Maxinum"></input>
+				<input id = "min" placeholder = "Override Input Mininum (default:0)" style = "width: 40%"></input><br/>
+				<input id = "max" placeholder = "Override Input Maxinum (default:1)" style = "width: 40%"></input>
 			</div>
 		</div>
-		<canvas width="400" height = "400" style="display: None;" id = "game"></canvas><br/>
 		<h1 id = "pause" style = "display:None;">Paused!</h1>
 		<script>
 			const size = 20;
@@ -59,6 +59,8 @@
 			var nextObj;
 			var pause = false;
 			var colourDisplay = 0;
+			var min = 0;
+			var max = 1;
 			
 			function handleKey(e) { // check if enter is pressed
 				if (e.keyCode == 13) {
@@ -71,11 +73,13 @@
 			}
 			
 			function next() {
+				// This function just adds another line to the list
+				
 				let inputs = document.getElementById("list");
 				let node = inputs.appendChild(document.createElement("input"));
 				node.classList.add("code");
 				node.addEventListener('keypress', handleKey);
-				node.addEventListener('paste', function(e) {
+				node.addEventListener('paste', function(e) { // This paste code overrides the paste functionality with newlines to put them in new input lines
 					let text = e.clipboardData.getData('text');
 					
 					if (/\n/.test(text)) {
@@ -98,8 +102,15 @@
 			function render() {
 				for (let x = 0; x < size; ++x) {
 					for (let y = 0; y < size; ++y) {
-						let intensity = 255 * grid[x][y];
-						ctx.fillStyle = "rgba(" + intensity + "," + intensity + "," + intensity + ",255)";
+						let gridVal = grid[x][y]; // the value
+						let intensity = (gridVal - min) * 255 / (max - min);
+						if (colourDisplay == 0) {
+							ctx.fillStyle = "rgba(" + intensity + "," + intensity + "," + intensity + ",255)";
+						} else if (colourDisplay == 2 && intensity == 0) {
+							ctx.fillStyle = "black";
+						} else {
+							ctx.fillStyle = "hsl(" + 25 + ", 100%, 50%)";
+						}
 						ctx.fillRect(x * size, y * size, (x + 1) * size, (y + 1) * size);
 					}
 				}
@@ -165,6 +176,7 @@
 								let currentWest = x == 0 ? 0 : grid[x - 1][0];
 								
 								for (let y = 0; y < size; ++y) {
+									// because I didn't feel like grabbing from an array 9 times per square
 									let next = 0;
 									let nextEast = 0;
 									let nextWest = 0;
@@ -210,18 +222,26 @@
 					// there's no server so shouldn't have xss
 					eval(fn);
 					
+					// hide dotted elements
 					let divs = document.getElementsByClassName("dotted");
 					
 					for (let i = 0; i < divs.length; ++i) {
 						divs[i].style = "display: None;";
 					}
-
-					let buttons = document.getElementsByTagName("button");
-
-					for (let i = 0; i < buttons.length; ++i) {
-						buttons[i].remove();
+					
+					// And now we check if max and min are overidden and if so address it
+					let maxEl = document.getElementById("max");
+					let minEl = document.getElementById("min");
+					
+					if (maxEl.value != "" || /\s+/.test(maxEl.value)) {
+						max = parseFloat(maxEl.value);
 					}
 					
+					if (minEl.value != "" || /\s+/.test(minEl.value)) {
+						min = parseFloat(minEl.value);
+					}
+					
+					// set up canvas
 					game.style = "border:1px solid #000000;";
 					game.width = size * 20;
 					game.height = size * 20;
@@ -237,18 +257,20 @@
 					}
 					
 					render();
+
 					// Move on to initial construction
 					
 					game.addEventListener('mousedown', function(e) {
 						let pos = getCursorPos(e);
-						let gx = Math.floor(pos[0]/size);
-						let gy = Math.floor(pos[1]/size);
+						let gx = Math.floor(pos[0]/size); // grid x
+						let gy = Math.floor(pos[1]/size); // grid y
 						grid[gx][gy] = grid[gx][gy] == 0 ? 1 : 0;
 						render();
 					});
 				}
 			}
 			
+			// this is cursed
 			function getCursorPos(evnt) {
 				let rect = game.getBoundingClientRect();
 				let x = evnt.clientX - rect.left;
