@@ -3,20 +3,28 @@
 	<head><meta charset="UTF-8"/><title>Cellular Automata</title></head>
 	<style>
 	input {
+		font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+		width: 50%;
+		padding: 10px;
 	}
 	</style>
 	<body>
 		<div id = "list">
-			<input/><br/>
 		</div>
 		<button onclick = "next()">+</button>
 		<br/>
 		<canvas width="400" height = "400" style="display: None;" id = "game"></canvas><br/>
 		<button onclick = "start(this)">Next</button>
 		<script>
+		function handleKey(e) { // check if enter is pressed
+			if (e.keyCode == 13) {
+				next();
+			}
+		}
+
 		function next() {
 			let inputs = document.getElementById("list");
-			inputs.appendChild(document.createElement("input"));
+			inputs.appendChild(document.createElement("input")).addEventListener('keypress', handleKey);
 			inputs.appendChild(document.createElement("br"));
 		}
 		
@@ -37,6 +45,34 @@
 			}
 		}
 
+		function transpile(str, isBoolean) {
+			if (isBoolean) {
+				str = str.replaceAll(/=/, "==");
+				str = str.replaceAll(/ and /, " && ");
+				str = str.replaceAll(/ or /, " || ");
+				str = str.replaceAll(/ not /, " ! ");
+				return replaceExpressions(str);
+			} else if (str.test(/.+\->.+/)) {
+				let parts = str.split(/->/);
+				return "if(" + transpile(parts[0], true) + "){" + transpile(parts[1], false) + ";}";
+			} else if (/.+=.+/.test(str)) {
+				return replaceExpressions(str);
+			} else {
+				return "return " + replaceExpressions(str);
+			}
+		}
+
+		function replaceExpressions(str) {
+			str = str.replaceAll(/sin\(/, "Math.sin(");
+			str = str.replaceAll(/cos\(/, "Math.cos(");
+			str = str.replaceAll(/tan\(/, "Math.tan(");
+			
+			str = str.replaceAll(/floor\(/, "Math.floor(");
+			str = str.replaceAll(/ceil\(/, "Math.ceil(");
+			
+			str = str.replaceAll(/^/, "**");
+		}
+		
 		function start(bn) {
 			if (mode == 1) {
 				mode = 2;
@@ -71,7 +107,7 @@
 				let inputs = inputDiv.children;
 				
 				for (let i = 0; i < inputs.length; ++i) {
-					fn += inputs[i].value + ";";
+					fn += transpile(inputs[i].value, false) + ";";
 				}
 				
 				fn += "}";
