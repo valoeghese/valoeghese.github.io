@@ -36,7 +36,36 @@
 			</div>
 			<canvas width="400" height = "400" style="display: None;" id = "game"></canvas><br/>
 			<button onclick = "start(this)">Next</button>
-			<h1 id = "pause" style = "display:None;">Paused!</h1>
+			<h2 id = "pause" style = "display:None;">Paused!</h1>
+			<br/>
+			<br/>
+			<div class = "dotted">
+				<h2>How it works and How to use</h2>
+				<p>
+					The simulator creates a grid of size 20x20 or 40x40, treating values outside this grid as "0". Inside this grid, each position is given a 
+					numerical value, which is displayed as a colour based on the given display settings. Space can be used to pause the program, and it runs at
+					4 iterations per second.
+					<br/><br/>
+					The instruction set provided in the iteration function tells the simulation how to transform the grid per pixel (where pixel refers to a position on the grid). For each pixel, the values
+					of the surrounding 8 pixels and the centre pixel are provided, and can be accessed by the variables NW, N, NE, E, W, SE, S, SW, (for the surrounding
+					pixels) and C for the centre pixel. Each line either sets the value of a variable or returns the result.
+					<br/>
+					All instructions are run in order, and all the variables given as input are guaranteed to be from the previous state.
+					<br/><br/>
+					<u>Instructions</u>
+					<ul>
+					<li>A value (e.g. NE, or S + N), returns a result specified by the given expression.
+					<li>A value with an equals symbol sets a variable, e.g. the line "a = N + E + S" sets a new variable a equal to the sum of the north, east, and south values.
+					<li>Any of the above two expressions can be set to only apply / be executed under a condition by putting " where " afterwards followed by a boolean
+					expression. For example, the line "1 where N = 0" will return 1 if the north cell is equal to zero. Note that to do something like "2 > N > 1" you need to break
+					it up into two parts, so it would be written as "2 > N and N > 1".
+					</ul>
+					<b>Make sure that your instruction set always returns some value.</b> This can be done, for example, by specifying a default return value on the last line.
+					<br/><br/>
+					Technical Note: the instructions are run as heavily modified javascript, so you could technically do stuff not in the specification. However, this is not supported,
+					so stick to the provided instruction set unless you know what you're doing and really need it.
+				</p>
+			</div>
 		</div>
 		<div class = "positioned" id = "settings">
 			<h1>&emsp;</h1>
