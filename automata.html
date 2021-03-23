@@ -2,6 +2,9 @@
 <html>
 	<head><meta charset="UTF-8"/><title>Cellular Automata</title></head>
 	<style>
+	body {
+		font-family: sans-serif;
+	}
 	.code {
 		font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
 		width: 96%;
@@ -42,7 +45,7 @@
 			<div class = "dotted">
 				<h2>How it works and How to use</h2>
 				<p>
-					The simulator creates a grid of size 20x20 or 40x40, treating values outside this grid as "0". Inside this grid, each position is given a 
+					The simulator creates a grid of size 20x20 or 40x40, treating values outside this grid either as "0" or by wrapping around on itself (depending on the settings). Inside this grid, each position is given a 
 					numerical value, which is displayed as a colour based on the given display settings. Space can be used to pause the program, and it runs at
 					4 iterations per second.
 					<br/>
@@ -81,7 +84,13 @@
 				<input id = "min" placeholder = "Override Input Mininum (default:0)" style = "width: 40%"></input><br/>
 				<input id = "max" placeholder = "Override Input Maxinum (default:1)" style = "width: 40%"></input>
 				<br/><br/>
+				<h2>Simulation Settings</h2><br/>
 				<input id = "highRes" type = "checkbox">High Resolution</input>
+				<br/><br/>
+				<h3>Edge Handling</h3>
+				<input type="radio" name="edge" onclick="setEdgeMode(0)" id = "checkme2">Zero</input><br/>
+				<input type="radio" name="edge" onclick="setEdgeMode(1)">Torus Surface</input><br/>
+				<br/>
 			</div>
 		</div>
 		<script>
@@ -97,6 +106,7 @@
 			const game = document.getElementById("game");
 			var ctx;
 			var mode = 0;
+			var edgeMode = 0;
 			var nextObj;
 			var pause = false;
 			var colourDisplay = 0;
@@ -111,6 +121,10 @@
 
 			function displayMode(mode) {
 				colourDisplay = mode;
+			}
+			
+			function setEdgeMode(mode) {
+				edgeMode = mode;
 			}
 			
 			function next() {
@@ -196,6 +210,16 @@
 				return str;
 			}
 			
+			function edge(x, y) {
+				if (edgeMode == 0) { // Zeroes.
+					return 0;
+				} else { // edgeMode == 1. Torus.
+					x = x < 0 ? size - 1 : (x >= size ? 0 : x);
+					y = y < 0 ? size - 1 : (y >= size ? 0 : y);
+					return grid[x][y];
+				}
+			}
+			
 			function start(bn) {
 				if (mode == 1) {
 					mode = 2;
@@ -207,14 +231,14 @@
 							
 							for (let x = 0; x < size; ++x) {
 								nextGrid[x] = [];
-								let prev = 0;
+								let prev = edge(x, -1);
 								let current = grid[x][0];
 								
-								let prevEast = 0;
-								let currentEast = x == size - 1 ? 0 : grid[x + 1][0];
+								let prevEast = edge(x + 1, -1);
+								let currentEast = x == size - 1 ? edge(x + 1, 0) : grid[x + 1][0];
 								
-								let prevWest = 0;
-								let currentWest = x == 0 ? 0 : grid[x - 1][0];
+								let prevWest = edge(x - 1, -1);
+								let currentWest = x == 0 ? edge(x - 1, 0) : grid[x - 1][0];
 								
 								for (let y = 0; y < size; ++y) {
 									// because I didn't feel like grabbing from an array 9 times per square
@@ -224,8 +248,12 @@
 
 									if (y < size - 1) {
 										next = grid[x][y + 1];
-										nextEast = x == size - 1 ? 0 : grid[x + 1][y + 1];
-										nextWest = x == 0 ? 0 : grid[x - 1][y + 1];
+										nextEast = x == size - 1 ? edge(x + 1, y + 1) : grid[x + 1][y + 1];
+										nextWest = x == 0 ? edge(x - 1, y + 1) : grid[x - 1][y + 1];
+									} else {
+										next = edge(x, y + 1);
+										nextEast = edge(x + 1, y + 1);
+										nextWest = edge(x - 1, y + 1);
 									}
 
 									nextGrid[x][y] = nextObj(prevWest, prev, prevEast, currentWest, current, currentEast, nextWest, next, nextEast);
@@ -321,6 +349,7 @@
 			}
 			
 			document.getElementById("checkme").checked = true;
+			document.getElementById("checkme2").checked = true;
 		</script>
 	</body>
 </html>
