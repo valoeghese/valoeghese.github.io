@@ -183,30 +183,38 @@
 				}
 
 				if (isBoolean) {
-					str = str.replaceAll(/=/g, "==");
-					str = str.replaceAll(/ and /g, " && ");
-					str = str.replaceAll(/ or /g, " || ");
-					str = str.replaceAll(/ not /g, " ! ");
-					return replaceExpressions(str);
-				} else if (/.+ where .+/.test(str)) {
-					let parts = str.split(/ where /);
+					return replaceExpressions(str, true);
+				} else if (/.+ WHERE .+/.test(str)) {
+					let parts = str.split(/ WHERE /);
 					return "if(" + transpile(parts[1], true) + "){" + transpile(parts[0], false) + ";}";
 				} else if (/.+=.+/.test(str)) {
-					return replaceExpressions(str);
+					return replaceExpressions(str, false);
 				} else {
-					return "return " + replaceExpressions(str);
+					return "return " + replaceExpressions(str, false);
 				}
 			}
 
-			function replaceExpressions(str) {
-				str = str.replaceAll(/sin\(/g, "Math.sin(");
-				str = str.replaceAll(/cos\(/g, "Math.cos(");
-				str = str.replaceAll(/tan\(/g, "Math.tan(");
+			function replaceExpressions(str, bool) {
+				if (bool) {
+					str = str.replaceAll(/=/g, "==");
+					str = str.replaceAll(/ AND /g, " && ");
+					str = str.replaceAll(/ OR /g, " || ");
+					str = str.replaceAll(/ NOT /g, " ! ");
+				} else {
+					str = str.replaceAll(/ AND /g, " & ");
+					str = str.replaceAll(/ OR /g, " | ");
+				}
 				
-				str = str.replaceAll(/floor\(/g, "Math.floor(");
-				str = str.replaceAll(/ceil\(/g, "Math.ceil(");
+				str = str.replaceAll(/SIN\(/g, "Math.sin(");
+				str = str.replaceAll(/COS\(/g, "Math.cos(");
+				str = str.replaceAll(/TAN\(/g, "Math.tan(");
+				
+				str = str.replaceAll(/FLOOR\(/g, "Math.floor(");
+				str = str.replaceAll(/CEIL\(/g, "Math.ceil(");
+				str = str.replaceAll(/SQRT\(/g, "Math.sqrt(");
 				
 				str = str.replaceAll(/\^/g, "**");
+				str = str.replaceAll(/ XOR /g, "^"); // this has to go after power.
 				return str;
 			}
 			
@@ -285,7 +293,7 @@
 					let inputs = inputDiv.children;
 					
 					for (let i = 0; i < inputs.length; i += 2) {
-						fn += transpile(inputs[i].value, false) + ";";
+						fn += transpile(inputs[i].value.toUpperCase(), false) + ";";
 					}
 					
 					fn += "}";
