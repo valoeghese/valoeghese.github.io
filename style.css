@@ -48,6 +48,10 @@ h1 {
 	font-size: 1.05em;
 }
 
+#initial-centred {
+	text-align: center;
+}
+
 #sidebar {
 	width: 23%;
 	margin-top: 30px;
@@ -65,12 +69,12 @@ h1 {
 
 #sidebar img {
 	width: 1.5em;
-	vertical-align: bottom;
+	vertical-align: middle;
 }
 
 #sidebar li {
-	vertical-align: middle;
 	margin-bottom: 20px;
+	vertical-align: bottom;
 }
 
 #sidebar a {
