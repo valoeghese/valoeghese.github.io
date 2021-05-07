@@ -353,7 +353,7 @@
 						let pos = getCursorPos(e);
 						let gx = Math.floor(pos[0]/len); // grid x
 						let gy = Math.floor(pos[1]/len); // grid y
-						grid[gx][gy] = grid[gx][gy] == 0 ? 1 : 0;
+						grid[gx][gy] = grid[gx][gy] < (min + max) / 2 ? max : min;
 						render();
 					});
 				}
