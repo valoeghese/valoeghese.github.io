@@ -77,12 +77,12 @@ h1 {
 	vertical-align: bottom;
 }
 
-#sidebar a {
+a {
 	color: inherit;
 	text-decoration: inherit;
 }
 
-#sidebar a:hover {
+a:hover {
 	text-decoration: underline;
 }
 
@@ -90,4 +90,9 @@ h1 {
 .no-underline {
 	color: #2e2e2e;
 	text-decoration: underline;
+}
+
+.section li {
+	text-align: justify;
+	font-size: 1.05em;
 }
