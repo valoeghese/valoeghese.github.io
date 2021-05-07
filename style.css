@@ -1,54 +1,89 @@
-body {
-	background-color: #1f3734;
+html, body {
+	background-color: #2e2e2e;
 	height: 100%;
 	width: 100%;
-	display: table;
-	margin: 0;
+	margin: 0; 
+	font-family: Lato, Helvetica, sans-serif;
+	padding: 0;
 }
 
-#doc-header-content {
-	color: #5fcfbf;
-	display: table-row;
+#main-body {
+	background-color: #e3e3e3;
+	height: 100%;
+	width: 50%;
+	padding-top: 1%;
 	text-align: center;
+	position: static;
+	color: #2e2e2e;
 }
 
-#doc-header-content h1 {
-	font-size: 52px;
+h1 {
+	font-weight: 1400;
+	font-size: 3em;
+	font-stretch: 40%;
+	margin-top: 5px;
 }
 
-#doc-header-line {
-	display: block;
-	position: relative;
-	width: 80%;
-	border-color: #5fcfbf;
-	background-color: #5fcfbf;
+.full {
+	height: 95%;
+	width: 100%;
 }
 
-#doc-main {
-	margin: 0px;
-	background-color: #0f201e;
-	display: table-row;
+.section {
+	width: 85%;
+	margin-bottom: 35px;
 }
 
-#doc-main-content {
-	color: #9fc2af;
-	font-size: 24px;
-	font-family: Courier New, Courier, monospace;
+.section h2 {
+	text-align: left;
 }
 
-.doc-main-mod-header h2 {
+.forceleft {
+	text-align: left;
+}
+
+.section p {
+	width: 90%;
+	text-align: justify;
+	font-size: 1.05em;
+}
+
+#sidebar {
+	width: 23%;
+	margin-top: 30px;
+	float: left;
+	text-align: right;
+	position: static;
+	color: #e3e3e3;
+	font-size: 1.5em;
+}
+
+/* This removes the dot */
+#sidebar li::marker {
+    content: "";
+}
+
+#sidebar img {
+	width: 1.5em;
+	vertical-align: bottom;
+}
+
+#sidebar li {
+	vertical-align: middle;
+	margin-bottom: 20px;
+}
+
+#sidebar a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+#sidebar a:hover {
 	text-decoration: underline;
-	font-size: 30px;
-	font-family: Arial, sans-serif;
-	padding-left: 15px;
 }
 
-.doc-main-mod-links a {
-	color: #7fb28f;
-	text-decoration: none;
-}
-
-.doc-main-mod-links a:hover {
-	color: #7ee236;
+/* This hack makes the spaces appear to not have underline */
+.no-underline {
+	color: #2e2e2e;
 	text-decoration: underline;
 }
