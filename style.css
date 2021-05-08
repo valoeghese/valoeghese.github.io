@@ -17,9 +17,13 @@ html, body {
 	color: #2e2e2e;
 }
 
+#main-body img {
+	width: 10vw;
+}
+
 h1 {
 	font-weight: 1400;
-	font-size: 3em;
+	font-size: 2.5vw;
 	font-stretch: 40%;
 	margin-top: 5px;
 }
@@ -33,10 +37,12 @@ h1 {
 .section {
 	width: 85%;
 	margin-bottom: 35px;
+	font-size: 0.95vw;
 }
 
 .section h2 {
 	text-align: left;
+	font-size: 1.5vw;
 }
 
 .forceleft {
@@ -46,7 +52,10 @@ h1 {
 .section p {
 	width: 90%;
 	text-align: justify;
-	font-size: 1.05em;
+}
+
+.section li {
+	text-align: justify;
 }
 
 #initial-centred {
@@ -60,7 +69,7 @@ h1 {
 	text-align: right;
 	position: static;
 	color: #e3e3e3;
-	font-size: 1.5em;
+	font-size: 1.25vw;
 }
 
 /* This removes the dot */
@@ -69,7 +78,7 @@ h1 {
 }
 
 #sidebar img {
-	width: 1.5em;
+	width: 1.25vw;
 	vertical-align: middle;
 }
 
@@ -93,7 +102,3 @@ a:hover {
 	text-decoration: underline;
 }
 
-.section li {
-	text-align: justify;
-	font-size: 1.05em;
-}
