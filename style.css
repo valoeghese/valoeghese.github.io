@@ -10,7 +10,7 @@ html, body {
 #main-body {
 	background-color: #e3e3e3;
 	height: 100%;
-	width: 50%;
+	width: 66.7%; /*66.7% of 75% = 50%*/
 	padding-top: 1%;
 	text-align: center;
 	position: static;
@@ -26,7 +26,8 @@ h1 {
 
 .full {
 	height: 95%;
-	width: 100%;
+	width: 75%;
+	margin-left: 25%;
 }
 
 .section {
