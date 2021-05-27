@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head><meta charset="UTF-8"/><title>Cellular Automata</title></head>
+	<link rel = "stylesheet" href = "style.css">
 	<style>
 	body {
 		font-family: sans-serif;
+		padding : 5px;
+		margin : 8px;
 	}
 	.code {
 		font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
 		width: 96%;
 		padding: 10px;
+		font-size: large;
+		font-weight: bold;
 	}
 	.positioned {
 		display: inline-block;
@@ -16,8 +21,9 @@
 		width: 45%;
 	}
 	.dotted {
-		border-style: dotted;
 		padding: 10px;
+		background: #e3e3e3;
+		border-radius: 2em;
 	}
 	h2 {
 		display: inline-block;
@@ -27,13 +33,16 @@
 		margin-top: 0%;
 		float: right;
 	}
+	.positioned h1{
+		color :#e3e3e3;
+	}
 	</style>
 	<body>
 		<div class = "positioned">
 			<h1 id = "title">Mekal Covic's Cellular Automata Simulator</h1>
 
-			<div class = "dotted">
-				<h2>Iteration Function</h2>&emsp;<button onclick = "next()">+</button>
+			<div class = "dotted" id = "function">
+				<h2 style="margin-top:10px">Iteration Function</h2>&emsp;<button onclick = "next()">+</button>
 				<div id = "list">
 				</div>
 			</div>
@@ -77,9 +86,9 @@
 			<h1>&emsp;</h1>
 			<div class = "dotted">
 				<h2>Display Settings</h2><br/>
-				<input type="radio" name="display" onclick="displayMode(0)" id = "checkme">Greyscale</input><br/>
-				<input type="radio" name="display" onclick="displayMode(1)">Hue</input><br/>
-				<input type="radio" name="display" onclick="displayMode(2)">Hue (with input min = black)</input>
+				<input type="radio" class="radio" name="display" onclick="displayMode(0)" id = "checkme">Greyscale</input><br/>
+				<input type="radio" class="radio" name="display" onclick="displayMode(1)">Hue</input><br/>
+				<input type="radio" class="radio" name="display" onclick="displayMode(2)">Hue (with input min = black)</input>
 				<br/><br/>
 				<input id = "min" placeholder = "Override Input Mininum (default:0)" style = "width: 40%"></input><br/>
 				<input id = "max" placeholder = "Override Input Maxinum (default:1)" style = "width: 40%"></input>
