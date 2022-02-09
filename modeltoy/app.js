@@ -29,6 +29,7 @@ async function main() {
 	var models = [];
 	let texture;
 	
+	// this function is called after some async calls (or just immediately after loading the model if on the homepage)
 	function finish() {
 		program.bind();
 
@@ -37,7 +38,7 @@ async function main() {
 		program.setUniformMat4("projection", projectionMatrix);
 		
 		let stack = new MatrixStack();
-		stack.lookAt([0, 0, HOMEPAGE ? -4 : -10], [0, 0, 0], [0, 1, 0]); // position, lookat, up
+		stack.lookAt([0, 0, HOMEPAGE ? -4 : -14], [0, 0, 0], [0, 1, 0]); // position, lookat, up
 		let angleY = 0.0;
 		let angleX = HOMEPAGE ? 0.3 : 0.0;
 		let rotationSpeed = 1;//HOMEPAGE ? 1 : 0.33;
@@ -47,7 +48,6 @@ async function main() {
 			stack.push();
 			stack.rotate(angleY, ROTATION_AXES.y);
 			stack.rotate(angleX, ROTATION_AXES.x);
-			program.setUniformMat4("view", stack.peek());
 
 			texture.bind();
 
@@ -55,9 +55,12 @@ async function main() {
 				let model = element.model;
 				
 				if (element.rotation != undefined) {
-					let abc = stack.peek();
+					let rotation = element.rotation;
+
 					stack.push();
-					stack.rotate(element.rotation.angle, ROTATION_AXES[element.rotation.axis]);
+					//stack.translate(rotation.antiOrigin);
+					stack.rotate(element.rotation.angle, ROTATION_AXES[rotation.axis]);
+					stack.translate(rotation.origin);
 					program.setUniformMat4("view", stack.peek());
 					
 					model.bind();
@@ -65,6 +68,7 @@ async function main() {
 					
 					stack.pop();
 				} else {
+					program.setUniformMat4("view", stack.peek());
 					model.bind();
 					model.draw();
 				}
@@ -90,7 +94,7 @@ async function main() {
 			"down": {"uv":[0, 0.5, 0.5, 1]}
 		};
 
-		models.push(createCuboid([-1, -1, -1], [1, 1, 1], uvSets));
+		models.push({"model":createCuboid([-1+8, -1+8, -1+8], [1+8, 1+8, 1+8], uvSets)});
 		program.format().apply();
 		Model.unbind();
 
@@ -127,8 +131,21 @@ async function main() {
 		
 			for (let i = 0; i < jsonModel.elements.length; ++i) {
 				let cuboid = jsonModel.elements[i];
-				let element = {"model":createCuboid(cuboid.from, cuboid.to, cuboid.faces), "rotation":cuboid.rotation};
-				console.log(element);
+				let rotation = cuboid.rotation;
+				
+				if (rotation != undefined) {
+					/*cuboid.from[0] += rotation.origin[0];
+					cuboid.to[0] += rotation.origin[0];
+					
+					cuboid.from[1] += rotation.origin[1];
+					cuboid.to[1] += rotation.origin[1];
+					
+					cuboid.from[2] += rotation.origin[2];
+					cuboid.to[2] += rotation.origin[2];*/
+					rotation.antiOrigin = [-rotation.origin[0], -rotation.origin[1], -rotation.origin[2]];
+				}
+				
+				let element = {"model":createCuboid(cuboid.from, cuboid.to, cuboid.faces), "rotation":rotation};
 
 				models.push(element);
 				program.format().apply();

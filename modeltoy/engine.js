@@ -71,7 +71,11 @@ class MatrixStack {
 	}
 
 	translate(x, y, z) {
-		glMatrix.mat4.translate(this.peek(), [x, y, z]);
+		glMatrix.mat4.translate(this.peek(), this.peek(), [x, y, z]);
+	}
+	
+	translate(by) {
+		glMatrix.mat4.translate(this.peek(), this.peek(), by);
 	}
 
 	lookAt(pos, lookingAt, up) {
@@ -79,9 +83,7 @@ class MatrixStack {
 	}
 
 	rotate(angle, about) {
-		let cpy = new Float32Array(16);
-		cpy.set(this.peek());
-		glMatrix.mat4.rotate(this.peek(), cpy, angle, about);
+		glMatrix.mat4.rotate(this.peek(), this.peek(), angle, about);
 	}
 
 	clear() {
