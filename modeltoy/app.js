@@ -8,48 +8,64 @@ if (DEBUG) {
 	console.log("Debug Enabled.");
 }
 
-function setup() {
+function main() {
 	console.log("Initialising Model Toy");
 
 	var canvas = document.getElementById("model-toy");
 	
 	if (!engine.setCanvas(canvas)) {
-		alert("Lmao your browser is outdated as F*CK are you on internet explorer or something? (Failed to create WebGL context)");
+		alert("Lmao your browser is outdated as F*CK are you on internet explorer or something? (Failed to create WebGL2 context)");
 	}
 	
 	engine.setClearColour(0.85, 0.9, 1.0);
 	
-	let vertexShader = `
+	let vertexShader = `#version 300 es
 	precision mediump float;
 
 	uniform mat4 projection;
 	uniform mat4 view;
 
-	attribute vec3 pos;
-	attribute vec2 uv;
+	in vec3 pos;
+	in vec2 uv;
 	
-	varying vec2 uvOut;
+	out vec2 uvPass;
 
 	void main() {
 		gl_Position = projection * view * vec4(pos, 1.0);
-		uvOut = uv;
+		uvPass = uv;
 	}
 	`;
 
-	let fragShader = `
+	let fragShader = `#version 300 es
 	precision mediump float;
 
-	varying vec2 uvOut;
+	in vec2 uvPass;
+
+	out vec4 fragColour;
 
 	void main() {
-		gl_FragColor = vec4(1, 1, uvOut.x, 1);
+		fragColour = vec4(1, 1, uvPass.x, 1);
 	}
 	`;
 
 	let program = new Shader(vertexShader, fragShader, DEBUG);
+	program.format().vec3("pos").vec2("uv");
 
-	setupModels(program);
+	let rectVertices = [
+		1, 1, 0,	1, 1,
+		1, -1, 0,	1, 0,
+		-1, -1, 0,	0, 0,
+		-1, 1, 0,	0, 1
+	];
 	
+	let rectIndices = [
+		0, 1, 2,
+		0, 2, 3
+	];
+	
+	let model = new Model(rectVertices, rectIndices);
+	program.format().apply();
+
 	program.bind();
 	
 	let projectionMatrix = new Float32Array(16);
@@ -66,24 +82,13 @@ function setup() {
 		stack.rotate(angle, [0, 1, 0]);
 		program.setUniformMat4("view", stack.peek());
 		stack.pop();
-		engine.gl.drawArrays(engine.gl.TRIANGLES, 0, 3);
 		
-		angle += 0.16;
+		model.bind();
+		model.draw();
+		
+		angle += 0.08;
+		requestAnimationFrame(draw);
 	}
 
-	setInterval(draw, 20);
-}
-
-function setupModels(program) {
-	let triangleVertices = [
-		0, 1, 0,	0, 0,
-		-1, -1, 0,	0, 0,
-		1, -1, 0,	0, 0
-	];
-
-	var vbo = engine.gl.createBuffer();
-	engine.gl.bindBuffer(engine.gl.ARRAY_BUFFER, vbo);
-	engine.gl.bufferData(engine.gl.ARRAY_BUFFER, new Float32Array(triangleVertices), engine.gl.STATIC_DRAW);
-
-	program.formatBuilder().vec3("pos").vec2("uv").build();
+	requestAnimationFrame(draw);
 }

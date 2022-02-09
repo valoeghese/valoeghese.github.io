@@ -8,7 +8,11 @@ console.log("Initialising Engine.");
 const engine = {
 	gl: null,
 	setCanvas: function (canvas) {
-		this.gl = canvas.getContext("webgl");
+		this.gl = canvas.getContext("webgl2");
+		if (this.gl) {
+			this.gl.enable(this.gl.DEPTH_TEST); // enable depth buffer
+			this.gl.enable(this.gl.CULL_FACE); // enable back face culling
+		}
 		return this.gl;
 	},
 	setClearColour: function(r, g, b) {
@@ -33,8 +37,7 @@ class MatrixStack {
 
 	pop() {
 		if (this.#stack.length === 1) {
-			console.error("Stack is at minimum size of 1!");
-			return;
+			throw "Stack is at minimum size of 1!";
 		}
 
 		this.#stack.pop();
@@ -96,10 +99,10 @@ class VertexFormat {
 		return this;
 	}
 
-	build() {
+	apply() {
 		for (let i = 0; i < this.#format.length; ++i) {
 			let item = this.#format[i];
-			console.log(item);
+			//console.log(item);
 			let loc = engine.gl.getAttribLocation(this.#program, item[0]);
 
 			engine.gl.vertexAttribPointer(
@@ -113,6 +116,47 @@ class VertexFormat {
 			
 			engine.gl.enableVertexAttribArray(loc);
 		}
+	}
+}
+
+class Model {
+	#vbo;
+	#ibo;
+	#vao;
+	#length;
+	
+	constructor(vertexArray, indexArray, storage=engine.gl.STATIC_DRAW) {
+		let gl = engine.gl;
+
+		// create vertex array object
+		this.#vao = gl.createVertexArray();
+		gl.bindVertexArray(this.#vao);
+
+		// create vertex buffer object
+		this.#vbo = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, this.#vbo);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexArray), storage);
+
+		// create index buffer object
+		this.#ibo = gl.createBuffer();
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.#ibo);
+		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indexArray), storage);
+		
+		this.#length = indexArray.length;
+	}
+	
+	bind() {
+		engine.gl.bindVertexArray(this.#vao);
+	}
+	
+	draw() {
+		engine.gl.drawElements(engine.gl.TRIANGLES, this.#length, engine.gl.UNSIGNED_SHORT, 0);
+	}
+	
+	destroy() {
+		engine.gl.deleteVertexArrays(this.#vao);
+		engine.gl.deleteBuffers(this.#ibo);
+		engine.gl.deleteBuffers(this.#vbo);
 	}
 }
 
@@ -139,7 +183,7 @@ class Shader {
 		gl.compileShader(fsProg);
 		
 		if (!gl.getShaderParameter(fsProg, gl.COMPILE_STATUS)) {
-			throw new ShaderException("Error with fragment shader compilation", gl.getShaderInfoLog(vsProg));
+			throw new ShaderException("Error with fragment shader compilation", gl.getShaderInfoLog(fsProg));
 		}
 		
 		this.#program = gl.createProgram();
@@ -176,7 +220,7 @@ class Shader {
 		engine.gl.uniformMatrix4fv(glLoc, engine.gl.FALSE, mat);
 	}
 	
-	formatBuilder() {
+	format() {
 		return this.#format;
 	}
 }
