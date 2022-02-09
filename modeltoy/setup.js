@@ -21,10 +21,10 @@ function potentiallySubmit(event) {
 	}
 }
 
-let body = document.getElementsByTagName("body")[0];
+let body = document.body;
+let canvas = document.getElementById("model-toy");
 
 if (HOMEPAGE) {
-	let canvas = document.getElementById("model-toy");
 	canvas.width = 300;
 	canvas.height = 300;
 	canvas.classList.add("fadeIn");
@@ -43,4 +43,7 @@ if (HOMEPAGE) {
 	modelTypeInput.classList.add("fadeIn", "centred");
 	
 	body.appendChild(modelTypeInput);
+} else {
+	canvas.style.visibility = "hidden";
+	canvas.classList.remove("fadeIn");
 }

@@ -3,6 +3,12 @@
 // global and local variables use this nice format likeThis
 const DEBUG = URL_PARAMS.has("debug");
 
+const ROTATION_AXES = {
+	"x": [1, 0, 0],
+	"y": [0, 1, 0],
+	"z": [0, 0, 1]
+};
+
 if (DEBUG) {
 	console.log("Debug Enabled.");
 }
@@ -20,21 +26,10 @@ async function main() {
 	
 	let program = setupProgram();
 	
-	let uvSets = {
-		"north": [0, 0, 0.5, 0.5],
-		"east": [0, 0, 0.5, 0.5],
-		"south": [0, 0, 0.5, 0.5],
-		"west": [0, 0, 0.5, 0.5],
-		"up": [0.5, 0, 1, 0.5],
-		"down": [0, 0.5, 0.5, 1]
-	};
-	
 	var models = [];
 	let texture;
 	
 	function finish() {
-		Model.unbind();
-
 		program.bind();
 
 		let projectionMatrix = new Float32Array(16);
@@ -42,25 +37,43 @@ async function main() {
 		program.setUniformMat4("projection", projectionMatrix);
 		
 		let stack = new MatrixStack();
-		stack.lookAt([0, 0, HOMEPAGE ? -4 : -6], [0, 0, 0], [0, 1, 0]); // position, lookat, up
+		stack.lookAt([0, 0, HOMEPAGE ? -4 : -10], [0, 0, 0], [0, 1, 0]); // position, lookat, up
 		let angleY = 0.0;
-		let angleX = 0.3;
+		let angleX = HOMEPAGE ? 0.3 : 0.0;
+		let rotationSpeed = 1;//HOMEPAGE ? 1 : 0.33;
 
 		function draw() {
 			engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
 			stack.push();
-			stack.rotate(angleY, [0, 1, 0]);
-			stack.rotate(angleX, [1, 0, 0]);
+			stack.rotate(angleY, ROTATION_AXES.y);
+			stack.rotate(angleX, ROTATION_AXES.x);
 			program.setUniformMat4("view", stack.peek());
-			stack.pop();
 
 			texture.bind();
-			let model = models[0]; // for now
-			model.bind();
-			model.draw(); // normally we would need to bind the model before drawing but I only have one model so I never unbind it from when I create it
+
+			models.forEach(element => {
+				let model = element.model;
+				
+				if (element.rotation != undefined) {
+					let abc = stack.peek();
+					stack.push();
+					stack.rotate(element.rotation.angle, ROTATION_AXES[element.rotation.axis]);
+					program.setUniformMat4("view", stack.peek());
+					
+					model.bind();
+					model.draw();
+					
+					stack.pop();
+				} else {
+					model.bind();
+					model.draw();
+				}
+			});
 			
-			angleY += 0.04;
-			angleX += 0.01;
+			stack.pop();
+
+			angleY += 0.04 * rotationSpeed;
+			angleX += 0.01 * rotationSpeed;
 			requestAnimationFrame(draw);
 		}
 
@@ -68,11 +81,27 @@ async function main() {
 	}
 	
 	if (HOMEPAGE) {
+		let uvSets = {
+			"north": {"uv":[0, 0, 0.5, 0.5]},
+			"east": {"uv":[0, 0, 0.5, 0.5]},
+			"south": {"uv":[0, 0, 0.5, 0.5]},
+			"west": {"uv":[0, 0, 0.5, 0.5]},
+			"up": {"uv":[0.5, 0, 1, 0.5]},
+			"down": {"uv":[0, 0.5, 0.5, 1]}
+		};
+
 		models.push(createCuboid([-1, -1, -1], [1, 1, 1], uvSets));
 		program.format().apply();
+		Model.unbind();
+
 		texture = new Texture(document.getElementById("example-image"));
 		finish();
 	} else {
+		let loading = document.createElement("h2");
+		loading.innerText = "Loading...";
+		loading.classList.add("centred");
+		body.appendChild(loading);
+		
 		let url = "https://api.cosmetica.cc/get/cosmetic?type=" + URL_PARAMS.get("type") + "&id=" + URL_PARAMS.get("model") + "&timestamp=" + URL_PARAMS.get("timestamp");
 		if (DEBUG) console.log("Contacting " + url);
 		
@@ -85,23 +114,43 @@ async function main() {
 		}
 		
 		let img = new Image();
+
 		img.onload = function() {
 			texture = new Texture(img);
+			
+			let jsonModel = JSON.parse(jsonData.model);
+
+			if (DEBUG){
+				console.log("Extracted the following JSON Model:");
+				console.log(jsonModel);
+			}
 		
-			models.push(createCuboid([-1, -1, -1], [1, 1, 1], uvSets));
-			program.format().apply();
+			for (let i = 0; i < jsonModel.elements.length; ++i) {
+				let cuboid = jsonModel.elements[i];
+				let element = {"model":createCuboid(cuboid.from, cuboid.to, cuboid.faces), "rotation":cuboid.rotation};
+				console.log(element);
+
+				models.push(element);
+				program.format().apply();
+			}
+
+			Model.unbind();
+
+			// switch loading text for the model name (the id, at least for now)
+			document.body.removeChild(loading);
+			
+			let mName = document.createElement("h2");
+			mName.innerText = URL_PARAMS.get("model");
+			mName.classList.add("fadeIn", "centred");
+			document.body.appendChild(mName);
+
+			canvas.style.visibility = "visible";
+			canvas.classList.add("fadeIn");
 
 			finish();
 		}
+
 		img.src = jsonData.texture;
-		document.body.appendChild(img);
-
-		// info at bottom
-
-		let mName = document.createElement("h2");
-		mName.innerText = URL_PARAMS.get("model");
-		mName.classList.add("centred");
-		body.appendChild(mName);
 	}
 }
 
@@ -181,7 +230,12 @@ def transUV(old, minuv=[0,0]):
 */
 
 function createCuboid(from, to, uvSets) {
-	let uvs = uvSets["south"]
+	for (let i = 0; i < from.length; ++i) {
+		from[i] -= 8;
+		to[i] -= 8;
+	}
+
+	let uvs = uvSets.south.uv;
 
 	addFace( // back
 		[from[0], from[1], to[2],
@@ -195,7 +249,7 @@ function createCuboid(from, to, uvSets) {
 		uvs[0],uvs[1]]
 	);
 	
-	uvs = uvSets["north"]
+	uvs = uvSets.north.uv;
 
 	addFace( // front
 		[to[0],to[1],from[2],
@@ -209,7 +263,7 @@ function createCuboid(from, to, uvSets) {
 		uvs[0],uvs[1]]
 	);
 	
-	uvs = uvSets["west"]
+	uvs = uvSets.west.uv;
 	
 	addFace( // right
 		[from[0],to[1],to[2],
@@ -223,7 +277,7 @@ function createCuboid(from, to, uvSets) {
 		uvs[2],uvs[3]]
 	);
 
-	uvs = uvSets["east"]
+	uvs = uvSets.east.uv;
 
 	addFace( // left
 		[to[0],from[1],from[2],
@@ -237,7 +291,7 @@ function createCuboid(from, to, uvSets) {
 		uvs[2],uvs[3]]
 	);
 
-	uvs = uvSets["up"]
+	uvs = uvSets.up.uv;
 	
 	addFace( // top
 		[to[0],to[1],to[2],
@@ -251,7 +305,7 @@ function createCuboid(from, to, uvSets) {
 		uvs[0],uvs[1]]
 	);
 
-	uvs = uvSets["down"]
+	uvs = uvSets.down.uv;
 
 	addFace( // bottom
 		[from[0],from[1],from[2],
