@@ -42,9 +42,11 @@ function main() {
 	in vec2 uvPass;
 
 	out vec4 fragColour;
+	uniform sampler2D textureSampler;
 
 	void main() {
-		fragColour = vec4(1, 1, uvPass.x, 1);
+		fragColour = texture(textureSampler, vec2(uvPass.x, uvPass.y));
+		if (fragColour.a < 0.1) discard;
 	}
 	`;
 
@@ -52,19 +54,66 @@ function main() {
 	program.format().vec3("pos").vec2("uv");
 
 	let rectVertices = [
-		1, 1, 0,	1, 1,
-		1, -1, 0,	1, 0,
-		-1, -1, 0,	0, 0,
-		-1, 1, 0,	0, 1
+		// back
+		-1, -1, 1,	0, 0.5,
+		1, -1, 1,	0.5, 0.5,
+		1, 1, 1,	0.5, 0,
+		-1, 1, 1,	0, 0,
+		
+		// front
+		1, 1, -1,	0.5, 0,
+		1, -1, -1,	0.5, 0.5,
+		-1, -1, -1,	0, 0.5,
+		-1, 1, -1,	0, 0,
+		
+		// right
+		-1, 1, 1,	0.5, 0,
+		-1, 1, -1,	0, 0,
+		-1, -1, -1,	0, 0.5,
+		-1, -1, 1,	0.5, 0.5,
+		
+		// left
+		1, -1, -1,	0, 0.5,
+		1, 1, -1,	0, 0,
+		1, 1, 1,	0.5, 0,
+		1, -1, 1,	0.5, 0.5,
+		
+		// top
+		1, 1, 1,	1, 0,
+		1, 1, -1,	1, 0.5,
+		-1, 1, -1,	0.5, 0.5,
+		-1, 1, 1,	0.5, 0,
+		
+		// bottom
+		-1, -1, -1,	0, 1,
+		1, -1, -1,	0.5, 1,
+		1, -1, 1,	0.5, 0.5,
+		-1, -1, 1,	0, 0.5
 	];
 	
 	let rectIndices = [
 		0, 1, 2,
-		0, 2, 3
+		0, 2, 3,
+		
+		4, 5, 6,
+		4, 6, 7,
+		
+		8, 9, 10,
+		8, 10, 11,
+		
+		12, 13, 14,
+		12, 14, 15,
+		
+		16, 17, 18,
+		16, 18, 19,
+		
+		20, 21, 22,
+		20, 22, 23
 	];
 	
 	let model = new Model(rectVertices, rectIndices);
 	program.format().apply();
+	Model.unbind();
 
 	program.bind();
 	
@@ -74,19 +123,26 @@ function main() {
 	
 	let stack = new MatrixStack();
 	stack.lookAt([0, 0, -5], [0, 0, 0], [0, 1, 0]);
-	let angle = 0;
+	let angleY = 0.0;
+	let angleX = 0.3;
 	
+	let texture = new Texture("example-image");
+	let texture_top = new Texture("example-image2");
+
 	function draw() {
 		engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
 		stack.push();
-		stack.rotate(angle, [0, 1, 0]);
+		stack.rotate(angleY, [0, 1, 0]);
+		stack.rotate(angleX, [1, 0, 0]);
 		program.setUniformMat4("view", stack.peek());
 		stack.pop();
-		
+
 		model.bind();
+		texture.bind();
 		model.draw();
 		
-		angle += 0.08;
+		angleY += 0.04;
+		angleX += 0.01;
 		requestAnimationFrame(draw);
 	}
 

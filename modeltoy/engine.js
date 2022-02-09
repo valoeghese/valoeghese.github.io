@@ -20,6 +20,29 @@ const engine = {
 	}
 };
 
+class Texture {
+	#tex;
+
+	constructor(texture, repeat=false, smooth=false) {
+		let gl = engine.gl;
+		this.#tex = gl.createTexture();
+		gl.bindTexture(gl.TEXTURE_2D, this.#tex);
+		
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, repeat ? gl.REPEAT : gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, repeat ? gl.REPEAT : gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, smooth ? gl.LINEAR : gl.NEAREST);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, smooth ? gl.LINEAR : gl.NEAREST);
+		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, document.getElementById(texture));
+		
+		gl.bindTexture(gl.TEXTURE_2D, null);
+	}
+	
+	bind(index=0) {
+		engine.gl.bindTexture(engine.gl.TEXTURE_2D, this.#tex);
+		engine.gl.activeTexture(engine.gl.TEXTURE0 + index);
+	}
+}
+
 class MatrixStack {
 	#stack;
 	
@@ -157,6 +180,10 @@ class Model {
 		engine.gl.deleteVertexArrays(this.#vao);
 		engine.gl.deleteBuffers(this.#ibo);
 		engine.gl.deleteBuffers(this.#vbo);
+	}
+	
+	static unbind() {
+		engine.gl.bindVertexArray(null);
 	}
 }
 
