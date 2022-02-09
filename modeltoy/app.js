@@ -19,6 +19,43 @@ function main() {
 	
 	engine.setClearColour(0.85, 0.9, 1.0);
 	
+	let program = setupProgram();
+	let model = setupModel();
+	program.format().apply();
+
+	program.bind();
+
+	let projectionMatrix = new Float32Array(16);
+	glMatrix.mat4.perspective(projectionMatrix, 1.58, canvas.width / canvas.height, 0.1, 1000);
+	program.setUniformMat4("projection", projectionMatrix);
+	
+	let stack = new MatrixStack();
+	stack.lookAt([0, 0, -5], [0, 0, 0], [0, 1, 0]);
+	let angleY = 0.0;
+	let angleX = 0.3;
+	
+	let texture = new Texture("example-image");
+
+	function draw() {
+		engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
+		stack.push();
+		stack.rotate(angleY, [0, 1, 0]);
+		stack.rotate(angleX, [1, 0, 0]);
+		program.setUniformMat4("view", stack.peek());
+		stack.pop();
+
+		texture.bind();
+		model.draw(); // normally we would need to bind the model before drawing but I only have one model so I never unbind it from when I create it
+		
+		angleY += 0.04;
+		angleX += 0.01;
+		requestAnimationFrame(draw);
+	}
+
+	requestAnimationFrame(draw);
+}
+
+function setupProgram() {
 	let vertexShader = `#version 300 es
 	precision mediump float;
 
@@ -52,99 +89,97 @@ function main() {
 
 	let program = new Shader(vertexShader, fragShader, DEBUG);
 	program.format().vec3("pos").vec2("uv");
+	return program;
+}
 
-	let rectVertices = [
-		// back
-		-1, -1, 1,	0, 0.5,
-		1, -1, 1,	0.5, 0.5,
-		1, 1, 1,	0.5, 0,
-		-1, 1, 1,	0, 0,
-		
-		// front
-		1, 1, -1,	0.5, 0,
-		1, -1, -1,	0.5, 0.5,
-		-1, -1, -1,	0, 0.5,
-		-1, 1, -1,	0, 0,
-		
-		// right
-		-1, 1, 1,	0.5, 0,
-		-1, 1, -1,	0, 0,
-		-1, -1, -1,	0, 0.5,
-		-1, -1, 1,	0.5, 0.5,
-		
-		// left
-		1, -1, -1,	0, 0.5,
-		1, 1, -1,	0, 0,
-		1, 1, 1,	0.5, 0,
-		1, -1, 1,	0.5, 0.5,
-		
-		// top
-		1, 1, 1,	1, 0,
-		1, 1, -1,	1, 0.5,
-		-1, 1, -1,	0.5, 0.5,
-		-1, 1, 1,	0.5, 0,
-		
-		// bottom
-		-1, -1, -1,	0, 1,
-		1, -1, -1,	0.5, 1,
-		1, -1, 1,	0.5, 0.5,
-		-1, -1, 1,	0, 0.5
-	];
-	
-	let rectIndices = [
-		0, 1, 2,
-		0, 2, 3,
-		
-		4, 5, 6,
-		4, 6, 7,
-		
-		8, 9, 10,
-		8, 10, 11,
-		
-		12, 13, 14,
-		12, 14, 15,
-		
-		16, 17, 18,
-		16, 18, 19,
-		
-		20, 21, 22,
-		20, 22, 23
-	];
-	
-	let model = new Model(rectVertices, rectIndices);
-	program.format().apply();
-	Model.unbind();
+var vertices = [];
+var indices = [];
+var currentIndex = 0;
 
-	program.bind();
-	
-	let projectionMatrix = new Float32Array(16);
-	glMatrix.mat4.perspective(projectionMatrix, 1.58, canvas.width / canvas.height, 0.1, 1000);
-	program.setUniformMat4("projection", projectionMatrix);
-	
-	let stack = new MatrixStack();
-	stack.lookAt([0, 0, -5], [0, 0, 0], [0, 1, 0]);
-	let angleY = 0.0;
-	let angleX = 0.3;
-	
-	let texture = new Texture("example-image");
-	let texture_top = new Texture("example-image2");
+function setupModel() {
+	addFace(
+		[-1, -1, 1,
+		1, -1, 1,
+		1, 1, 1,
+		-1, 1, 1],
 
-	function draw() {
-		engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
-		stack.push();
-		stack.rotate(angleY, [0, 1, 0]);
-		stack.rotate(angleX, [1, 0, 0]);
-		program.setUniformMat4("view", stack.peek());
-		stack.pop();
+		[0, 0.5,
+		0.5, 0.5,
+		0.5, 0,
+		0, 0]);
+	
+	addFace(
+		[1, 1, -1,
+		1, -1, -1,
+		-1, -1, -1,
+		-1, 1, -1],
 
-		model.bind();
-		texture.bind();
-		model.draw();
+		[0.5, 0,
+		0.5, 0.5,
+		0, 0.5,
+		0, 0]);
 		
-		angleY += 0.04;
-		angleX += 0.01;
-		requestAnimationFrame(draw);
+	addFace(
+		[-1, 1, 1,
+		-1, 1, -1,
+		-1, -1, -1,
+		-1, -1, 1],
+
+		[0.5, 0,
+		0, 0,
+		0, 0.5,
+		0.5, 0.5]
+		);
+
+	addFace(
+		[1, -1, -1,
+		1, 1, -1,
+		1, 1, 1,
+		1, -1, 1],
+
+		[0, 0.5,
+		0, 0,
+		0.5, 0,
+		0.5, 0.5]
+	);
+
+	addFace(
+		[1, 1, 1,
+		1, 1, -1,
+		-1, 1, -1,
+		-1, 1, 1],
+		
+		[1, 0,
+		1, 0.5,
+		0.5, 0.5,
+		0.5, 0]
+	);
+
+	addFace(
+		[-1, -1, -1,
+		1, -1, -1,
+		1, -1, 1,
+		-1, -1, 1],
+		
+		[0, 1,
+		0.5, 1,
+		0.5, 0.5,
+		0, 0.5]
+	);
+	return new Model(vertices, indices);
+}
+
+function addFace(coords, uvs) {
+	for (let i = 0; i < 4; ++i) {
+		vertices.push(coords[3*i], coords[3*i + 1], coords[3*i + 2]);
+		vertices.push(uvs[2*i], uvs[2*i + 1]);
 	}
 
-	requestAnimationFrame(draw);
+	let c0 = currentIndex++;
+	let c1 = currentIndex++;
+	let c2 = currentIndex++;
+	let c3 = currentIndex++;
+	
+	indices.push(c0, c1, c2);
+	indices.push(c0, c2, c3);
 }

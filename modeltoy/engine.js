@@ -45,7 +45,7 @@ class Texture {
 
 class MatrixStack {
 	#stack;
-	
+
 	constructor() {
 		this.#stack = [];
 		this.#stack[0] = new Float32Array(16);
@@ -77,13 +77,13 @@ class MatrixStack {
 	lookAt(pos, lookingAt, up) {
 		glMatrix.mat4.lookAt(this.peek(), pos, lookingAt, up);
 	}
-	
+
 	rotate(angle, about) {
 		let cpy = new Float32Array(16);
 		cpy.set(this.peek());
 		glMatrix.mat4.rotate(this.peek(), cpy, angle, about);
 	}
-	
+
 	clear() {
 		this.#stack = [];
 		this.#stack[0] = new Float32Array(16);
@@ -105,9 +105,15 @@ class VertexFormat {
 	#format = [];
 	#size = 0;
 	#program;
-	
+
 	constructor(program) {
 		this.#program = program;
+	}
+
+	float(name) {
+		this.#format.push([name, 1, engine.gl.FLOAT, this.#size]);
+		this.#size += 1 * 4;
+		return this;
 	}
 
 	vec2(name) {
@@ -136,7 +142,7 @@ class VertexFormat {
 				this.#size,
 				item[3]
 			);
-			
+
 			engine.gl.enableVertexAttribArray(loc);
 		}
 	}
@@ -249,6 +255,10 @@ class Shader {
 	
 	format() {
 		return this.#format;
+	}
+	
+	static unbind() {
+		engine.gl.useProgram(null);
 	}
 }
 
