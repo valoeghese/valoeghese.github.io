@@ -117,7 +117,7 @@ async function main() {
 			document.body.removeChild(loading);
 			
 			let mName = document.createElement("h2");
-			mName.innerText = URL_PARAMS.get("model");
+			mName.innerText = jsonData.name;
 			mName.classList.add("fadeIn", "centred");
 			document.body.appendChild(mName);
 
