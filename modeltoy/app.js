@@ -1,8 +1,6 @@
 // Code Style:
 // CONST VARIABLES ARE IN SCREAMING_CAMEL_CASE
 // global and local variables use this nice format likeThis
-const DEBUG = URL_PARAMS.has("debug");
-
 const ROTATION_AXES = {
 	"x": [1, 0, 0],
 	"y": [0, 1, 0],
@@ -38,11 +36,12 @@ async function main() {
 		program.setUniformMat4("projection", projectionMatrix);
 		
 		let stack = new MatrixStack();
+		if (!HOMEPAGE) stack.translate(8, 8, 8);
 		stack.lookAt([0, 0, HOMEPAGE ? -4 : -14], [0, 0, 0], [0, 1, 0]); // position, lookat, up
 		let angleY = 0.0;
 		let angleX = HOMEPAGE ? 0.3 : 0.0;
 		let rotationSpeed = 1;//HOMEPAGE ? 1 : 0.33;
-
+		
 		function draw() {
 			engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
 			stack.push();
@@ -58,9 +57,9 @@ async function main() {
 					let rotation = element.rotation;
 
 					stack.push();
-					//stack.translate(rotation.antiOrigin);
-					stack.rotate(element.rotation.angle, ROTATION_AXES[rotation.axis]);
 					stack.translate(rotation.origin);
+					stack.rotate(element.rotation.angle, ROTATION_AXES[rotation.axis]);
+					stack.translate(rotation.antiOrigin);
 					program.setUniformMat4("view", stack.peek());
 					
 					model.bind();
@@ -94,7 +93,7 @@ async function main() {
 			"down": {"uv":[0, 0.5, 0.5, 1]}
 		};
 
-		models.push({"model":createCuboid([-1+8, -1+8, -1+8], [1+8, 1+8, 1+8], uvSets)});
+		models.push({"model":createCuboid([-1, -1, -1], [1, 1, 1], uvSets)});
 		program.format().apply();
 		Model.unbind();
 
@@ -134,14 +133,6 @@ async function main() {
 				let rotation = cuboid.rotation;
 				
 				if (rotation != undefined) {
-					/*cuboid.from[0] += rotation.origin[0];
-					cuboid.to[0] += rotation.origin[0];
-					
-					cuboid.from[1] += rotation.origin[1];
-					cuboid.to[1] += rotation.origin[1];
-					
-					cuboid.from[2] += rotation.origin[2];
-					cuboid.to[2] += rotation.origin[2];*/
 					rotation.antiOrigin = [-rotation.origin[0], -rotation.origin[1], -rotation.origin[2]];
 				}
 				
@@ -247,11 +238,6 @@ def transUV(old, minuv=[0,0]):
 */
 
 function createCuboid(from, to, uvSets) {
-	for (let i = 0; i < from.length; ++i) {
-		from[i] -= 8;
-		to[i] -= 8;
-	}
-
 	let uvs = uvSets.south.uv;
 
 	addFace( // back
