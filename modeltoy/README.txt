@@ -1,0 +1,1 @@
+Note: Belladio is retrieved from https://www.dafont.com/belladio.font. Under its license, it may be only used for non-commercial use, as it is here, unless one purchases a commercial license.

@@ -3,12 +3,12 @@
 // BASED OFF OF SCALPEL | PROVIDED UNDER MIT LICENSE //
 ///////////////////////////////////////////////////////
 
-console.log("Initialising Engine.");
-
 const engine = {
 	gl: null,
 	setCanvas: function (canvas) {
+		console.log("Initialising Engine.");
 		this.gl = canvas.getContext("webgl2");
+
 		if (this.gl) {
 			this.gl.enable(this.gl.DEPTH_TEST); // enable depth buffer
 			this.gl.enable(this.gl.CULL_FACE); // enable back face culling
@@ -23,7 +23,7 @@ const engine = {
 class Texture {
 	#tex;
 
-	constructor(texture, repeat=false, smooth=false) {
+	constructor(image, repeat=false, smooth=false) {
 		let gl = engine.gl;
 		this.#tex = gl.createTexture();
 		gl.bindTexture(gl.TEXTURE_2D, this.#tex);
@@ -32,7 +32,7 @@ class Texture {
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, repeat ? gl.REPEAT : gl.CLAMP_TO_EDGE);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, smooth ? gl.LINEAR : gl.NEAREST);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, smooth ? gl.LINEAR : gl.NEAREST);
-		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, document.getElementById(texture));
+		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
 		
 		gl.bindTexture(gl.TEXTURE_2D, null);
 	}

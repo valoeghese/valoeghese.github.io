@@ -1,14 +1,13 @@
 // Code Style:
 // CONST VARIABLES ARE IN SCREAMING_CAMEL_CASE
 // global and local variables use this nice format likeThis
-const URL_PARAMS = new URLSearchParams(window.location.search);
 const DEBUG = URL_PARAMS.has("debug");
 
 if (DEBUG) {
 	console.log("Debug Enabled.");
 }
 
-function main() {
+async function main() {
 	console.log("Initialising Model Toy");
 
 	var canvas = document.getElementById("model-toy");
@@ -29,39 +28,81 @@ function main() {
 		"up": [0.5, 0, 1, 0.5],
 		"down": [0, 0.5, 0.5, 1]
 	};
-	let model = createCuboid([-1, -1, -1], [1, 1, 1], uvSets);
-	program.format().apply();
-
-	program.bind();
-
-	let projectionMatrix = new Float32Array(16);
-	glMatrix.mat4.perspective(projectionMatrix, 1.58, canvas.width / canvas.height, 0.1, 1000);
-	program.setUniformMat4("projection", projectionMatrix);
 	
-	let stack = new MatrixStack();
-	stack.lookAt([0, 0, -5], [0, 0, 0], [0, 1, 0]);
-	let angleY = 0.0;
-	let angleX = 0.3;
+	var models = [];
+	let texture;
 	
-	let texture = new Texture("example-image");
+	function finish() {
+		Model.unbind();
 
-	function draw() {
-		engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
-		stack.push();
-		stack.rotate(angleY, [0, 1, 0]);
-		stack.rotate(angleX, [1, 0, 0]);
-		program.setUniformMat4("view", stack.peek());
-		stack.pop();
+		program.bind();
 
-		texture.bind();
-		model.draw(); // normally we would need to bind the model before drawing but I only have one model so I never unbind it from when I create it
+		let projectionMatrix = new Float32Array(16);
+		glMatrix.mat4.perspective(projectionMatrix, 1.58, canvas.width / canvas.height, 0.1, 1000);
+		program.setUniformMat4("projection", projectionMatrix);
 		
-		angleY += 0.04;
-		angleX += 0.01;
+		let stack = new MatrixStack();
+		stack.lookAt([0, 0, HOMEPAGE ? -4 : -6], [0, 0, 0], [0, 1, 0]); // position, lookat, up
+		let angleY = 0.0;
+		let angleX = 0.3;
+
+		function draw() {
+			engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
+			stack.push();
+			stack.rotate(angleY, [0, 1, 0]);
+			stack.rotate(angleX, [1, 0, 0]);
+			program.setUniformMat4("view", stack.peek());
+			stack.pop();
+
+			texture.bind();
+			let model = models[0]; // for now
+			model.bind();
+			model.draw(); // normally we would need to bind the model before drawing but I only have one model so I never unbind it from when I create it
+			
+			angleY += 0.04;
+			angleX += 0.01;
+			requestAnimationFrame(draw);
+		}
+
 		requestAnimationFrame(draw);
 	}
+	
+	if (HOMEPAGE) {
+		models.push(createCuboid([-1, -1, -1], [1, 1, 1], uvSets));
+		program.format().apply();
+		texture = new Texture(document.getElementById("example-image"));
+		finish();
+	} else {
+		let url = "https://api.cosmetica.cc/get/cosmetic?type=" + URL_PARAMS.get("type") + "&id=" + URL_PARAMS.get("model") + "&timestamp=" + URL_PARAMS.get("timestamp");
+		if (DEBUG) console.log("Contacting " + url);
+		
+		let data = await fetch(url);
+		let jsonData = await data.json();
+		
+		if (DEBUG) {
+			console.log("Received the following JSON:");
+			console.log(jsonData);
+		}
+		
+		let img = new Image();
+		img.onload = function() {
+			texture = new Texture(img);
+		
+			models.push(createCuboid([-1, -1, -1], [1, 1, 1], uvSets));
+			program.format().apply();
 
-	requestAnimationFrame(draw);
+			finish();
+		}
+		img.src = jsonData.texture;
+		document.body.appendChild(img);
+
+		// info at bottom
+
+		let mName = document.createElement("h2");
+		mName.innerText = URL_PARAMS.get("model");
+		mName.classList.add("centred");
+		body.appendChild(mName);
+	}
 }
 
 function setupProgram() {

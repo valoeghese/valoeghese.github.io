@@ -5,13 +5,81 @@
 		<title>Model Toy</title>
 		<link rel="icon" type="image/x-icon" href="favicon.ico">
 		<style>
+			@font-face {
+				font-family: belladio;
+				src: url(belladio.otf);
+			}
+
 			#model-toy {
 				border:1px solid black;
+				margin-top: 2em;
+			}
+
+			input, select {
+				margin-top: 1em;
+				font-size: 1vw;
+				
+				width: 20vw;
+				height: 3vw;
+				
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+				
+				-webkit-animation-duration: 1s;
+				animation-duration: 1s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			select {
+				width: 20.4vw;
+				height: 3vw;
+			}
+			
+			h1 {
+				font-size: 3.2vw;
+				margin-bottom: 0.67em;
+				font-family: belladio;
+			}
+			
+			h2 {
+				font-size: 2.5vw;
+				font-family: sans-serif;
+			}
+
+			.centred {
+				margin-left: auto;
+				margin-right: auto;
+				display: block;
+				text-align:center;
+			}
+			
+			input:focus{
+				outline: none;
+			}
+
+			.first {
+				margin-top: 4em;
+			}
+			
+			@keyframes fadeIn {
+				0% {opacity: 0;}
+				50% {opacity: 0.67;}
+				100% {opacity: 1;}
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {opacity: 0;}
+				50% {opacity: 0.67;}
+				100% {opacity: 1;}
 			}
 		</style>
 	</head>
 	<body onload="main();">
-		<canvas id="model-toy", width="500", height="500">Lmao are you using netscape navigator or something? Based, but you need a modern browser for any HOPE of this working</canvas>
+		<h1 class="centred">Cosm____etica  Model  Viewer</h1>
+		<canvas id="model-toy", width="500", height="500", class="centred">Lmao are you using netscape navigator or something? Based, but you need a modern browser for any HOPE of this working</canvas>
+		<script src="setup.js"></script>
+		<!-- actual app stuff -->
 		<img id="example-image", src="example.png", width="0", height="0"></img>
 		<script src="gl-matrix-min.js"></script>
 		<script src="engine.js"></script>
