@@ -97,7 +97,7 @@ var indices = [];
 var currentIndex = 0;
 
 function setupModel() {
-	addFace(
+	addFace( // back
 		[-1, -1, 1,
 		1, -1, 1,
 		1, 1, 1,
@@ -108,7 +108,7 @@ function setupModel() {
 		0.5, 0,
 		0, 0]);
 	
-	addFace(
+	addFace( // front
 		[1, 1, -1,
 		1, -1, -1,
 		-1, -1, -1,
@@ -119,7 +119,7 @@ function setupModel() {
 		0, 0.5,
 		0, 0]);
 		
-	addFace(
+	addFace( // right
 		[-1, 1, 1,
 		-1, 1, -1,
 		-1, -1, -1,
@@ -131,7 +131,7 @@ function setupModel() {
 		0.5, 0.5]
 		);
 
-	addFace(
+	addFace( // left
 		[1, -1, -1,
 		1, 1, -1,
 		1, 1, 1,
@@ -143,7 +143,7 @@ function setupModel() {
 		0.5, 0.5]
 	);
 
-	addFace(
+	addFace( // top
 		[1, 1, 1,
 		1, 1, -1,
 		-1, 1, -1,
@@ -155,7 +155,7 @@ function setupModel() {
 		0.5, 0]
 	);
 
-	addFace(
+	addFace( // bottom
 		[-1, -1, -1,
 		1, -1, -1,
 		1, -1, 1,
