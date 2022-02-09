@@ -51,7 +51,7 @@ async function main() {
 		loading.classList.add("centred");
 		body.appendChild(loading);
 		
-		let url = "https://api.cosmetica.cc/get/cosmetic?type=" + URL_PARAMS.get("type") + "&id=" + URL_PARAMS.get("model") + "&timestamp=" + URL_PARAMS.get("timestamp");
+		let url = "https://api.cosmetica.cc/get/cosmetic?type=" + URL_PARAMS.get("type") + "&id=" + URL_PARAMS.get("model") + "&timestamp=" + Date.now();
 		if (DEBUG) console.log("Contacting " + url);
 		
 		let data = await fetch(url);
@@ -73,10 +73,11 @@ async function main() {
 				console.log("Extracted the following JSON Model:");
 				console.log(jsonModel);
 			}
-		
+
+			// load each cuboid element in the model
 			for (let i = 0; i < jsonModel.elements.length; ++i) {
-				let cuboid = jsonModel.elements[i];
-				let rotation = cuboid.rotation;
+				let element = jsonModel.elements[i];
+				let rotation = element.rotation;
 				
 				if (rotation != undefined) {
 					// transpose 8,8 to origin to match what we do with normal coords
@@ -88,14 +89,23 @@ async function main() {
 				}
 				
 				// transpose 8,8 to origin
-				for (let i = 0; i < cuboid.from.length; ++i) {
-					cuboid.from[i] -= 8;
-					cuboid.to[i] -= 8;
+				for (let i = 0; i < element.from.length; ++i) {
+					element.from[i] -= 8;
+					element.to[i] -= 8;
 				}
 				
-				let element = {"model":createCuboid(cuboid.from, cuboid.to, cuboid.faces), "rotation":rotation};
+				// scale uvs to 0,1 from 0,16
+				for (let k in element.faces) {
+					let face = element.faces[k];
 
-				models.push(element);
+					for (let j = 0; j < face.uv.length; ++j) {
+						face.uv[j] /= 16.0;
+					}
+				}
+
+				let modelPart = {"model":createCuboid(element.from, element.to, element.faces), "rotation":rotation};
+
+				models.push(modelPart);
 				program.format().apply();
 			}
 
@@ -132,8 +142,9 @@ function finish(program, models, texture) {
 
 	let angleY = 0.0;
 	let angleX = HOMEPAGE ? 0.3 : 0.0;
-	let rotationSpeed = HOMEPAGE ? 1 : 0.33;
-	
+	let rotationSpeedX = HOMEPAGE ? 0.01 : 0;
+	let rotationSpeedY = HOMEPAGE ? 0.04 : 0.02;
+
 	function draw() {
 		engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
 		stack.push();
@@ -168,8 +179,8 @@ function finish(program, models, texture) {
 		
 		stack.pop();
 
-		angleY += 0.04 * rotationSpeed;
-		angleX += 0.01 * rotationSpeed;
+		angleY += rotationSpeedY;
+		angleX += rotationSpeedX;
 		requestAnimationFrame(draw);
 	}
 
