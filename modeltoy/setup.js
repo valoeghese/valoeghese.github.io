@@ -1,6 +1,6 @@
 const URL_PARAMS = new URLSearchParams(window.location.search);
 const HOMEPAGE = !URL_PARAMS.has("model");
-const DEBUG = !URL_PARAMS.has("debug");
+const DEBUG = URL_PARAMS.has("debug");
 
 function appendOption(menu, option, value) {
 	let optionDOM = document.createElement("option");

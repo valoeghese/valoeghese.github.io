@@ -150,7 +150,7 @@ class VertexFormat {
 	}
 }
 
-class Model {
+class VertexArray {
 	#vbo;
 	#ibo;
 	#vao;

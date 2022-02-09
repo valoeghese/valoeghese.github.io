@@ -93,7 +93,7 @@ async function main() {
 					element.from[i] -= 8;
 					element.to[i] -= 8;
 				}
-				
+
 				// scale uvs to 0,1 from 0,16
 				for (let k in element.faces) {
 					let face = element.faces[k];
@@ -102,6 +102,8 @@ async function main() {
 						face.uv[j] /= 16.0;
 					}
 				}
+				
+				rotation.angle = glMatrix.glMatrix.toRadian(rotation.angle);
 
 				let modelPart = {"model":createCuboid(element.from, element.to, element.faces), "rotation":rotation};
 
@@ -109,7 +111,7 @@ async function main() {
 				program.format().apply();
 			}
 
-			Model.unbind();
+			VertexArray.unbind();
 
 			// switch loading text for the model name (the id, at least for now)
 			document.body.removeChild(loading);
@@ -152,6 +154,7 @@ function finish(program, models, texture) {
 		stack.rotate(angleX, ROTATION_AXES.x);
 
 		texture.bind();
+		let n = 0;
 
 		models.forEach(element => {
 			let model = element.model;
@@ -176,9 +179,8 @@ function finish(program, models, texture) {
 				model.draw();
 			}
 		});
-		
-		stack.pop();
 
+		stack.pop();
 		angleY += rotationSpeedY;
 		angleX += rotationSpeedX;
 		requestAnimationFrame(draw);
@@ -224,13 +226,9 @@ function setupProgram() {
 	return program;
 }
 
-var vertices = [];
-var indices = [];
-var currentIndex = 0;
-
 /*
 """
-For transforming the old version of vertex arrays to new.
+For transforming the old version of vertex arrays (just a cube) to new.
 """
 def trans(old):
     new = "["
@@ -263,9 +261,13 @@ def transUV(old, minuv=[0,0]):
 */
 
 function createCuboid(from, to, uvSets) {
+	let vertices = [];
+	let indices = [];
+	let currentIndex = 0;
+
 	let uvs = uvSets.south.uv;
 
-	addFace( // back
+	currentIndex = addFace( // back
 		[from[0], from[1], to[2],
 		to[0], from[1], to[2],
 		to[0], to[1], to[2],
@@ -274,12 +276,14 @@ function createCuboid(from, to, uvSets) {
 		[uvs[0],uvs[3],
 		uvs[2],uvs[3],
 		uvs[2],uvs[1],
-		uvs[0],uvs[1]]
+		uvs[0],uvs[1]],
+		
+		vertices, indices, currentIndex
 	);
 	
 	uvs = uvSets.north.uv;
 
-	addFace( // front
+	currentIndex = addFace( // front
 		[to[0],to[1],from[2],
 		to[0],from[1],from[2],
 		from[0],from[1],from[2],
@@ -288,12 +292,14 @@ function createCuboid(from, to, uvSets) {
 		[uvs[2],uvs[1],
 		uvs[2],uvs[3],
 		uvs[0],uvs[3],
-		uvs[0],uvs[1]]
+		uvs[0],uvs[1]],
+		
+		vertices, indices, currentIndex
 	);
 	
 	uvs = uvSets.west.uv;
 	
-	addFace( // right
+	currentIndex = addFace( // right
 		[from[0],to[1],to[2],
 		from[0],to[1],from[2],
 		from[0],from[1],from[2],
@@ -302,12 +308,14 @@ function createCuboid(from, to, uvSets) {
 		[uvs[2],uvs[1],
 		uvs[0],uvs[1],
 		uvs[0],uvs[3],
-		uvs[2],uvs[3]]
+		uvs[2],uvs[3]],
+		
+		vertices, indices, currentIndex
 	);
 
 	uvs = uvSets.east.uv;
 
-	addFace( // left
+	currentIndex = addFace( // left
 		[to[0],from[1],from[2],
 		to[0],to[1],from[2],
 		to[0],to[1],to[2],
@@ -316,12 +324,14 @@ function createCuboid(from, to, uvSets) {
 		[uvs[0],uvs[3],
 		uvs[0],uvs[1],
 		uvs[2],uvs[1],
-		uvs[2],uvs[3]]
+		uvs[2],uvs[3]],
+		
+		vertices, indices, currentIndex
 	);
 
 	uvs = uvSets.up.uv;
 	
-	addFace( // top
+	currentIndex = addFace( // top
 		[to[0],to[1],to[2],
 		to[0],to[1],from[2],
 		from[0],to[1],from[2],
@@ -330,7 +340,9 @@ function createCuboid(from, to, uvSets) {
 		[uvs[2],uvs[1],
 		uvs[2],uvs[3],
 		uvs[0],uvs[3],
-		uvs[0],uvs[1]]
+		uvs[0],uvs[1]],
+		
+		vertices, indices, currentIndex
 	);
 
 	uvs = uvSets.down.uv;
@@ -344,13 +356,15 @@ function createCuboid(from, to, uvSets) {
 		[uvs[0],uvs[3],
 		uvs[2],uvs[3],
 		uvs[2],uvs[1],
-		uvs[0],uvs[1]]
+		uvs[0],uvs[1]],
+		
+		vertices, indices, currentIndex
 	);
 
-	return new Model(vertices, indices);
+	return new VertexArray(vertices, indices);
 }
 
-function addFace(coords, uvs) {
+function addFace(coords, uvs, vertices, indices, currentIndex) {
 	for (let i = 0; i < 4; ++i) {
 		vertices.push(coords[3*i], coords[3*i + 1], coords[3*i + 2]);
 		vertices.push(uvs[2*i], uvs[2*i + 1]);
@@ -363,4 +377,5 @@ function addFace(coords, uvs) {
 	
 	indices.push(c0, c1, c2);
 	indices.push(c0, c2, c3);
+	return currentIndex;
 }
