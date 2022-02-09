@@ -140,7 +140,11 @@ function finish(program, models, texture) {
 	program.setUniformMat4("projection", projectionMatrix);
 	
 	let stack = new MatrixStack();
-	stack.lookAt([0, 0, HOMEPAGE ? -4 : -14], [0, 0, 0], [0, 1, 0]); // position, lookat, up
+	let zoom = -18;
+
+	window.addEventListener("wheel", function(e) {
+		zoom += (-e.deltaY / 80);
+	});
 
 	let angleY = 0.0;
 	let angleX = HOMEPAGE ? 0.3 : 0.0;
@@ -149,6 +153,8 @@ function finish(program, models, texture) {
 
 	function draw() {
 		engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
+		
+		stack.lookAt([0, 0, HOMEPAGE ? -4 : zoom], [0, 0, 0], [0, 1, 0]); // position, lookat, up
 		stack.push();
 		stack.rotate(angleY, ROTATION_AXES.y);
 		stack.rotate(angleX, ROTATION_AXES.x);
