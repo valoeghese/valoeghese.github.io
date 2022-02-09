@@ -25,63 +25,6 @@ async function main() {
 	let program = setupProgram();
 	
 	var models = [];
-	let texture;
-	
-	// this function is called after some async calls (or just immediately after loading the model if on the homepage)
-	function finish() {
-		program.bind();
-
-		let projectionMatrix = new Float32Array(16);
-		glMatrix.mat4.perspective(projectionMatrix, 1.58, canvas.width / canvas.height, 0.1, 1000);
-		program.setUniformMat4("projection", projectionMatrix);
-		
-		let stack = new MatrixStack();
-		if (!HOMEPAGE) stack.translate(8, 8, 8);
-		stack.lookAt([0, 0, HOMEPAGE ? -4 : -14], [0, 0, 0], [0, 1, 0]); // position, lookat, up
-		let angleY = 0.0;
-		let angleX = HOMEPAGE ? 0.3 : 0.0;
-		let rotationSpeed = 1;//HOMEPAGE ? 1 : 0.33;
-		
-		function draw() {
-			engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
-			stack.push();
-			stack.rotate(angleY, ROTATION_AXES.y);
-			stack.rotate(angleX, ROTATION_AXES.x);
-
-			texture.bind();
-
-			models.forEach(element => {
-				let model = element.model;
-				
-				if (element.rotation != undefined) {
-					let rotation = element.rotation;
-
-					stack.push();
-					stack.translate(rotation.origin);
-					stack.rotate(element.rotation.angle, ROTATION_AXES[rotation.axis]);
-					stack.translate(rotation.antiOrigin);
-					program.setUniformMat4("view", stack.peek());
-					
-					model.bind();
-					model.draw();
-					
-					stack.pop();
-				} else {
-					program.setUniformMat4("view", stack.peek());
-					model.bind();
-					model.draw();
-				}
-			});
-			
-			stack.pop();
-
-			angleY += 0.04 * rotationSpeed;
-			angleX += 0.01 * rotationSpeed;
-			requestAnimationFrame(draw);
-		}
-
-		requestAnimationFrame(draw);
-	}
 	
 	if (HOMEPAGE) {
 		let uvSets = {
@@ -97,8 +40,11 @@ async function main() {
 		program.format().apply();
 		Model.unbind();
 
-		texture = new Texture(document.getElementById("example-image"));
-		finish();
+		finish(
+			program,
+			models,
+			new Texture(document.getElementById("example-image"))
+		);
 	} else {
 		let loading = document.createElement("h2");
 		loading.innerText = "Loading...";
@@ -119,7 +65,7 @@ async function main() {
 		let img = new Image();
 
 		img.onload = function() {
-			texture = new Texture(img);
+			let texture = new Texture(img);
 			
 			let jsonModel = JSON.parse(jsonData.model);
 
@@ -133,7 +79,18 @@ async function main() {
 				let rotation = cuboid.rotation;
 				
 				if (rotation != undefined) {
+					// transpose 8,8 to origin to match what we do with normal coords
+					for (let i = 0; i < 3; ++i) {
+						rotation.origin[i] -= 8;
+					}
+
 					rotation.antiOrigin = [-rotation.origin[0], -rotation.origin[1], -rotation.origin[2]];
+				}
+				
+				// transpose 8,8 to origin
+				for (let i = 0; i < cuboid.from.length; ++i) {
+					cuboid.from[i] -= 8;
+					cuboid.to[i] -= 8;
 				}
 				
 				let element = {"model":createCuboid(cuboid.from, cuboid.to, cuboid.faces), "rotation":rotation};
@@ -155,11 +112,68 @@ async function main() {
 			canvas.style.visibility = "visible";
 			canvas.classList.add("fadeIn");
 
-			finish();
+			finish(program, models, texture);
 		}
 
 		img.src = jsonData.texture;
 	}
+}
+
+// this function is called after some async calls (or just immediately after loading the model if on the homepage)
+function finish(program, models, texture) {
+	program.bind();
+
+	let projectionMatrix = new Float32Array(16);
+	glMatrix.mat4.perspective(projectionMatrix, 1.58, canvas.width / canvas.height, 0.1, 1000);
+	program.setUniformMat4("projection", projectionMatrix);
+	
+	let stack = new MatrixStack();
+	stack.lookAt([0, 0, HOMEPAGE ? -4 : -14], [0, 0, 0], [0, 1, 0]); // position, lookat, up
+
+	let angleY = 0.0;
+	let angleX = HOMEPAGE ? 0.3 : 0.0;
+	let rotationSpeed = HOMEPAGE ? 1 : 0.33;
+	
+	function draw() {
+		engine.gl.clear(engine.gl.COLOR_BUFFER_BIT | engine.gl.DEPTH_BUFFER_BIT);
+		stack.push();
+		stack.rotate(angleY, ROTATION_AXES.y);
+		stack.rotate(angleX, ROTATION_AXES.x);
+
+		texture.bind();
+
+		models.forEach(element => {
+			let model = element.model;
+			
+			if (element.rotation != undefined) {
+				let rotation = element.rotation;
+
+				stack.push();
+				stack.translate(rotation.origin);
+				stack.rotate(element.rotation.angle, ROTATION_AXES[rotation.axis]);
+				stack.translate(rotation.antiOrigin);
+				
+				program.setUniformMat4("view", stack.peek());
+				
+				model.bind();
+				model.draw();
+				
+				stack.pop();
+			} else {
+				program.setUniformMat4("view", stack.peek());
+				model.bind();
+				model.draw();
+			}
+		});
+		
+		stack.pop();
+
+		angleY += 0.04 * rotationSpeed;
+		angleX += 0.01 * rotationSpeed;
+		requestAnimationFrame(draw);
+	}
+
+	requestAnimationFrame(draw);
 }
 
 function setupProgram() {
