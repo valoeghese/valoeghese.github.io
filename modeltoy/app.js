@@ -20,7 +20,16 @@ function main() {
 	engine.setClearColour(0.85, 0.9, 1.0);
 	
 	let program = setupProgram();
-	let model = setupModel();
+	
+	let uvSets = {
+		"north": [0, 0, 0.5, 0.5],
+		"east": [0, 0, 0.5, 0.5],
+		"south": [0, 0, 0.5, 0.5],
+		"west": [0, 0, 0.5, 0.5],
+		"up": [0.5, 0, 1, 0.5],
+		"down": [0, 0.5, 0.5, 1]
+	};
+	let model = createCuboid([-1, -1, -1], [1, 1, 1], uvSets);
 	program.format().apply();
 
 	program.bind();
@@ -96,76 +105,125 @@ var vertices = [];
 var indices = [];
 var currentIndex = 0;
 
-function setupModel() {
+/*
+"""
+For transforming the old version of vertex arrays to new.
+"""
+def trans(old):
+    new = "["
+    for i in range(len(old)):
+        val = i % 3
+        arr = "to[" if old[i] > 0 else "from["
+        new += arr + str(val) + "],"
+        if i % 3 == 2:
+            if i == len(old) - 1:
+                new = new[:len(new)-1] + "]"
+            print(new)
+            new = "\t\t"
+			
+"""
+For transforming the old version of uvs to new
+"""
+def transUV(old, minuv=[0,0]):
+    new = "["
+    for i in range(len(old)):
+        val = i % 2
+        if old[i] > minuv[val]:
+            val += 2
+        
+        new += "uvs[" + str(val) + "],"
+        if i % 2 == 1:
+            if i == len(old) - 1:
+                new = new[:len(new)-1] + "]"
+            print(new)
+            new = "\t\t"
+*/
+
+function createCuboid(from, to, uvSets) {
+	let uvs = uvSets["south"]
+
 	addFace( // back
-		[-1, -1, 1,
-		1, -1, 1,
-		1, 1, 1,
-		-1, 1, 1],
+		[from[0], from[1], to[2],
+		to[0], from[1], to[2],
+		to[0], to[1], to[2],
+		from[0], to[1], to[2]],
 
-		[0, 0.5,
-		0.5, 0.5,
-		0.5, 0,
-		0, 0]);
+		[uvs[0],uvs[3],
+		uvs[2],uvs[3],
+		uvs[2],uvs[1],
+		uvs[0],uvs[1]]
+	);
 	
+	uvs = uvSets["north"]
+
 	addFace( // front
-		[1, 1, -1,
-		1, -1, -1,
-		-1, -1, -1,
-		-1, 1, -1],
+		[to[0],to[1],from[2],
+		to[0],from[1],from[2],
+		from[0],from[1],from[2],
+		from[0],to[1],from[2]],
 
-		[0.5, 0,
-		0.5, 0.5,
-		0, 0.5,
-		0, 0]);
-		
+		[uvs[2],uvs[1],
+		uvs[2],uvs[3],
+		uvs[0],uvs[3],
+		uvs[0],uvs[1]]
+	);
+	
+	uvs = uvSets["west"]
+	
 	addFace( // right
-		[-1, 1, 1,
-		-1, 1, -1,
-		-1, -1, -1,
-		-1, -1, 1],
+		[from[0],to[1],to[2],
+		from[0],to[1],from[2],
+		from[0],from[1],from[2],
+		from[0],from[1],to[2]],
 
-		[0.5, 0,
-		0, 0,
-		0, 0.5,
-		0.5, 0.5]
-		);
+		[uvs[2],uvs[1],
+		uvs[0],uvs[1],
+		uvs[0],uvs[3],
+		uvs[2],uvs[3]]
+	);
+
+	uvs = uvSets["east"]
 
 	addFace( // left
-		[1, -1, -1,
-		1, 1, -1,
-		1, 1, 1,
-		1, -1, 1],
+		[to[0],from[1],from[2],
+		to[0],to[1],from[2],
+		to[0],to[1],to[2],
+		to[0],from[1],to[2]],
 
-		[0, 0.5,
-		0, 0,
-		0.5, 0,
-		0.5, 0.5]
+		[uvs[0],uvs[3],
+		uvs[0],uvs[1],
+		uvs[2],uvs[1],
+		uvs[2],uvs[3]]
 	);
 
+	uvs = uvSets["up"]
+	
 	addFace( // top
-		[1, 1, 1,
-		1, 1, -1,
-		-1, 1, -1,
-		-1, 1, 1],
-		
-		[1, 0,
-		1, 0.5,
-		0.5, 0.5,
-		0.5, 0]
+		[to[0],to[1],to[2],
+		to[0],to[1],from[2],
+		from[0],to[1],from[2],
+		from[0],to[1],to[2]],
+
+		[uvs[2],uvs[1],
+		uvs[2],uvs[3],
+		uvs[0],uvs[3],
+		uvs[0],uvs[1]]
 	);
+
+	uvs = uvSets["down"]
 
 	addFace( // bottom
-		[-1, -1, -1,
-		1, -1, -1,
-		1, -1, 1,
-		-1, -1, 1],
+		[from[0],from[1],from[2],
+		to[0],from[1],from[2],
+		to[0],from[1],to[2],
+		from[0],from[1],to[2]],
 		
-		[0, 1,
-		0.5, 1,
-		0.5, 0.5,
-		0, 0.5]
+		[uvs[0],uvs[3],
+		uvs[2],uvs[3],
+		uvs[2],uvs[1],
+		uvs[0],uvs[1]]
 	);
+
 	return new Model(vertices, indices);
 }
 
