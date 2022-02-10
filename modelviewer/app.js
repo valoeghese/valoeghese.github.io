@@ -67,7 +67,8 @@ async function main() {
 			mName.innerText = "The provided cosmetic could not be found.";
 			mName.classList.add("fadeIn", "centred");
 			document.body.appendChild(mName);
-
+			
+			addBackButton();
 			return;
 		}
 
@@ -148,6 +149,8 @@ async function main() {
 
 // this function is called after some async calls (or just immediately after loading the model if on the homepage)
 function finish(program, models, texture) {
+	addBackButton();
+
 	program.bind();
 
 	let projectionMatrix = new Float32Array(16);
@@ -208,6 +211,30 @@ function finish(program, models, texture) {
 	}
 
 	requestAnimationFrame(draw);
+}
+
+function addBackButton() {
+	let button = document.createElement("input");
+	button.type = "button";
+	button.value = HOMEPAGE ? "< Main Page" : "< Back";
+	button.classList.add("centred", "fadeIn", "largerInput");
+
+	button.onclick = function() {
+		let href = window.location.href;
+		let marker = href.indexOf("?");
+		
+		if (marker > 0) {
+			href = href.substring(0, marker);
+		}
+
+		if (HOMEPAGE) {
+			href = href.substring(0, href.length - "modelviewer/".length);
+		}
+
+		window.location.href = href + (DEBUG ? "?debug" : "");
+	};
+
+	document.body.appendChild(button);
 }
 
 function setupProgram() {

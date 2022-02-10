@@ -48,7 +48,7 @@ if (HOMEPAGE) {
 	modelTypeInput = document.createElement("select");
 	appendOption(modelTypeInput, "Hat", "hat");
 	appendOption(modelTypeInput, "Shoulder Buddy", "shoulderbuddy");
-	modelTypeInput.classList.add("fadeIn", "centred");
+	modelTypeInput.classList.add("fadeIn", "centred", "largerInput");
 	
 	body.appendChild(modelTypeInput);
 } else {
