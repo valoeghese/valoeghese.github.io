@@ -52,6 +52,5 @@ if (HOMEPAGE) {
 	
 	body.appendChild(modelTypeInput);
 } else {
-	canvas.style.visibility = "hidden";
 	canvas.classList.remove("fadeIn");
 }

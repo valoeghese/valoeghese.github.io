@@ -38,7 +38,7 @@ async function main() {
 
 		models.push({"model":createCuboid([-1, -1, -1], [1, 1, 1], uvSets)});
 		program.format().apply();
-		Model.unbind();
+		VertexArray.unbind();
 
 		finish(
 			program,
@@ -46,6 +46,8 @@ async function main() {
 			new Texture(document.getElementById("example-image"))
 		);
 	} else {
+		document.body.removeChild(canvas);
+
 		let loading = document.createElement("h2");
 		loading.innerText = "Loading...";
 		loading.classList.add("centred");
@@ -57,6 +59,18 @@ async function main() {
 		let data = await fetch(url);
 		let jsonData = await data.json();
 		
+		if (jsonData.error != undefined) {
+			// switch loading text for the model name (the id, at least for now)
+			document.body.removeChild(loading);
+			
+			let mName = document.createElement("h2");
+			mName.innerText = "The provided cosmetic could not be found.";
+			mName.classList.add("fadeIn", "centred");
+			document.body.appendChild(mName);
+
+			return;
+		}
+
 		if (DEBUG) {
 			console.log("Received the following JSON:");
 			console.log(jsonData);
@@ -80,6 +94,8 @@ async function main() {
 				let rotation = element.rotation;
 				
 				if (rotation != undefined) {
+					rotation.angle = glMatrix.glMatrix.toRadian(rotation.angle);
+
 					// transpose 8,8 to origin to match what we do with normal coords
 					for (let i = 0; i < 3; ++i) {
 						rotation.origin[i] -= 8;
@@ -102,8 +118,6 @@ async function main() {
 						face.uv[j] /= 16.0;
 					}
 				}
-				
-				rotation.angle = glMatrix.glMatrix.toRadian(rotation.angle);
 
 				let modelPart = {"model":createCuboid(element.from, element.to, element.faces), "rotation":rotation};
 
@@ -115,13 +129,14 @@ async function main() {
 
 			// switch loading text for the model name (the id, at least for now)
 			document.body.removeChild(loading);
-			
+
 			let mName = document.createElement("h2");
 			mName.innerText = jsonData.name;
 			mName.classList.add("fadeIn", "centred");
 			document.body.appendChild(mName);
-
-			canvas.style.visibility = "visible";
+			
+			// readd canvas
+			document.body.appendChild(canvas);
 			canvas.classList.add("fadeIn");
 
 			finish(program, models, texture);
@@ -147,8 +162,8 @@ function finish(program, models, texture) {
 	});
 
 	let angleY = 0.0;
-	let angleX = HOMEPAGE ? 0.3 : 0.0;
-	let rotationSpeedX = HOMEPAGE ? 0.01 : 0;
+	let angleX = HOMEPAGE ? -0.4 : 0.0;
+	let rotationSpeedX = URL_PARAMS.has("spin_x") ? 0.01 : 0;
 	let rotationSpeedY = HOMEPAGE ? 0.04 : 0.02;
 
 	function draw() {
