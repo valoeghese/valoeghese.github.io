@@ -1,0 +1,23 @@
+body {
+	font-family: Bahnschrift, Arial, sans-serif;
+	background-color: #f0f0f0;
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+}
+
+input[type=button] {
+	font-size: 100%;
+	padding: 1.5%;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 2%;
+}
+
+#problem-window {
+	border: 5px double #888;
+}
