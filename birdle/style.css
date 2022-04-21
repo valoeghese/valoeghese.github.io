@@ -1,0 +1,26 @@
+html, body {
+	background-color: #2e2e2e;
+	height: 100%;
+	width: 100%;
+	margin: 0; 
+	font-family: Lato, Helvetica, sans-serif;
+	padding: 0;
+}
+
+#main-body {
+	background-color: #e3e3e3;
+	height: 100%;
+	width: 80%;
+	margin-left: 10%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	text-align: center;
+	position: static;
+	color: #2e2e2e;
+}
+
+h1 {
+	font-weight: 1000;
+	font-size: calc(1.0em + 1.25vw);
+	margin-top: 1%;
+}
