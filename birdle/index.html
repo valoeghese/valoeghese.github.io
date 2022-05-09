@@ -16,17 +16,9 @@
 			<hr width="80%"/>
 			<br/><br/>
 			<div id="game">
-				<div class="borders">
-					<div class="entry larger">South Island Robin<div></div><span class="scientific-name">Petroica Australis</span></div>
-					<div class="entry">Petroicidae</div>
-					<div class="entry">Australasia</div>
+				<div id="guesses">
 				</div>
-				<div class="borders">
-					<div class="entry larger">North Island Robin<div></div><span class="scientific-name">Petroica Longpipes</span></div>
-					<div class="entry">Petroicidae</div>
-					<div class="entry">Australasia</div>
-				</div>
-				<input id="bird-entry" class="searchy" onkeyup="addtopresults()"></input>
+				<input id="bird-entry" class="searchy" onkeyup="addtopresults(event)" onkeypress="maybeenter(event)"></input>
 				<div id="result_1" class="searchable searchy" onclick="autocomplete(this)"></div>
 				<div id="result_2" class="searchable searchy" onclick="autocomplete(this)"></div>
 				<div id="result_3" class="searchable searchy" onclick="autocomplete(this)"></div>

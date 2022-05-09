@@ -1,5 +1,16 @@
 console.log("Hello, World!");
 
+const entry_0 = `
+<div class="borders">
+<div class="entry larger">
+`;
+const entry_1 = `<div></div><span class="scientific-name">`;
+const entry_2 = `</span></div>
+<div class="entry">`;
+const entry_3 = `</div>
+<div class="entry">`;
+const entry_4=`</div></div>`;
+
 // Searchables is all possible search terms. These are all lowercase for search reasons.
 // Birds maps scientific names to bird data (1st common name, region) and other names to scientific names
 // Families maps genuses to families
@@ -9,6 +20,17 @@ birds = {}
 binomials = [] // for choosing the answer
 families = {}
 orders = {}
+
+var top_secret_solution = {};
+
+function mulberry32(a) {
+    return function() {
+      var t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+}
 
 // puts it in the right sections
 // searchables is segregated for speed reasons with high object counter
@@ -98,9 +120,16 @@ fetch("birds.json")
 				}
 			}
 		}
+		
+		// then choose solution
+				
+		let prng = mulberry32(new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
+		var top_secret_rng = Math.floor(prng() * binomials.length);
+		top_secret_solution = entryOf(binomials[top_secret_rng]);
 	});
 
 const textbox = document.getElementById("bird-entry");
+const guesses = document.getElementById("guesses");
 const results = [
 	document.getElementById("result_1"),
 	document.getElementById("result_2"),
@@ -115,6 +144,8 @@ var last = ""
 function entryOf(term) {
 	result = birds[term];
 	
+	if (result == undefined) return undefined;
+	
 	if (typeof result === 'string') {
 		result = birds[result];
 	}
@@ -122,8 +153,27 @@ function entryOf(term) {
 	return result;
 }
 
-function addtopresults() {
+function maybeenter(event) {
+	if (event.keyCode == 13) {
+		let term = textbox.value.toLowerCase();
+		let entry = entryOf(term);
+		
+		if (entry == undefined) {
+			// unknown bird
+		}
+		else {
+			textbox.value = "";
+			resettopresults();
+			
+			guesses.innerHTML += entry_0 + entry.common + entry_1 + entry.binomial + entry_2 + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + entry.region + entry_4;
+		}
+	}
+}
+
+function addtopresults(event) {
 	let search = textbox.value.toLowerCase();
+	
+	if (event.keyCode == 13) return;
 	
 	if (search != last) { // check stuff has changed
 		last = search;
@@ -172,12 +222,16 @@ function addtopresults() {
 	}
 }
 
-function autocomplete(e) {
-	textbox.value = e.term;
-	addtopresults();
+function resettopresults() {
+	for (let i in results) {
+		results[i].style.display = "none";
+	}
 }
 
-// setup
-for (let i in results) {
-	results[i].style.display = "none";
+function autocomplete(e) {
+	textbox.value = e.term;
+	resettopresults();
 }
+
+// website-load setup
+resettopresults();
