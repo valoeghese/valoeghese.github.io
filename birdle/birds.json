@@ -1,0 +1,56 @@
+{
+	"passeriformes": {
+		"meliphagidae": {
+			"anthornis": {
+				"melanura": {
+					"name": ["new zealand bellbird", "korimako", "makomako"],
+					"region": "australasia"
+				}
+			},
+			"prosthemadera": {
+				"novaeseelandiae": {
+					"name": ["tui", "parson bird"],
+					"region": "australasia"
+				}
+			}
+		},
+		"petroicidae": {
+			"petroica": {
+				"australis": {
+					"name": ["south island robin", "new zealand robin", "toutouwai"],
+					"region": "australasia"
+				},
+				"longpipes": {
+					"name": ["north island robin", "new zealand robin"],
+					"region": "australasia"
+				}
+			}
+		},
+		"passeridae": {
+			"passer": {
+				"montanus": {
+					"name": "eurasian tree sparrow",
+					"region": "palearctic"
+				},
+				"domesticus": {
+					"name": "house sparrow",
+					"region": "palearctic"
+				}
+			}
+		},
+		"sturnidae": {
+			"acridotheres": {
+				"tristis": {
+					"name": "common myna",
+					"region": "indomalayan"
+				}
+			},
+			"sturnus": {
+				"vulgaris": {
+					"name": "common starling",
+					"region": "palearctic"
+				}
+			}
+		}
+	}
+}
