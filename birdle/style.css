@@ -24,3 +24,61 @@ h1 {
 	font-size: calc(1.0em + 1.25vw);
 	margin-top: 1%;
 }
+
+#game {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	position: static;
+	text-align: center;
+	font-size: 16px;
+}
+
+.entry {
+	border: 3px solid #2e2e2e;
+	border-radius: 15px;
+	vertical-align: middle;
+	padding: 10px;
+	display: table-cell;
+}
+
+.larger {
+	width: 50%;
+}
+
+.scientific-name {
+	font-size: 14px;
+	font-style: italic;
+}
+
+.borders {
+	margin-left: auto;
+	margin-right: auto;
+	
+	padding-bottom: 10px;
+	padding-top: 10px;
+	
+	border-spacing: 10px;
+	border-bottom: 3px dashed #2e2e2e;
+	display: table;
+}
+
+#bird-entry {
+	margin-left: auto;
+	margin-right: auto;
+	
+	padding-top: 8px;
+	padding-bottom: 8px;
+	margin-top: 20px;
+	width: 60%;
+	
+	background-color: #c3c3c3;
+	text-align: center;
+	
+	border: 3px double #2e2e2e;
+	border-radius: 10px;
+}
+
+#bird-entry:focus {
+	outline: none;
+}
