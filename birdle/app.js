@@ -6,6 +6,7 @@ console.log("Hello, World!");
 // Orders maps families to orders
 searchables = {'q': [], 'w': [], 'e': [], 'r': [], 't': [], 'y': [], 'u': [], 'i': [], 'o': [], 'p': [], 'a': [], 's': [], 'd': [], 'f': [], 'g': [], 'h': [], 'j': [], 'k': [], 'l': [], 'z': [], 'x': [], 'c': [], 'v': [], 'b': [], 'n': [], 'm': []};
 birds = {}
+binomials = [] // for choosing the answer
 families = {}
 orders = {}
 
@@ -18,11 +19,14 @@ function addSearchable(strItem) {
 	for (let i in parts) {
 		let c0 = parts[i][0];
 
-		if (!charsDone.includes(c0)) {
-			charsDone.push(c0);
-			searchables[c0].push(strItem);
-		}
+		try{
+			if (!charsDone.includes(c0)) {
+				charsDone.push(c0);
+				searchables[c0].push(strItem);
+			}
+		} catch (err) {console.log(err); console.log(c0); console.log(strItem);}
 	}
+	
 }
 
 function capitalise(strItem) {
@@ -63,6 +67,7 @@ fetch("birds.json")
 						scientificName = genus + " " + species;
 
 						searchables[genus[0]].push(scientificName);
+						binomials.push(scientificName);
 						if (genus[0] != species[0]) searchables[species[0]].push(scientificName);
 						
 						// common name
@@ -169,6 +174,7 @@ function addtopresults() {
 
 function autocomplete(e) {
 	textbox.value = e.term;
+	addtopresults();
 }
 
 // setup

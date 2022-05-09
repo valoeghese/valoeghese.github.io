@@ -1,4 +1,22 @@
 {
+	"galliformes": {
+		"odontophoridae": {
+			"callipepla": {
+				"californica": {
+					"name": ["california quail", "california valley quail"],
+					"region": "australasia"
+				}
+			}
+		},
+		"phasianidae": {
+			"gallus": {
+				"gallus domesticus": {
+					"name": ["chicken", "feral chicken", "domestic chicken"],
+					"region": "indomalayan"
+				}
+			}
+		}
+	},
 	"passeriformes": {
 		"meliphagidae": {
 			"anthornis": {
@@ -49,6 +67,14 @@
 				"vulgaris": {
 					"name": "common starling",
 					"region": "palearctic"
+				}
+			}
+		},
+		"zosteropidae": {
+			"zosterops": {
+				"lateralis": {
+					"name": ["silvereye", "wax-eye", "waxeye", "tauhou"],
+					"region": "australasia"
 				}
 			}
 		}
