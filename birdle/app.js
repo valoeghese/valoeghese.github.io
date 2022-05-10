@@ -1,14 +1,16 @@
 console.log("Hello, World!");
 
 const entry_0 = `
-<div class="borders">
-<div class="entry larger">
-`;
+<div class="borders ">
+<div class="entry larger `;
+const entry_0b = `">`;
 const entry_1 = `<div></div><span class="scientific-name">`;
 const entry_2 = `</span></div>
-<div class="entry">`;
+<div class="entry `;
+const entry_2b = `" >`;
 const entry_3 = `</div>
-<div class="entry">`;
+<div class="entry `;
+const entry_3b = `" >`;
 const entry_4=`</div></div>`;
 
 // Searchables is all possible search terms. These are all lowercase for search reasons.
@@ -125,6 +127,7 @@ fetch("birds.json")
 				
 		let prng = mulberry32(new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
 		var top_secret_rng = Math.floor(prng() * binomials.length);
+		console.log(top_secret_rng);
 		top_secret_solution = entryOf(binomials[top_secret_rng]);
 	});
 
@@ -153,6 +156,15 @@ function entryOf(term) {
 	return result;
 }
 
+function similarity (a1, a2, b1, b2) {
+	if (a1 == b1) {
+		if (a2 == b2) {return "every60secondsinafricaaminutepasses";}
+		else return "nearly";
+	} else if (a2 == b2) return "nearly";
+	
+	return "";
+}
+
 function maybeenter(event) {
 	if (event.keyCode == 13) {
 		let term = textbox.value.toLowerCase();
@@ -165,7 +177,13 @@ function maybeenter(event) {
 			textbox.value = "";
 			resettopresults();
 			
-			guesses.innerHTML += entry_0 + entry.common + entry_1 + entry.binomial + entry_2 + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + entry.region + entry_4;
+			binomial_split = entry.binomial.split(" ");
+			binomial2_split = top_secret_solution.binomial.split(" ");
+			console.log(entry.binomial);
+			family1 = families[binomial_split[0]];
+			family2 = families[binomial2_split[0]];
+			
+			guesses.innerHTML += entry_0 + similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]) + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region) + entry_3b + entry.region + entry_4;
 		}
 	}
 }

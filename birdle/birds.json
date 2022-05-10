@@ -1,4 +1,41 @@
 {
+	"columbiformes": {
+		"columbidae": {
+			"columba": {
+				"livia": {
+					"name": ["rock pigeon", "rock dove", "domestic pigeon", "feral pigeon"],
+					"region": "palearctic",
+					"secondary_region": "indomalayan"
+				}
+			},
+			"hemiphaga": {
+				"novaeseelandiae": {
+					"name": ["new zealand pigeon", "kereru", "kukupa", "new zealand wood pigeon"],
+					"region": "australasia"
+				}
+			},
+			"spilopelia": {
+				"chinensis": {
+					"name": ["spotted dove", "spotted turtle-dove"],
+					"region": "indomalayan"
+				},
+				"turtur": {
+					"name": ["european turtle dove"],
+					"region": "palearctic"
+				}
+			}
+		}
+	},
+	"cuculiformes": {
+		"cuculidae": {
+			"cuculus": {
+				"canorus": {
+					"name": "common cuckoo",
+					"region": "palearctic"
+				}
+			}
+		}
+	},
 	"galliformes": {
 		"odontophoridae": {
 			"callipepla": {
@@ -56,6 +93,18 @@
 				}
 			}
 		},
+		"rhipiduridae": {
+			"rhipidura": {
+				"fuliginosa": {
+					"name": ["new zealand fantail", "piwakawaka"],
+					"region": "australasia"
+				},
+				"leucophrys": {
+					"name": ["willie wagtail", "willy wagtail"],
+					"region": "australasia"
+				}
+			}
+		},
 		"sturnidae": {
 			"acridotheres": {
 				"tristis": {
@@ -67,6 +116,28 @@
 				"vulgaris": {
 					"name": "common starling",
 					"region": "palearctic"
+				}
+			}
+		},
+		"turdidae": {
+			"turdus": {
+				"merula": {
+					"name": "common blackbird",
+					"region": "palearctic"
+				},
+				"migratorius": {
+					"name": "american robin",
+					"region": "nearctic"
+				},
+				"philomelos": {
+					"name": "song thrush",
+					"region": "palearctic"
+				}
+			},
+			"sialia": {
+				"sialis": {
+					"name": "eastern bluebird",
+					"region": "nearctic"
 				}
 			}
 		},

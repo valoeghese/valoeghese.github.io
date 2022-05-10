@@ -42,6 +42,14 @@ h1 {
 	display: table-cell;
 }
 
+.nearly {
+	background-color: #f2ca18;
+}
+
+.every60secondsinafricaaminutepasses {
+	background-color: #2de55b;
+}
+
 .larger {
 	width: 50%;
 }
