@@ -1,6 +1,34 @@
 {
+	"charadriiformes": {
+		"laridae": {
+			"name": "Gulls and Terns",
+			
+			"larus": {
+				"canus": {
+					"name": ["common gull", "mew gull", "sea mew"],
+					"size": 40,
+					"region": "palearctic"
+				},
+				"marinus": {
+					"name": "great black-backed gull",
+					"size": 68,
+					"region": "palearctic",
+					"secondary_region": "nearctic"
+				}
+			},
+			"chroicocephalus": {
+				"novaehollandiae": {
+					"name": ["silver gull", "red-billed gull", "red billed gull", "tarāpunga"],
+					"size": 37,
+					"region": "australasia"
+				}
+			}
+		}
+	},
 	"columbiformes": {
 		"columbidae": {
+			"name": "Pigeons and Doves",
+			
 			"columba": {
 				"livia": {
 					"name": ["rock pigeon", "rock dove", "domestic pigeon", "feral pigeon"],
@@ -39,6 +67,8 @@
 	},
 	"cuculiformes": {
 		"cuculidae": {
+			"name": "Cuckoos",
+			
 			"cuculus": {
 				"canorus": {
 					"name": "common cuckoo",
@@ -50,6 +80,8 @@
 	},
 	"galliformes": {
 		"odontophoridae": {
+			"name": "New-World Quails",
+			
 			"callipepla": {
 				"californica": {
 					"name": ["california quail", "california valley quail"],
@@ -59,6 +91,8 @@
 			}
 		},
 		"phasianidae": {
+			"name": "Old-World Gamebirds",
+			
 			"gallus": {
 				"gallus domesticus": {
 					"name": ["chicken", "feral chicken", "domestic chicken"],
@@ -77,6 +111,8 @@
 	},
 	"passeriformes": {
 		"meliphagidae": {
+			"name": "Honeyeaters",
+			
 			"anthornis": {
 				"melanura": {
 					"name": ["new zealand bellbird", "korimako", "makomako"],
@@ -93,6 +129,8 @@
 			}
 		},
 		"petroicidae": {
+			"name": "Australasian Robins",
+			
 			"petroica": {
 				"australis": {
 					"name": ["south island robin", "new zealand robin", "toutouwai"],
@@ -107,6 +145,8 @@
 			}
 		},
 		"passeridae": {
+			"name": "Old-World Sparrows",
+			
 			"passer": {
 				"montanus": {
 					"name": "eurasian tree sparrow",
@@ -120,7 +160,20 @@
 				}
 			}
 		},
+		"pycnonotidae": {
+			"name": "Bulbuls",
+			
+			"pycnonotus": {
+				"cafer": {
+					"name": ["red-vented bulbul", "red vented bulbul"],
+					"size": 20,
+					"region": "indomalayan"
+				}
+			}
+		},
 		"rhipiduridae": {
+			"name": "Fantails and Silktails",
+			
 			"rhipidura": {
 				"fuliginosa": {
 					"name": ["new zealand fantail", "piwakawaka"],
@@ -135,6 +188,8 @@
 			}
 		},
 		"sturnidae": {
+			"name": "Starlings",
+			
 			"acridotheres": {
 				"tristis": {
 					"name": "common myna",
@@ -152,6 +207,8 @@
 			}
 		},
 		"turdidae": {
+			"name": "True Thrushes",
+			
 			"turdus": {
 				"merula": {
 					"name": ["common blackbird", "eurasian blackbird"],
@@ -178,11 +235,57 @@
 			}
 		},
 		"zosteropidae": {
+			"name": "White-Eyes",
+			
 			"zosterops": {
 				"lateralis": {
 					"name": ["silvereye", "wax-eye", "waxeye", "tauhou"],
 					"size": 12,
 					"region": "australasia"
+				}
+			}
+		}
+	},
+	"psittaciformes": {
+		"psittaculidae": {
+			"name": "\"True\" Parrots",
+			
+			"cyanoramphus": {
+				"novaezelandiae": {
+					"name": ["red-crowned parakeet", "red crowned parakeet", "red-fronted parakeet", "red fronted parakeet", "red-crowned kākāriki", "red crowned kakariki", "red-fronted kakariki", "red fronted kākāriki"],
+					"size": 28,
+					"region": "australasia"
+				},
+				"novaezelandiae": {
+					"name": ["yellow-crowned parakeet", "yellow crowned parakeet", "yellow-fronted parakeet", "yellow fronted parakeet", "yellow-crowned kākāriki", "yellow crowned kakariki", "yellow-fronted kakariki", "yellow fronted kākāriki"],
+					"size": 25,
+					"region": "auriceps"
+				}
+			}
+		}
+	},
+	"strigiformes": {
+		"strigidae": {
+			"name": "Typical Owls",
+			
+			"ninox": {
+				"novaeseelandiae": {
+					"name": ["morepork", "ruru", "tasmanian spotted owl"],
+					"size": 29,
+					"region": "australasia"
+				}
+			},
+			"athene": {
+				"noctua": {
+					"name": "little owl",
+					"size": 23,
+					"region": "palearctic"
+				},
+				"cunicularia": {
+					"name": "burrowing owl",
+					"size": 24,
+					"region": "neotropical",
+					"secondary_region": "nearctic"
 				}
 			}
 		}

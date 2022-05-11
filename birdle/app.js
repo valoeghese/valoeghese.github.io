@@ -22,6 +22,8 @@ const entry_1 = `<div></div><span class="scientific-name">`;
 const entry_2 = `</span></div>
 <div class="entry `;
 const entry_2b = `" >`;
+const entry_2c = `<div></div><span class="scientific-name">`;
+const entry_2d = `</span>`;
 const entry_3 = `</div>
 <div class="entry `;
 const entry_3b = `" >`;
@@ -38,6 +40,7 @@ searchables = {'q': [], 'w': [], 'e': [], 'r': [], 't': [], 'y': [], 'u': [], 'i
 birds = {}
 binomials = [] // for choosing the answer
 families = {}
+family_names = {} // common names for families of birds
 orders = {}
 
 var top_secret_solution = {};
@@ -99,6 +102,13 @@ fetch("birds.json")
 				
 				// etc...
 				for (let genus in cFamily) {
+					// special-case the "name" field
+					if (genus == "name") {
+						family_names[family] = cFamily[genus];
+						continue; // continue to the next item in the loop instead of trying to process it as a genus
+						// some people don't like when you use a continue statement. To those people I say: "cope".
+					}
+					
 					cGenus = cFamily[genus];
 					families[genus] = family;
 					
@@ -215,12 +225,14 @@ function maybeenter(event) {
 			binomial_split = entry.binomial.split(" ");
 			binomial2_split = top_secret_solution.binomial.split(" ");
 
-			family1 = families[binomial_split[0]];
-			family2 = families[binomial2_split[0]];
+			let family1 = families[binomial_split[0]];
+			let family2 = families[binomial2_split[0]];
 			
 			let variation = Math.abs(entry.size - top_secret_solution.size);
 			let species_similarity = similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]);
-			guesses.innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
+			
+			let section_2b3 = family1 in family_names ? (family_names[family1] + entry_2c + capitalise(family1) + entry_2d) : capitalise(family1); // either just the scientific name or the common and scientific names, depending on whether the common name is present.
+			guesses.innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
 			
 			guesses_left_box.innerText = (--guesses_left) + " Guesses Left";
 			
