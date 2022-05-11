@@ -4,6 +4,7 @@
 			"columba": {
 				"livia": {
 					"name": ["rock pigeon", "rock dove", "domestic pigeon", "feral pigeon"],
+					"size": 33,
 					"region": "palearctic",
 					"secondary_region": "indomalayan"
 				}
@@ -11,16 +12,19 @@
 			"hemiphaga": {
 				"novaeseelandiae": {
 					"name": ["new zealand pigeon", "kereru", "kukupa", "new zealand wood pigeon"],
+					"size": 51,
 					"region": "australasia"
 				}
 			},
 			"spilopelia": {
 				"chinensis": {
 					"name": ["spotted dove", "spotted turtle-dove"],
+					"size": 30,
 					"region": "indomalayan"
 				},
 				"turtur": {
 					"name": ["european turtle dove"],
+					"size": 27,
 					"region": "palearctic"
 				}
 			}
@@ -31,6 +35,7 @@
 			"cuculus": {
 				"canorus": {
 					"name": "common cuckoo",
+					"size": 33,
 					"region": "palearctic"
 				}
 			}
@@ -41,6 +46,7 @@
 			"callipepla": {
 				"californica": {
 					"name": ["california quail", "california valley quail"],
+					"size": 25,
 					"region": "nearctic"
 				}
 			}
@@ -49,7 +55,15 @@
 			"gallus": {
 				"gallus domesticus": {
 					"name": ["chicken", "feral chicken", "domestic chicken"],
+					"size": 40,
 					"region": "indomalayan"
+				}
+			},
+			"synoicus": {
+				"ypsilophora": {
+					"name": "brown quail",
+					"size": 18,
+					"region": "australasia"
 				}
 			}
 		}
@@ -59,12 +73,14 @@
 			"anthornis": {
 				"melanura": {
 					"name": ["new zealand bellbird", "korimako", "makomako"],
+					"size": 20,
 					"region": "australasia"
 				}
 			},
 			"prosthemadera": {
 				"novaeseelandiae": {
 					"name": ["tui", "parson bird"],
+					"size": 30,
 					"region": "australasia"
 				}
 			}
@@ -73,10 +89,12 @@
 			"petroica": {
 				"australis": {
 					"name": ["south island robin", "new zealand robin", "toutouwai"],
+					"size": 18,
 					"region": "australasia"
 				},
 				"longpipes": {
 					"name": ["north island robin", "new zealand robin"],
+					"size": 18,
 					"region": "australasia"
 				}
 			}
@@ -85,10 +103,12 @@
 			"passer": {
 				"montanus": {
 					"name": "eurasian tree sparrow",
+					"size": 13,
 					"region": "palearctic"
 				},
 				"domesticus": {
 					"name": "house sparrow",
+					"size": 15,
 					"region": "palearctic"
 				}
 			}
@@ -97,10 +117,12 @@
 			"rhipidura": {
 				"fuliginosa": {
 					"name": ["new zealand fantail", "piwakawaka"],
+					"size": 16,
 					"region": "australasia"
 				},
 				"leucophrys": {
 					"name": ["willie wagtail", "willy wagtail"],
+					"size": 20,
 					"region": "australasia"
 				}
 			}
@@ -109,6 +131,7 @@
 			"acridotheres": {
 				"tristis": {
 					"name": "common myna",
+					"size": 24,
 					"region": "indomalayan",
 					"secondary_region": "palearctic"
 				}
@@ -116,6 +139,7 @@
 			"sturnus": {
 				"vulgaris": {
 					"name": "common starling",
+					"size": 21,
 					"region": "palearctic"
 				}
 			}
@@ -123,21 +147,25 @@
 		"turdidae": {
 			"turdus": {
 				"merula": {
-					"name": "common blackbird",
+					"name": ["common blackbird", "eurasian blackbird"],
+					"size": 25,
 					"region": "palearctic"
 				},
 				"migratorius": {
 					"name": "american robin",
+					"size": 26,
 					"region": "nearctic"
 				},
 				"philomelos": {
 					"name": "song thrush",
+					"size": 23,
 					"region": "palearctic"
 				}
 			},
 			"sialia": {
 				"sialis": {
 					"name": "eastern bluebird",
+					"size": 19,
 					"region": "nearctic"
 				}
 			}
@@ -146,6 +174,7 @@
 			"zosterops": {
 				"lateralis": {
 					"name": ["silvereye", "wax-eye", "waxeye", "tauhou"],
+					"size": 12,
 					"region": "australasia"
 				}
 			}

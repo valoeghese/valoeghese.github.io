@@ -17,7 +17,14 @@
 
 			<div id="game">
 				<div id="playsound" style="margin-bottom:2px"><u>Play Audio Recording</u></div>
-				<div id="guesses"></div>
+				<div id="guesses">
+					<div class="borders ">
+						<div class="entry-head larger">Species</div>
+						<div class="entry-head">Family</div>
+						<div class="entry-head">Region</div>
+						<div class="entry-head">Size</div>
+					</div>
+				</div>
 				<input id="bird-entry" class="searchy" placeholder="Enter a bird..." onkeyup="addtopresults(event)" onkeypress="maybeenter(event)"></input>
 				<div id="result_1" class="searchable searchy" onclick="autocomplete(this)"></div>
 				<div id="result_2" class="searchable searchy" onclick="autocomplete(this)"></div>

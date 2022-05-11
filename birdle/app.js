@@ -25,7 +25,10 @@ const entry_2b = `" >`;
 const entry_3 = `</div>
 <div class="entry `;
 const entry_3b = `" >`;
-const entry_4=`</div></div>`;
+const entry_4 =`</div>
+<div class="entry `;
+const entry_4b = `" >`;
+const entry_5 = `</div></div>`;
 
 // Searchables is all possible search terms. These are all lowercase for search reasons.
 // Birds maps scientific names to bird data (1st common name, region) and other names to scientific names
@@ -131,7 +134,8 @@ fetch("birds.json")
 							"binomial": scientificName,
 							"common": capitalise(commonName),
 							"region": capitalise(cSpecies.region),
-							"region2": cSpecies.secondary_region == undefined ? undefined : capitalise(cSpecies.secondary_region)
+							"region2": cSpecies.secondary_region == undefined ? undefined : capitalise(cSpecies.secondary_region),
+							"size": cSpecies.size
 						};
 					}
 				}
@@ -210,7 +214,8 @@ function maybeenter(event) {
 			family1 = families[binomial_split[0]];
 			family2 = families[binomial2_split[0]];
 			
-			guesses.innerHTML += entry_0 + similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]) + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4;
+			let variation = Math.abs(entry.size - top_secret_solution.size);
+			guesses.innerHTML += entry_0 + similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]) + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
 		}
 	}
 }

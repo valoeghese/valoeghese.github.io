@@ -43,6 +43,13 @@ h1 {
 	display: table-cell;
 }
 
+.entry-head {
+	vertical-align: middle;
+	padding: 10px;
+	display: table-cell;
+	font-style: bold underline;
+}
+
 .nearly {
 	background-color: #f2ca18;
 }
@@ -69,6 +76,17 @@ h1 {
 	
 	border-spacing: 10px;
 	border-bottom: 3px dashed #2e2e2e;
+	display: table;
+}
+
+.borders-head {
+	margin-left: auto;
+	margin-right: auto;
+	
+	padding-bottom: 10px;
+	padding-top: 10px;
+	
+	border-spacing: 10px;
 	display: table;
 }
 
@@ -115,6 +133,10 @@ h1 {
 		font-size: 10px;
 	}
 	
+	.entry-head {
+		font-size: 10px;
+	}
+	
 	.scientific-name {
 		font-size: 8px;
 	}
@@ -123,6 +145,11 @@ h1 {
 
 @media (max-width: 500px) {
 	.entry {
+		font-size: 8px;
+		padding: 6px;
+	}
+	
+	.entry-head {
 		font-size: 8px;
 		padding: 6px;
 	}
