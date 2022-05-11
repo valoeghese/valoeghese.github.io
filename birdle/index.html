@@ -11,14 +11,14 @@
 	</head>
 	<body>
 		<div id="main-body">
-			<h1>Birdle: a bird game</h1>
+			<h1 id="title">Birdle: a bird game</h1>
 			<hr width="90%"/>
 			<hr width="80%"/>
 
 			<div id="game">
 				<div id="playsound" style="margin-bottom:2px"><u>Play Audio Recording</u></div>
 				<div id="guesses">
-					<div class="borders ">
+					<div class="borders-head">
 						<div class="entry-head larger">Species</div>
 						<div class="entry-head">Family</div>
 						<div class="entry-head">Region</div>
@@ -29,6 +29,7 @@
 				<div id="result_1" class="searchable searchy" onclick="autocomplete(this)"></div>
 				<div id="result_2" class="searchable searchy" onclick="autocomplete(this)"></div>
 				<div id="result_3" class="searchable searchy" onclick="autocomplete(this)"></div>
+				<div id="guesses-left">6 Guesses Left</div>
 			</div>
 		</div>
 		<script src="app.js"></script>

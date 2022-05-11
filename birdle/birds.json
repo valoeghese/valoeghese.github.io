@@ -21,11 +21,18 @@
 					"name": ["spotted dove", "spotted turtle-dove"],
 					"size": 30,
 					"region": "indomalayan"
-				},
+				}
+			},
+			"streptopelia": {
 				"turtur": {
 					"name": ["european turtle dove"],
 					"size": 27,
 					"region": "palearctic"
+				},
+				"risoria": {
+					"name": ["barbary dove", "african ring-necked dove"],
+					"size": 28,
+					"region": "afrotropical"
 				}
 			}
 		}

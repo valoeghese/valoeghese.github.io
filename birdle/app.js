@@ -41,6 +41,7 @@ families = {}
 orders = {}
 
 var top_secret_solution = {};
+var guesses_left = 6;
 
 function mulberry32(a) {
     return function() {
@@ -146,7 +147,7 @@ fetch("birds.json")
 				
 		let prng = mulberry32(new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
 		var top_secret_rng = Math.floor(prng() * binomials.length);
-		console.log(top_secret_rng);
+
 		top_secret_solution = entryOf(binomials[top_secret_rng]);
 		
 		let splitbinomail = top_secret_solution.binomial.split(" ");//yeah I realised I made a typo once I started typing the next line but it's not that important so no reason to correct it lol
@@ -160,8 +161,11 @@ fetch("birds.json")
 			});
 	});
 
+const title = document.getElementById("title");
 const textbox = document.getElementById("bird-entry");
 const guesses = document.getElementById("guesses");
+const guesses_left_box = document.getElementById("guesses-left");
+
 const results = [
 	document.getElementById("result_1"),
 	document.getElementById("result_2"),
@@ -210,12 +214,25 @@ function maybeenter(event) {
 			
 			binomial_split = entry.binomial.split(" ");
 			binomial2_split = top_secret_solution.binomial.split(" ");
-			console.log(entry.binomial);
+
 			family1 = families[binomial_split[0]];
 			family2 = families[binomial2_split[0]];
 			
 			let variation = Math.abs(entry.size - top_secret_solution.size);
-			guesses.innerHTML += entry_0 + similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]) + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
+			let species_similarity = similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]);
+			guesses.innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
+			
+			guesses_left_box.innerText = (--guesses_left) + " Guesses Left";
+			
+			if (guesses_left == 0 || species_similarity == "every60secondsinafricaaminutepasses") {
+				textbox.remove();
+				title.classList.add("faded");
+				
+				setTimeout(function() {
+					title.innerText = top_secret_solution.common + " (" + top_secret_solution.binomial + ")";
+					title.style.color = species_similarity == "every60secondsinafricaaminutepasses" ? "#33CC22" : "#CC3311";
+				}, 1000);
+			}
 		}
 	}
 }
