@@ -1,4 +1,18 @@
-console.log("Hello, World!");
+console.log("Tweet-tweet, World!");
+
+//===https://stackoverflow.com/questions/30482887/playing-a-simple-sound-with-web-audio-api
+const audioPlay = async url => {
+  const context = new AudioContext();
+  const source = context.createBufferSource();
+  const audioBuffer = await fetch(url)
+    .then(res => res.arrayBuffer())
+    .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer));
+
+  source.buffer = audioBuffer;
+  source.connect(context.destination);
+  source.start();
+};
+//====
 
 const entry_0 = `
 <div class="borders ">
@@ -130,6 +144,16 @@ fetch("birds.json")
 		var top_secret_rng = Math.floor(prng() * binomials.length);
 		console.log(top_secret_rng);
 		top_secret_solution = entryOf(binomials[top_secret_rng]);
+		
+		let splitbinomail = top_secret_solution.binomial.split(" ");//yeah I realised I made a typo once I started typing the next line but it's not that important so no reason to correct it lol
+		
+		fetch("https://www.xeno-canto.org/api/2/recordings?query=" + splitbinomail[0] + "+" + splitbinomail[1])
+			.then(response2 => response2.json())
+			.then(json => {
+				// https://stackoverflow.com/questions/30482887/playing-a-simple-sound-with-web-audio-api
+				let sound = json.recordings[0].file;
+				document.querySelector('#start').onclick = () => audioPlay(sound);
+			});
 	});
 
 const textbox = document.getElementById("bird-entry");
