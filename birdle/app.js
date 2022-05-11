@@ -116,7 +116,8 @@ fetch("birds.json")
 						birds[scientificName] = {
 							"binomial": scientificName,
 							"common": capitalise(commonName),
-							"region": capitalise(cSpecies.region)
+							"region": capitalise(cSpecies.region),
+							"region2": cSpecies.secondary_region == undefined ? undefined : capitalise(cSpecies.secondary_region)
 						};
 					}
 				}
@@ -156,9 +157,11 @@ function entryOf(term) {
 	return result;
 }
 
-function similarity (a1, a2, b1, b2) {
+function similarity(a1, a2, b1, b2, firstIsMostAccurate) {
+	let firstIsMostAccurate_ = (typeof firstIsMostAccurate !== 'undefined') ? firstIsMostAccurate : false;
+
 	if (a1 == b1) {
-		if (a2 == b2) {return "every60secondsinafricaaminutepasses";}
+		if (firstIsMostAccurate_ || a2 == b2) {return "every60secondsinafricaaminutepasses";}
 		else return "nearly";
 	} else if (a2 == b2) return "nearly";
 	
@@ -183,7 +186,7 @@ function maybeenter(event) {
 			family1 = families[binomial_split[0]];
 			family2 = families[binomial2_split[0]];
 			
-			guesses.innerHTML += entry_0 + similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]) + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region) + entry_3b + entry.region + entry_4;
+			guesses.innerHTML += entry_0 + similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]) + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + capitalise(families[entry.binomial.split(" ")[0]]) + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4;
 		}
 	}
 }

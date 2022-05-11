@@ -26,6 +26,7 @@ h1 {
 }
 
 #game {
+	margin-top: 3%;
 	margin-left: auto;
 	margin-right: auto;
 	width: 75%;
@@ -77,6 +78,9 @@ h1 {
 	
 	padding-top: 8px;
 	padding-bottom: 8px;
+	padding-left: 2px;
+	padding-right: 2px;
+	
 	width: calc(18vw + 130px);
 	
 	text-align: center;
@@ -99,4 +103,27 @@ h1 {
 	margin-top: 3px;
 	background-color: #2e2e2e;
 	color: #e3e3e3;
+}
+
+@media (max-width: 800px) {
+	#game {
+		width: 100%;
+		margin-top: 5%;
+	}
+	
+	.entry {
+		font-size: 10px;
+	}
+	
+	.scientific-name {
+		font-size: 8px;
+	}
+}
+
+
+@media (max-width: 500px) {
+	.entry {
+		font-size: 8px;
+		padding: 6px;
+	}
 }

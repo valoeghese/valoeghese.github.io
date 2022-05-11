@@ -109,7 +109,8 @@
 			"acridotheres": {
 				"tristis": {
 					"name": "common myna",
-					"region": "indomalayan"
+					"region": "indomalayan",
+					"secondary_region": "palearctic"
 				}
 			},
 			"sturnus": {
