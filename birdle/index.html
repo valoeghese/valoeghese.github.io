@@ -4,7 +4,7 @@
 		<!-- Display -->
 		<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 		<link rel="stylesheet" href="style.css">
 		<link rel="shortcut icon" href="https://valoeghese.github.io/assets/valoeghese.png"/>
 		<title>Birdle! Your daily bird game.</title>
@@ -18,7 +18,7 @@
 			<div id="game">
 				<div id="playsound" style="margin-bottom:2px"><u>Play Audio Recording</u></div>
 				<div id="guesses"></div>
-				<input id="bird-entry" class="searchy" onkeyup="addtopresults(event)" onkeypress="maybeenter(event)"></input>
+				<input id="bird-entry" class="searchy" placeholder="Enter a bird..." onkeyup="addtopresults(event)" onkeypress="maybeenter(event)"></input>
 				<div id="result_1" class="searchable searchy" onclick="autocomplete(this)"></div>
 				<div id="result_2" class="searchable searchy" onclick="autocomplete(this)"></div>
 				<div id="result_3" class="searchable searchy" onclick="autocomplete(this)"></div>
