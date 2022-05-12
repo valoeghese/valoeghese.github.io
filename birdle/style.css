@@ -26,6 +26,12 @@ h1 {
 	transition: color 1s;
 }
 
+h2 {
+	font-weight: 1000;
+	font-size: calc(0.9em + 0.9vw);
+	margin-top: 1%;
+}
+
 .faded {
 	color: #e3e3e3;
 }
@@ -142,6 +148,15 @@ text {
 	font-size: 14px;
 }
 
+a {
+	text-decoration: none;
+	color: "#0087CC";
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 @media (max-width: 800px) {
 	#game {
 		width: 100%;
@@ -175,6 +190,11 @@ text {
 	
 	text {
 		font-size: 12px;
+	}
+	
+	h2 {
+		margin-top: 20%;
+		border-bottom: 2px solid #2e2e2e;
 	}
 }
 
