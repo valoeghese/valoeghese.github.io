@@ -1,18 +1,31 @@
 console.log("Tweet-tweet, World!");
 
-//===https://stackoverflow.com/questions/30482887/playing-a-simple-sound-with-web-audio-api
-const audioPlay = async url => {
-  const context = new AudioContext();
-  const source = context.createBufferSource();
-  const audioBuffer = await fetch(url)
-    .then(res => res.arrayBuffer())
-    .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer));
+// adapted from https://www.w3schools.com/js/js_cookies.asp
+function setDailyCookie(cname, cvalue) {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  
+  let expires = "expires="+ tomorrow.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
-  source.buffer = audioBuffer;
-  source.connect(context.destination);
-  source.start();
-};
-//====
+// https://www.w3schools.com/js/js_cookies.asp
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 const entry_0 = `
 <div class="borders ">
@@ -44,7 +57,8 @@ family_names = {} // common names for families of birds
 orders = {}
 
 var top_secret_solution = {};
-var guesses_left = 6;
+const MAX_GUESSES = 6;
+var guesses_left = MAX_GUESSES;
 
 function mulberry32(a) {
     return function() {
@@ -160,14 +174,34 @@ fetch("birds.json")
 
 		top_secret_solution = entryOf(binomials[top_secret_rng]);
 		
+		// now add stored guesses
+		let guessesStored = getCookie("guesses");
+		
+		if (guessesStored) {
+			for (let i = 1; i <= guessesStored; i++) {
+				guess(getCookie("guess" + i));
+			}
+		}
+		
+		// load sound
+		
 		let splitbinomail = top_secret_solution.binomial.split(" ");//yeah I realised I made a typo once I started typing the next line but it's not that important so no reason to correct it lol
 		
-		fetch("https://www.xeno-canto.org/api/2/recordings?query=" + splitbinomail[0] + "+" + splitbinomail[1])
+		fetch("https://xeno-canto.org/api/2/recordings?query=" + splitbinomail[0] + "+" + splitbinomail[1])
 			.then(response2 => response2.json())
 			.then(json => {
 				// https://stackoverflow.com/questions/30482887/playing-a-simple-sound-with-web-audio-api
-				let sound = json.recordings[0].file;
-				document.querySelector('#start').onclick = () => audioPlay(sound);
+				let funnyString = json.recordings[0].sono.small.substring("//xeno-canto.org/sounds/uploaded/".length);
+				funnyString = funnyString.substring(0, funnyString.indexOf('/'));
+				
+				let sound = "https://xeno-canto.org/sounds/uploaded/" + funnyString + "/" + json.recordings[0]["file-name"];
+				let soundPlay = document.querySelector('#actualsound');
+				let soundText = document.querySelector('#loadingsound');
+				
+				soundPlay.src = sound;
+				soundText.innerHTML = "Loading Sound...";
+				soundPlay.load();
+				soundText.innerHTML = "";
 			});
 	});
 
@@ -213,39 +247,51 @@ function similarity(a1, a2, b1, b2, firstIsMostAccurate) {
 function maybeenter(event) {
 	if (event.keyCode == 13) {
 		let term = textbox.value.toLowerCase();
-		let entry = entryOf(term);
-		
-		if (entry == undefined) {
-			// unknown bird
-		}
-		else {
-			textbox.value = "";
-			resettopresults();
-			
-			binomial_split = entry.binomial.split(" ");
-			binomial2_split = top_secret_solution.binomial.split(" ");
+		let guessno = guess(term);
 
-			let family1 = families[binomial_split[0]];
-			let family2 = families[binomial2_split[0]];
-			
-			let variation = Math.abs(entry.size - top_secret_solution.size);
-			let species_similarity = similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]);
-			
-			let section_2b3 = family1 in family_names ? (family_names[family1] + entry_2c + capitalise(family1) + entry_2d) : capitalise(family1); // either just the scientific name or the common and scientific names, depending on whether the common name is present.
-			guesses.innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
-			
-			guesses_left_box.innerText = (--guesses_left) + " Guesses Left";
-			
-			if (guesses_left == 0 || species_similarity == "every60secondsinafricaaminutepasses") {
-				textbox.remove();
-				title.classList.add("faded");
-				
-				setTimeout(function() {
-					title.innerText = top_secret_solution.common + " (" + top_secret_solution.binomial + ")";
-					title.style.color = species_similarity == "every60secondsinafricaaminutepasses" ? "#33CC22" : "#CC3311";
-				}, 1000);
-			}
+		if (guessno) {
+			textbox.value = "";
+			setDailyCookie("guesses", MAX_GUESSES - guesses_left);
+			setDailyCookie("guess" + guessno, term);
 		}
+	}
+}
+
+function guess(term) {
+	let entry = entryOf(term);
+
+	if (entry == undefined) {
+		// unknown bird
+		return 0;
+	}
+	else {
+		resettopresults();
+		
+		binomial_split = entry.binomial.split(" ");
+		binomial2_split = top_secret_solution.binomial.split(" ");
+
+		let family1 = families[binomial_split[0]];
+		let family2 = families[binomial2_split[0]];
+		
+		let variation = Math.abs(entry.size - top_secret_solution.size);
+		let species_similarity = similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]);
+		
+		let section_2b3 = family1 in family_names ? (family_names[family1] + entry_2c + capitalise(family1) + entry_2d) : capitalise(family1); // either just the scientific name or the common and scientific names, depending on whether the common name is present.
+		guesses.innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
+		
+		guesses_left_box.innerText = (--guesses_left) + " Guesses Left";
+		
+		if (guesses_left == 0 || species_similarity == "every60secondsinafricaaminutepasses") {
+			textbox.remove();
+			title.classList.add("faded");
+			
+			setTimeout(function() {
+				title.innerText = top_secret_solution.common + " (" + top_secret_solution.binomial + ")";
+				title.style.color = species_similarity == "every60secondsinafricaaminutepasses" ? "#33CC22" : "#CC3311";
+			}, 1000);
+		}
+		
+		return MAX_GUESSES - guesses_left;
 	}
 }
 

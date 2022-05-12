@@ -9,7 +9,7 @@ html, body {
 
 #main-body {
 	background-color: #e3e3e3;
-	height: 100%;
+	min-height: 95%;
 	width: 80%;
 	margin-left: 10%;
 	padding-top: 1%;
