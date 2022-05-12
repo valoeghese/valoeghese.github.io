@@ -3,31 +3,37 @@ console.log("Tweet-tweet, World!");
 const urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.has("mode")) {
+	const MODE = urlParams.get("mode");
+
 	// adapted from https://www.w3schools.com/js/js_cookies.asp
 	function setDailyCookie(cname, cvalue) {
-	  const tomorrow = new Date();
-	  tomorrow.setDate(tomorrow.getDate() + 1);
-	  tomorrow.setHours(0, 0, 0, 0);
+		cname = MODE + "-" + cname;
+		
+		const tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
+		tomorrow.setHours(0, 0, 0, 0);
 	  
-	  let expires = "expires="+ tomorrow.toUTCString();
-	  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		let expires = "expires="+ tomorrow.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 	}
 
 	// https://www.w3schools.com/js/js_cookies.asp
 	function getCookie(cname) {
-	  let name = cname + "=";
-	  let decodedCookie = decodeURIComponent(document.cookie);
-	  let ca = decodedCookie.split(';');
-	  for(let i = 0; i <ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) == ' ') {
-		  c = c.substring(1);
+		cname = MODE + "-" + cname;
+		
+		let name = cname + "=";
+		let decodedCookie = decodeURIComponent(document.cookie);
+		let ca = decodedCookie.split(';');
+		for(let i = 0; i <ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
 		}
-		if (c.indexOf(name) == 0) {
-		  return c.substring(name.length, c.length);
-		}
-	  }
-	  return "";
+		return "";
 	}
 
 	const entry_0 = `
@@ -47,8 +53,6 @@ if (urlParams.has("mode")) {
 	<div class="entry `;
 	const entry_4b = `" >`;
 	const entry_5 = `</div></div>`;
-	
-	const MODE = urlParams.get("mode");
 	
 	// Page Selections
 	const title = document.getElementById("title");
@@ -138,7 +142,7 @@ if (urlParams.has("mode")) {
 		.then(response => response.json())
 		.then(json => {
 			let data = json.birds;
-			title.innerText = "Birdle: " + MODE == "world" ? "All Birds" : json.collections[MODE].name;
+			title.innerText = "Birdle: " + ((MODE == "world") ? "All Birds" : json.collections[MODE].name);
 			
 			let filter;
 			
@@ -154,11 +158,11 @@ if (urlParams.has("mode")) {
 				filter = (sci, sp) => {
 					if (typeof sp === 'string') {
 						for (let i = 0; i < allowedBirds.length; i++) {
-							if (i == sci) {
+							if (allowedBirds[i] == sci) {
 								allowedBirds.splice(i, 1);
 								return true;
 							}
-							else if (i == sp) {
+							else if (allowedBirds[i] == sp) {
 								allowedBirds.splice(i, 1);
 								return true;
 							}
@@ -168,11 +172,11 @@ if (urlParams.has("mode")) {
 					}
 					else {
 						for (let i = 0; i < allowedBirds.length; i++) {
-							if (i == sci) {
+							if (allowedBirds[i] == sci) {
 								allowedBirds.splice(i, 1);
 								return true;
 							}
-							else if (sp.includes(i)) {
+							else if (sp.includes(allowedBirds[i])) {
 								allowedBirds.splice(i, 1);
 								return true;
 							}
@@ -214,7 +218,7 @@ if (urlParams.has("mode")) {
 							scientificName = genus + " " + species;
 							
 							// filter
-							if (!filter(scientificName, cSpecies.commonName)) {
+							if (!filter(scientificName, cSpecies.name)) {
 								continue;
 							}
 							
@@ -273,6 +277,9 @@ if (urlParams.has("mode")) {
 			// then choose solution
 					
 			let prng = mulberry32(new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
+			
+			console.log(binomials);
+			console.log(searchables);
 			var top_secret_rng = Math.floor(prng() * binomials.length);
 
 			top_secret_solution = entryOf(binomials[top_secret_rng]);
@@ -505,5 +512,5 @@ else {
 			}
 			
 			document.getElementById("game").innerHTML = selection;
-		);
+		});
 }

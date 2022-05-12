@@ -139,7 +139,7 @@
 						"region": "australasia"
 					},
 					"longpipes": {
-						"name": ["north island robin", "new zealand robin ", "toutouwai"],
+						"name": ["north island robin", "new zealand robin_", "toutouwai"],
 						"size": 18,
 						"region": "australasia"
 					}
