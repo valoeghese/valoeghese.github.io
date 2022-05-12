@@ -134,6 +134,10 @@ h1 {
 	font-weight: bold;
 }
 
+text {
+	font-size: 14px;
+}
+
 @media (max-width: 800px) {
 	#game {
 		width: 100%;
@@ -145,7 +149,7 @@ h1 {
 	}
 	
 	.entry-head {
-		font-size: 10px;
+		font-size: 12px;
 	}
 	
 	.scientific-name {
@@ -154,6 +158,15 @@ h1 {
 	
 	#guesses-left {
 		margin-top: 6px;
+	}
+	
+	.borders-head {
+		padding-top: 5px;
+		border-spacing: 2px;
+	}
+	
+	text {
+		font-size: 12px;
 	}
 }
 
@@ -165,7 +178,6 @@ h1 {
 	}
 	
 	.entry-head {
-		font-size: 8px;
 		padding: 6px;
 	}
 }

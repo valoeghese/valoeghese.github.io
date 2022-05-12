@@ -102,6 +102,21 @@ function capitalise(strItem) {
 	return result;
 }
 
+function setSound(recording) {
+	let funnyString = recording.sono.small.substring("//xeno-canto.org/sounds/uploaded/".length);
+	funnyString = funnyString.substring(0, funnyString.indexOf('/'));
+	
+	let sound = "https://xeno-canto.org/sounds/uploaded/" + funnyString + "/" + recording["file-name"];
+	let soundPlay = document.getElementById("actualsound");
+	
+	// thanks eyezah
+	soundPlay.src = sound;
+	soundPlay.load();
+	
+	// credit
+	document.getElementById("credit").innerText = "Recording courtesy of " + recording.rec + " via Xeno-Canto";
+}
+
 fetch("birds.json")
 	.then(response => response.json())
 	.then(data => {
@@ -209,18 +224,23 @@ fetch("birds.json")
 		fetch("https://xeno-canto.org/api/2/recordings?query=" + splitbinomail[0] + "+" + splitbinomail[1])
 			.then(response2 => response2.json())
 			.then(json => {
-				// https://stackoverflow.com/questions/30482887/playing-a-simple-sound-with-web-audio-api
-				let funnyString = json.recordings[0].sono.small.substring("//xeno-canto.org/sounds/uploaded/".length);
-				funnyString = funnyString.substring(0, funnyString.indexOf('/'));
-				
-				let sound = "https://xeno-canto.org/sounds/uploaded/" + funnyString + "/" + json.recordings[0]["file-name"];
-				let soundPlay = document.querySelector('#actualsound');
-				let soundText = document.querySelector('#loadingsound');
-				
-				soundPlay.src = sound;
-				soundText.innerHTML = "Loading Sound...";
-				soundPlay.load();
-				soundText.innerHTML = "";
+				if (json.recordings.length > 0) {
+					setSound(json.recordings[0]);
+					
+					// if alternate recording, add that
+					if (json.recordings.length > 1) {
+						let changeSoundButton = document.getElementById("changesound");
+						changeSoundButton.style.display = "inline";
+						
+						changeSoundButton.onclick = () => {
+							setSound(json.recordings[1]);
+							changeSoundButton.style.display = "none";
+						};
+					}
+				}
+				else {
+					document.getElementById("playsound").innerHTML = "<text style=\"color:red;\">Error: Unable to find Sound Recording!</text>";
+				}
 			});
 	});
 
@@ -234,8 +254,6 @@ const results = [
 	document.getElementById("result_2"),
 	document.getElementById("result_3")
 ];
-
-var last = ""
 
 /**
  * Get an entry from a result term.
@@ -313,6 +331,8 @@ function guess(term) {
 		return MAX_GUESSES - guesses_left;
 	}
 }
+
+var last = "";
 
 function addtopresults(event) {
 	let search = textbox.value.toLowerCase();
