@@ -71,7 +71,7 @@ function mulberry32(a) {
 
 // puts it in the right sections
 // searchables is segregated for speed reasons with high object counter
-function addSearchable(strItem) {
+function addSearchable(strItem, array=searchables) {
 	let parts = strItem.split(" ");
 	let charsDone = [];
 	
@@ -81,7 +81,7 @@ function addSearchable(strItem) {
 		try{
 			if (!charsDone.includes(c0)) {
 				charsDone.push(c0);
-				searchables[c0].push(strItem);
+				array[c0].push(strItem);
 			}
 		} catch (err) {console.log(err); console.log(c0); console.log(strItem);}
 	}
@@ -105,6 +105,9 @@ function capitalise(strItem) {
 fetch("birds.json")
 	.then(response => response.json())
 	.then(data => {
+		// secondary names are ranked lower in search results
+		let secondaries = {'q': [], 'w': [], 'e': [], 'r': [], 't': [], 'y': [], 'u': [], 'i': [], 'o': [], 'p': [], 'a': [], 's': [], 'd': [], 'f': [], 'g': [], 'h': [], 'j': [], 'k': [], 'l': [], 'z': [], 'x': [], 'c': [], 'v': [], 'b': [], 'n': [], 'm': []};
+
 		// first, iterate over orders
 		for (let order in data) {
 			cOrder = data[order];
@@ -144,10 +147,15 @@ fetch("birds.json")
 							birds[commonName] = scientificName;
 						}
 						else {
+							let array = searchables;
+							
 							for (let i in commonName) {
 								let name = commonName[i];
-								addSearchable(name); // all names must be searchable
+								
+								addSearchable(name, array); // all names must be searchable
 								birds[name] = scientificName;
+								
+								array = secondaries;
 							}
 							
 							commonName = commonName[0];
@@ -164,6 +172,17 @@ fetch("birds.json")
 						};
 					}
 				}
+			}
+		}
+		
+		// merge secondaries into searchables
+		// https://stackoverflow.com/questions/9650826/append-an-array-to-another-array-in-javascript (large arrays edition)
+		for (let key in searchables) {
+			let add_to = searchables[key];
+			let to_add = secondaries[key];
+			
+			for (let n = 0; n < to_add.length; n+=300) {
+				add_to.push.apply(add_to, to_add.slice(n, n+300));
 			}
 		}
 		
@@ -331,7 +350,7 @@ function addtopresults(event) {
 					let div = results[results.length - count]
 					div.innerText = entry.common + " (" + entry.binomial + ")";
 					div.style.display = "block";
-					div.term = capitalise(term); // storing in a new field haha javascript go brr
+					div.term = capitalise(term == entry.binomial ? entry.binomial : entry.common); // storing in a new field haha javascript go brr
 					
 					count -= 1;
 					
@@ -358,5 +377,28 @@ function autocomplete(e) {
 	resettopresults();
 }
 
+let matchPrevious = undefined; // haha tristate
+
+function onresize() {
+	let match = window.matchMedia("(max-width: 1100px)").matches;
+	
+	if (match != matchPrevious) {
+		matchPrevious = match;
+
+		if (match) {
+			document.getElementById("spacing-hax").innerHTML = "Family";
+		}
+		else {
+			//console.log("fluffy cute cats");
+			document.getElementById("spacing-hax").innerHTML = "Family &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;";
+		}
+	}
+}
+
 // website-load setup
 resettopresults();
+onresize();
+
+window.addEventListener('resize', function(e) {
+    onresize();
+}, true);
