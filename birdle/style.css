@@ -72,6 +72,10 @@ h1 {
 	font-style: italic;
 }
 
+.not-scientific-name {
+	font-size: 14px;
+}
+
 .borders {
 	margin-left: auto;
 	margin-right: auto;
@@ -153,6 +157,10 @@ text {
 	}
 	
 	.scientific-name {
+		font-size: 8px;
+	}
+	
+	.not-scientific-name {
 		font-size: 8px;
 	}
 	

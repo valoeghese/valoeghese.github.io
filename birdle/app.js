@@ -332,6 +332,12 @@ function guess(term) {
 	}
 }
 
+function familyOf(binomial) {
+	let familyScientific = families[entry.binomial.split(" ")[0]];
+
+	return (familyScientific in family_names) ? family_names[familyScientific] : familyScientific;
+}
+
 var last = "";
 
 function addtopresults(event) {
@@ -368,7 +374,7 @@ function addtopresults(event) {
 					// add result
 					
 					let div = results[results.length - count]
-					div.innerText = entry.common + " (" + entry.binomial + ")";
+					div.innerHTML = entry.common + " (" + entry.binomial + ")" + "<div></div><span class=\"scientific-name\">" + familyOf(entry.binomial) + "</span><span class=\"not-scientific-name\"> &bull; " + entry.region + "</span>"; // using scientific-name class for family to use similar formatting
 					div.style.display = "block";
 					div.term = capitalise(term == entry.binomial ? entry.binomial : entry.common); // storing in a new field haha javascript go brr
 					
