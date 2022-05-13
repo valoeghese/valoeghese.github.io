@@ -77,7 +77,7 @@ if (urlParams.has("mode")) {
 	family_names = {}; // common names for families of birds
 	orders = {};
 
-	var top_secret_solution = {};
+	var top_secret_solution = getCookie("top-secret-solution");
 	const MAX_GUESSES = 6;
 	var guesses_left = MAX_GUESSES;
 
@@ -278,11 +278,12 @@ if (urlParams.has("mode")) {
 					
 			let prng = mulberry32(new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
 			
-			console.log(binomials);
-			console.log(searchables);
-			var top_secret_rng = Math.floor(prng() * binomials.length);
-
-			top_secret_solution = entryOf(binomials[top_secret_rng]);
+			if (!top_secret_solution) {
+				console.log("e");
+				var top_secret_rng = Math.floor(prng() * binomials.length);
+				top_secret_solution = entryOf(binomials[top_secret_rng]);
+				setDailyCookie("not-the-solution", top_secret_solution);
+			}
 			
 			// now add stored guesses
 			let guessesStored = getCookie("guesses");
@@ -294,30 +295,34 @@ if (urlParams.has("mode")) {
 			}
 			
 			// load sound
-			
-			let splitbinomail = top_secret_solution.binomial.split(" ");//yeah I realised I made a typo once I started typing the next line but it's not that important so no reason to correct it lol
-			
-			fetch("https://xeno-canto.org/api/2/recordings?query=" + splitbinomail[0] + "+" + splitbinomail[1])
-				.then(response2 => response2.json())
-				.then(apiJson => {
-					if (apiJson.recordings.length > 0) {
-						setSound(apiJson.recordings[0]);
-						
-						// if alternate recording, add that
-						if (apiJson.recordings.length > 1) {
-							let changeSoundButton = document.getElementById("changesound");
-							changeSoundButton.style.display = "inline";
+			try {
+				let splitbinomail = top_secret_solution.binomial.split(" ");//yeah I realised I made a typo once I started typing the next line but it's not that important so no reason to correct it lol
+				
+				fetch("https://xeno-canto.org/api/2/recordings?query=" + splitbinomail[0] + "+" + splitbinomail[1])
+					.then(response2 => response2.json())
+					.then(apiJson => {
+						if (apiJson.recordings.length > 0) {
+							setSound(apiJson.recordings[0]);
 							
-							changeSoundButton.onclick = () => {
-								setSound(apiJson.recordings[1]);
-								changeSoundButton.style.display = "none";
-							};
+							// if alternate recording, add that
+							if (apiJson.recordings.length > 1) {
+								let changeSoundButton = document.getElementById("changesound");
+								changeSoundButton.style.display = "inline";
+								
+								changeSoundButton.onclick = () => {
+									setSound(apiJson.recordings[1]);
+									changeSoundButton.style.display = "none";
+								};
+							}
 						}
-					}
-					else {
-						document.getElementById("playsound").innerHTML = "<text style=\"color:red;\">Error: Unable to find Sound Recording!</text>";
-					}
-				});
+						else {
+							document.getElementById("playsound").innerHTML = "<text style=\"color:red;\">Error: Unable to find Sound Recording!</text>";
+						}
+					});
+			} catch (e) {
+				console.log(e);
+				document.getElementById("playsound").innerHTML = "<text style=\"color:red;\">Error: Fatal error while retrieving sound recording. :(</text>";
+			}
 		});
 
 	/**
@@ -381,7 +386,7 @@ if (urlParams.has("mode")) {
 			let section_2b3 = family1 in family_names ? (family_names[family1] + entry_2c + capitalise(family1) + entry_2d) : capitalise(family1); // either just the scientific name or the common and scientific names, depending on whether the common name is present.
 			guesses.innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
 			
-			guesses_left_box.innerText = (--guesses_left) + " Guesses Left";
+			guesses_left_box.innerText = (--guesses_left) + (guesses_left == 1 ? " Guess Left": " Guesses Left");
 			
 			if (guesses_left == 0 || species_similarity == "every60secondsinafricaaminutepasses") {
 				textbox.remove();
