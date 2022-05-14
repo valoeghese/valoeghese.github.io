@@ -308,7 +308,9 @@ if (urlParams.has("mode")) {
 					.then(response2 => response2.json())
 					.then(apiJson => {
 						if (apiJson.recordings.length > 0) {
-							setSound(apiJson.recordings[0]);
+							let x = top_secret_solution.binomial == "zosterops lateralis" ? 1 : 0; // the first sound for this bird sounds more like a saddleback? and yet no other bird is declared in metadata.
+							
+							setSound(apiJson.recordings[x]);
 							
 							// if alternate recording, add that
 							if (apiJson.recordings.length > 1) {
@@ -316,7 +318,7 @@ if (urlParams.has("mode")) {
 								changeSoundButton.style.display = "inline";
 								
 								changeSoundButton.onclick = () => {
-									setSound(apiJson.recordings[1]);
+									setSound(apiJson.recordings[x + 1]);
 									changeSoundButton.style.display = "none";
 								};
 							}

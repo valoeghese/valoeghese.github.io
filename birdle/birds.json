@@ -23,6 +23,20 @@
 						"size": 37,
 						"region": "australasia"
 					}
+				},
+				"gygis": {
+					"alba": {
+						"name": ["white tern", "angel tern", "mano-o-kū", "white noddy"],
+						"size": 31,
+						"region": "oceanian"
+					}
+				},
+				"sternula": {
+					"nereis": {
+						"name": ["fairy tern", "tara-iti"],
+						"size": 25,
+						"region": "australasia"
+					}
 				}
 			}
 		},
@@ -111,9 +125,62 @@
 			}
 		},
 		"passeriformes": {
+			"acanthizidae": {
+				"name": "Australasian Warblers",
+				
+				"gerygone": {
+					"igata": {
+						"name": ["grey warbler", "grey gerygone", "riroriro", "rainbird", "gray warbler", "new zealand gerygone"],
+						"size": 10,
+						"region": "australasia"
+					}
+				}
+			},
+			"alaudidae": {
+				"name": "Larks",
+				
+				"alauda": {
+					"arvensis": {
+						"name": "eurasian skylark",
+						"size": 18,
+						"region": "palearctic"
+					}
+				}
+			},
+			"callaeidae": {
+				"name": "New Zealand Wattlebirds",
+				
+				"callaeas": {
+					"wilsoni": {
+						"name": ["north island kokako", "blue-wattled crow", "blue wattled crow"],
+						"size": 38,
+						"region": "australasia"
+					}
+				},
+				"philesturnus": {
+					"rufusater": {
+						"name": ["north island saddleback", "tieke_", "tiaki"],
+						"size": 25,
+						"region": "australasia",
+					},
+					"carunculatus": {
+						"name": ["south island saddleback", "tieke", "jackbird"],
+						"_comment": "SI Saddleback has name priority so I gave it tieke (the way it's currently set up birdle can't have two birds having the same name so NI got tieke_)",
+						"size": 25,
+						"region": "australasia"
+					}
+				}
+			},
 			"meliphagidae": {
 				"name": "Honeyeaters",
 				
+				"anthochaera": {
+					"carunculata": {
+						"name": "red wattlebird",
+						"size": 35,
+						"region": "australasia"
+					}
+				},
 				"anthornis": {
 					"melanura": {
 						"name": ["new zealand bellbird", "korimako", "makomako"],
@@ -125,6 +192,27 @@
 					"novaeseelandiae": {
 						"name": ["tui", "parson bird"],
 						"size": 30,
+						"region": "australasia"
+					}
+				}
+			},
+			"mohouidae": {
+				"name": "Yellowhead, Whitehead and Pipipi",
+				
+				"mohoua": {
+					"albicilla": {
+						"name": ["whitehead", "popokotea", "pōpokotea"],
+						"size": 15,
+						"region": "australasia"
+					},
+					"novaeseelandiae": {
+						"name": ["pipipi", "brown creeper"],
+						"size": 13,
+						"region": "australasia"
+					},
+					"ochrocephala": {
+						"name": ["yellowhead", "mohua"],
+						"size": 15,
 						"region": "australasia"
 					}
 				}
@@ -239,6 +327,11 @@
 				"name": "White-Eyes",
 				
 				"zosterops": {
+					"japonicus": {
+						"name": ["warbling white-eye", "japanese white-eye", "mountain white-eye"],
+						"size": 11,
+						"region": "palearctic"
+					},
 					"lateralis": {
 						"name": ["silvereye", "wax-eye", "waxeye", "tauhou"],
 						"size": 12,
@@ -303,13 +396,18 @@
 				"chicken",
 				"common blackbird",
 				"common myna",
+				"eurasian skylark",
 				"european starling",
+				"grey warbler",
 				"house sparrow",
 				"kereru",
 				"korimako",
 				"little owl",
 				"morepork",
+				"north island kokako",
 				"north island robin",
+				"north island saddleback",
+				"pipipi",
 				"piwakawaka",
 				"red-crowned parakeet",
 				"rock pigeon",
@@ -317,9 +415,12 @@
 				"silver gull",
 				"song thrush",
 				"south island robin",
+				"south island saddleback",
 				"spotted dove",
 				"tui",
-				"yellow-crowned parakeet"
+				"yellow-crowned parakeet",
+				"yellowhead",
+				"whitehead"
 			]
 		}
 	}
