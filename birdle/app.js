@@ -7,18 +7,24 @@ if (urlParams.has("mode")) {
 
 	// adapted from https://www.w3schools.com/js/js_cookies.asp
 	function setDailyCookie(cname, cvalue) {
-		cname = MODE + "-" + cname;
-		
-		const tomorrow = new Date();
-		tomorrow.setDate(tomorrow.getDate() + 1);
-		tomorrow.setHours(0, 0, 0, 0);
-	  
-		let expires = "expires="+ tomorrow.toUTCString();
-		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		if (!urlParams.has("nocookies")) {
+			cname = MODE + "-" + cname;
+			
+			const tomorrow = new Date();
+			tomorrow.setDate(tomorrow.getDate() + 1);
+			tomorrow.setHours(0, 0, 0, 0);
+		  
+			let expires = "expires="+ tomorrow.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
 	}
 
 	// https://www.w3schools.com/js/js_cookies.asp
 	function getCookie(cname) {
+		if (urlParams.has("nocookies")) {
+			return undefined;
+		}
+		
 		cname = MODE + "-" + cname;
 		
 		let name = cname + "=";
