@@ -298,12 +298,12 @@ if (urlParams.has("mode")) {
 			let prng = mulberry32(MODE.hashCode() + new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
 			
 			if (top_secret_solution) {
-				top_secret_solution = entryOf(top_secret_solution);
+				if (typeof top_secret_solution === 'string') top_secret_solution = entryOf(top_secret_solution);
 			} else {
 				console.log("e");
 				var top_secret_rng = Math.floor(prng() * binomials.length);
 				top_secret_solution = entryOf(binomials[top_secret_rng]);
-				setDailyCookie("not-the-solution", top_secret_solution);
+				setDailyCookie("not-the-solution", top_secret_solution.binomial);
 			}
 			
 			// now add stored guesses
