@@ -3,6 +3,19 @@ console.log("Tweet-tweet, World!");
 const urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.has("mode")) {
+	// https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
+	String.prototype.hashCode = function() {
+		var hash = 0, i, chr;
+		if (this.length === 0) return hash;
+		
+		for (i = 0; i < this.length; i++) {
+			chr   = this.charCodeAt(i);
+			hash  = ((hash << 5) - hash) + chr;
+			hash |= 0; // Convert to 32bit integer
+		}
+		return hash;
+	};
+	
 	const MODE = urlParams.get("mode");
 
 	// adapted from https://www.w3schools.com/js/js_cookies.asp
@@ -83,7 +96,7 @@ if (urlParams.has("mode")) {
 	family_names = {}; // common names for families of birds
 	orders = {};
 
-	var top_secret_solution = getCookie("top-secret-solution");
+	var top_secret_solution = getCookie("not-the-solution");
 	const MAX_GUESSES = 6;
 	var guesses_left = MAX_GUESSES;
 
@@ -282,7 +295,7 @@ if (urlParams.has("mode")) {
 			
 			// then choose solution
 					
-			let prng = mulberry32(new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
+			let prng = mulberry32(MODE.hashCode() + new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
 			
 			if (!top_secret_solution) {
 				console.log("e");
