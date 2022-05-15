@@ -2,6 +2,9 @@ console.log("Tweet-tweet, World!");
 
 const urlParams = new URLSearchParams(window.location.search);
 
+let setDailyCookie;
+let getCookie;
+
 try {
 	if (urlParams.has("mode")) {
 		// https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
@@ -20,7 +23,7 @@ try {
 		const MODE = urlParams.get("mode");
 
 		// adapted from https://www.w3schools.com/js/js_cookies.asp
-		function setDailyCookie(cname, cvalue) {
+		setDailyCookie = function(cname, cvalue) {
 			if (!urlParams.has("nocookies")) {
 				cname = MODE + "-" + cname;
 				
@@ -34,7 +37,7 @@ try {
 		}
 
 		// https://www.w3schools.com/js/js_cookies.asp
-		function getCookie(cname) {
+		getCookie = function(cname) {
 			if (urlParams.has("nocookies")) {
 				return undefined;
 			}
