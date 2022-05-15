@@ -2,8 +2,8 @@ console.log("Tweet-tweet, World!");
 
 const urlParams = new URLSearchParams(window.location.search);
 
-let setDailyCookie;
-let getCookie;
+var setDailyCookie;
+var getCookie;
 
 try {
 	if (urlParams.has("mode")) {
