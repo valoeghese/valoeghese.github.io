@@ -550,5 +550,5 @@ try {
 	}
 }
 catch (e) {
-	document.getElementById("game").innerHTML + "Error while running birdle: " + e;
+	document.getElementById("game").innerHTML = "Error while running birdle: " + e;
 }
