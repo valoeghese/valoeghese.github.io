@@ -5,7 +5,6 @@ const urlParams = new URLSearchParams(window.location.search);
 // the 'screw safari' collection
 var setDailyCookie;
 var getCookie;
-var results;
 
 try {
 	if (urlParams.has("mode")) {
@@ -78,14 +77,6 @@ try {
 		<div class="entry `;
 		const entry_4b = `" >`;
 		const entry_5 = `</div></div>`;
-		
-		// Page Selections
-
-		results = [
-			document.getElementById("result_1"),
-			document.getElementById("result_2"),
-			document.getElementById("result_3")
-		];
 
 		// Searchables is all possible search terms. These are all lowercase for search reasons.
 		// Birds maps scientific names to bird data (1st common name, region) and other names to scientific names
@@ -210,6 +201,7 @@ try {
 
 					// secondary names are ranked lower in search results
 					let secondaries = {'q': [], 'w': [], 'e': [], 'r': [], 't': [], 'y': [], 'u': [], 'i': [], 'o': [], 'p': [], 'a': [], 's': [], 'd': [], 'f': [], 'g': [], 'h': [], 'j': [], 'k': [], 'l': [], 'z': [], 'x': [], 'c': [], 'v': [], 'b': [], 'n': [], 'm': []};
+					let tertiaries = {'q': [], 'w': [], 'e': [], 'r': [], 't': [], 'y': [], 'u': [], 'i': [], 'o': [], 'p': [], 'a': [], 's': [], 'd': [], 'f': [], 'g': [], 'h': [], 'j': [], 'k': [], 'l': [], 'z': [], 'x': [], 'c': [], 'v': [], 'b': [], 'n': [], 'm': []};
 
 					// first, iterate over orders
 					for (let order in data) {
@@ -244,9 +236,9 @@ try {
 									}
 									
 									// add by scientific name
-									searchables[genus[0]].push(scientificName);
+									secondaries[genus[0]].push(scientificName);
 									binomials.push(scientificName);
-									if (genus[0] != species[0]) searchables[species[0]].push(scientificName);
+									if (genus[0] != species[0]) secondaries[species[0]].push(scientificName);
 									
 									// common name
 									let commonName = cSpecies.name;
@@ -264,7 +256,7 @@ try {
 											addSearchable(name, array); // all names must be searchable
 											birds[name] = scientificName;
 											
-											array = secondaries;
+											array = tertiaries;
 										}
 										
 										commonName = commonName[0];
@@ -284,11 +276,17 @@ try {
 						}
 					}
 					
-					// merge secondaries into searchables
+					// merge secondaries and tertiaries into searchables
 					// https://stackoverflow.com/questions/9650826/append-an-array-to-another-array-in-javascript (large arrays edition)
 					for (let key in searchables) {
 						let add_to = searchables[key];
 						let to_add = secondaries[key];
+						
+						for (let n = 0; n < to_add.length; n+=300) {
+							add_to.push.apply(add_to, to_add.slice(n, n+300));
+						}
+						
+						to_add = tertiaries[key];
 						
 						for (let n = 0; n < to_add.length; n+=300) {
 							add_to.push.apply(add_to, to_add.slice(n, n+300));
@@ -449,7 +447,7 @@ try {
 			if (search != last) { // check stuff has changed
 				last = search;
 				
-				let count = results.length;
+				let searchResults = "";
 				
 				// search relevant results (with a term starting with the first letter in the search box
 				let terms = searchables[search[0]];
@@ -474,30 +472,23 @@ try {
 							
 							// add result
 							
-							let div = results[results.length - count]
-							div.innerHTML = entry.common + " (" + entry.binomial + ")" + "<div></div><span class=\"scientific-name\">" + familyOf(entry.binomial) + "</span><span class=\"not-scientific-name\"> &bull; " + entry.region + "</span>"; // using scientific-name class for family to use similar formatting
-							div.style.display = "block";
-							div.term = capitalise(term == entry.binomial ? entry.binomial : entry.common); // storing in a new field haha javascript go brr
-							
-							count -= 1;
-							
-							if (count == 0) return;
+							searchResults += `<div class="searchable searchy" onclick="autocomplete(this) term=`;
+							searchResults += capitalise(term == entry.binomial ? entry.binomial : entry.common); // storing in a new field haha javascript go brr
+							searchResults += `">`;
+							searchResults += entry.common + " (" + entry.binomial + ")" + "<div></div><span class=\"scientific-name\">" + familyOf(entry.binomial) + "</span><span class=\"not-scientific-name\"> &bull; " + entry.region + "</span>"; // using scientific-name class for family to use similar formatting
+							searchResults += `</div>`;
 						}
 					}
 				}
 				
-				while (count > 0) {
-					results[results.length - count].style.display = "none";
-					count -= 1;
-				}
+				document.getElementById("results").innerHTML = searchResults;
 			}
 		}
 
 		function resettopresults() {
-			for (let i in results) {
-				results[i].style.display = "none";
-			}
+			document.getElementById("results").innerHTML = "";
 		}
+		// ENDRESETME
 
 		function autocomplete(e) {
 			document.getElementById("bird-entry").value = e.term;
