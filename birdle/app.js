@@ -472,7 +472,7 @@ try {
 							
 							// add result
 							
-							searchResults += `<div class="searchable searchy" onclick="autocomplete(this) term=`;
+							searchResults += `<div class="searchable searchy" onclick="autocomplete(this)" term=`;
 							searchResults += capitalise(term == entry.binomial ? entry.binomial : entry.common); // storing in a new field haha javascript go brr
 							searchResults += `">`;
 							searchResults += entry.common + " (" + entry.binomial + ")" + "<div></div><span class=\"scientific-name\">" + familyOf(entry.binomial) + "</span><span class=\"not-scientific-name\"> &bull; " + entry.region + "</span>"; // using scientific-name class for family to use similar formatting
