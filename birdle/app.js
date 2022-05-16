@@ -80,10 +80,6 @@ try {
 		const entry_5 = `</div></div>`;
 		
 		// Page Selections
-		const title = document.getElementById("title");
-		const textbox = document.getElementById("bird-entry");
-		const guesses = document.getElementById("guesses");
-		const guesses_left_box = document.getElementById("guesses-left");
 
 		results = [
 			document.getElementById("result_1"),
@@ -167,7 +163,7 @@ try {
 			.then(json => {
 				try {
 					let data = json.birds;
-					title.innerText = "Birdle: " + ((MODE == "world") ? "All Birds" : json.collections[MODE].name);
+					document.getElementById("title").innerText = "Birdle: " + ((MODE == "world") ? "All Birds" : json.collections[MODE].name);
 					
 					let filter;
 					
@@ -385,6 +381,8 @@ try {
 		}
 
 		function maybeenter(event) {
+			let textbox = document.getElementById("bird-entry");
+			
 			if (event.keyCode == 13) {
 				let term = textbox.value.toLowerCase();
 				let guessno = guess(term);
@@ -417,17 +415,17 @@ try {
 				let species_similarity = similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]);
 				
 				let section_2b3 = family1 in family_names ? (family_names[family1] + entry_2c + capitalise(family1) + entry_2d) : capitalise(family1); // either just the scientific name or the common and scientific names, depending on whether the common name is present.
-				guesses.innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
+				document.getElementById("guesses").innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3 + similarity(entry.region, entry.region, top_secret_solution.region, top_secret_solution.region2, true) + entry_3b + entry.region + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
 				
-				guesses_left_box.innerText = (--guesses_left) + (guesses_left == 1 ? " Guess Left": " Guesses Left");
+				document.getElementById("guesses-left").innerText = (--guesses_left) + (guesses_left == 1 ? " Guess Left": " Guesses Left");
 				
 				if (guesses_left == 0 || species_similarity == "every60secondsinafricaaminutepasses") {
-					textbox.remove();
-					title.classList.add("faded");
+					document.getElementById("bird-entry").remove();
+					document.getElementById("title").classList.add("faded");
 					
 					setTimeout(function() {
-						title.innerText = top_secret_solution.common + " (" + top_secret_solution.binomial + ")";
-						title.style.color = species_similarity == "every60secondsinafricaaminutepasses" ? "#33CC22" : "#CC3311";
+						document.getElementById("title").innerText = top_secret_solution.common + " (" + top_secret_solution.binomial + ")";
+						document.getElementById("title").style.color = species_similarity == "every60secondsinafricaaminutepasses" ? "#33CC22" : "#CC3311";
 					}, 1000);
 				}
 				
@@ -444,7 +442,7 @@ try {
 		var last = "";
 
 		function addtopresults(event) {
-			let search = textbox.value.toLowerCase();
+			let search = document.getElementById("bird-entry").value.toLowerCase();
 			
 			if (event.keyCode == 13) return;
 			
@@ -502,7 +500,7 @@ try {
 		}
 
 		function autocomplete(e) {
-			textbox.value = e.term;
+			document.getElementById("bird-entry").value = e.term;
 			resettopresults();
 		}
 		
