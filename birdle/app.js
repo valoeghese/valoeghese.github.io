@@ -6,7 +6,6 @@ const urlParams = new URLSearchParams(window.location.search);
 var setDailyCookie;
 var getCookie;
 var results;
-var matchPrevious = undefined; // haha tristate
 
 try {
 	if (urlParams.has("mode")) {
@@ -131,8 +130,7 @@ try {
 						array[c0].push(strItem);
 					}
 				} catch (err) {console.log(err); console.log(c0); console.log(strItem);}
-			}
-			
+			}			
 		}
 
 		function capitalise(strItem) {
@@ -507,6 +505,8 @@ try {
 			textbox.value = e.term;
 			resettopresults();
 		}
+		
+		var matchPrevious = undefined; // haha tristate
 
 		function onresize() {
 			let match = window.matchMedia("(max-width: 1100px)").matches;
