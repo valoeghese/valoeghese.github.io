@@ -158,6 +158,10 @@ a {
 	color: "#0087CC";
 }
 
+a:visited {
+	color: "#0087CC";
+}
+
 a:hover {
 	text-decoration: underline;
 }
