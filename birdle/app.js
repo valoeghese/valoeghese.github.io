@@ -2,8 +2,10 @@ console.log("Tweet-tweet, World!");
 
 const urlParams = new URLSearchParams(window.location.search);
 
+// the 'screw safari' collection
 var setDailyCookie;
 var getCookie;
+var results;
 
 try {
 	if (urlParams.has("mode")) {
@@ -83,7 +85,7 @@ try {
 		const guesses = document.getElementById("guesses");
 		const guesses_left_box = document.getElementById("guesses-left");
 
-		const results = [
+		results = [
 			document.getElementById("result_1"),
 			document.getElementById("result_2"),
 			document.getElementById("result_3")
