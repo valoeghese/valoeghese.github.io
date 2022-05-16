@@ -6,6 +6,7 @@ const urlParams = new URLSearchParams(window.location.search);
 var setDailyCookie;
 var getCookie;
 var results;
+var matchPrevious = undefined; // haha tristate
 
 try {
 	if (urlParams.has("mode")) {
@@ -506,8 +507,6 @@ try {
 			textbox.value = e.term;
 			resettopresults();
 		}
-
-		let matchPrevious = undefined; // haha tristate
 
 		function onresize() {
 			let match = window.matchMedia("(max-width: 1100px)").matches;
