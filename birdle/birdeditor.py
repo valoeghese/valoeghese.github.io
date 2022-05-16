@@ -4,7 +4,24 @@ from PIL import Image
 import json
 
 with open('birds.json','r',encoding='utf8') as bird_file:
-    bird_data = json.load(bird_file)
+    bird_data = json.load(bird_file)["birds"]
+
+genuses = {}
+families = {}
+
+for order in bird_data:
+    order_data = bird_data[order]
+    
+    for family in order_data:
+        family_data = order_data[family]
+        families[family] = family_data
+        
+        for genus in family_data:
+            genuses[genus] = family_data[genus]
+
+def save():
+    with open('birds2.json', 'w+', encoding='utf8') as bird_file:
+        json.dump(bird_data, bird_file, indent=4)
 
 def nothing_here():
     global window
