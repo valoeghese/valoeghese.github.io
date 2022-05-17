@@ -1,6 +1,9 @@
 {
 	"birds": {
 		"charadriiformes": {
+			"charadriidae": {
+				"name": "Plovers"
+			},
 			"laridae": {
 				"name": "Gulls and Terns",
 				
@@ -38,8 +41,19 @@
 						"region": "australasia"
 					}
 				}
+			},
+			"recurvirostridae": {
+				"name": "Stilts and Avocets"
+			},
+			"scolopacidae": {
+				"name": "Sandpipers"
 			}
 		},
+		"ciconiiformes": {
+			"ciconiidae": {
+				"name": "Storks"
+			}
+		}
 		"columbiformes": {
 			"columbidae": {
 				"name": "Pigeons and Doves",
@@ -171,6 +185,9 @@
 					}
 				}
 			},
+			"fringillidae": {
+				"name": "True Finches"
+			},
 			"meliphagidae": {
 				"name": "Honeyeaters",
 				
@@ -248,6 +265,9 @@
 						"region": "palearctic"
 					}
 				}
+			},
+			"paridae": {
+				"name": "Tits"
 			},
 			"pycnonotidae": {
 				"name": "Bulbuls",
@@ -340,6 +360,11 @@
 				}
 			}
 		},
+		"pelicaniformes": {
+			"threskiornithidae": {
+				"name": "Ibises and Spoonbills"
+			}
+		},
 		"psittaciformes": {
 			"psittaculidae": {
 				"name": "\"True\" Parrots",
@@ -350,10 +375,22 @@
 						"size": 28,
 						"region": "australasia"
 					},
-					"novaezelandiae": {
+					"auriceps": {
 						"name": ["yellow-crowned parakeet", "yellow crowned parakeet", "yellow-fronted parakeet", "yellow fronted parakeet", "yellow-crowned kākāriki", "yellow crowned kakariki", "yellow-fronted kakariki", "yellow fronted kākāriki"],
 						"size": 25,
-						"region": "auriceps"
+						"region": "australasia"
+					}
+				},
+				"platycercus": {
+					"elegans": {
+						"name": "crimson rosella",
+						"size": 35,
+						"region": "australasia"
+					},
+					"eximius": {
+						"name": "eastern rosella",
+						"size": 32,
+						"region": "australasia"
 					}
 				}
 			}
@@ -383,6 +420,20 @@
 					}
 				}
 			}
+		},
+		"suliformes": {
+			"anhingidae": {
+				"name": "Darters"
+			},
+			"fregatidae": {
+				"name": "Frigatebirds"
+			},
+			"phalacrocoracidae": {
+				"name": "Cormorants"
+			},
+			"sulidae": {
+				"name": "Gannets and Boobies"
+			}
 		}
 	},
 	"collections": {
@@ -396,6 +447,7 @@
 				"chicken",
 				"common blackbird",
 				"common myna",
+				"eastern rosella",
 				"eurasian skylark",
 				"european starling",
 				"fairy tern",
