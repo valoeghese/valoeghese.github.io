@@ -246,6 +246,12 @@ try {
 									if (typeof commonName === 'string') {
 										addSearchable(commonName);
 										birds[commonName] = scientificName;
+										
+										if (commonName.indexOf('-') > -1) {
+											let dashlessName = commonName.replace(/-/g, ' ');
+											addSearchable(dashlessName);
+											birds[dashlessName] = scientificName;
+										}
 									}
 									else {
 										let array = searchables;
