@@ -26,8 +26,7 @@
 					"marinus": {
 						"name": "great black-backed gull",
 						"size": 68,
-						"region": "palearctic",
-						"secondary_region": "nearctic"
+						"region": ["palearctic", "nearctic"]
 					}
 				},
 				"chroicocephalus": {
@@ -89,8 +88,7 @@
 							"feral pigeon"
 						],
 						"size": 33,
-						"region": "palearctic",
-						"secondary_region": "indomalayan"
+						"region": ["palearctic", "indomalayan"]
 					}
 				},
 				"hemiphaga": {
@@ -389,8 +387,7 @@
 							"indian myna"
 						],
 						"size": 24,
-						"region": "indomalayan",
-						"secondary_region": "palearctic"
+						"region": ["indomalayan", "palearctic"]
 					}
 				},
 				"sturnus": {
@@ -515,6 +512,13 @@
 						"size": 32,
 						"region": "australasia"
 					}
+				},
+				"psittacula": {
+					"krameri": {
+						"name": ["ring-necked parakeet", "rose-ringed parakeet", "indian ringneck parrot"],
+						"size": 40,
+						"region": ["indomalayan", "afrotropical"]
+					}
 				}
 			}
 		},
@@ -541,8 +545,7 @@
 					"cunicularia": {
 						"name": "burrowing owl",
 						"size": 24,
-						"region": "neotropical",
-						"secondary_region": "nearctic"
+						"region": ["neotropical", "nearctic"]
 					}
 				}
 			}
@@ -563,6 +566,16 @@
 		}
 	},
 	"collections": {
+		"english_garden": {
+			"name": "English Garden Birds",
+			"species": [
+				"common blackbird",
+				"eurasian tree sparrow",
+				"european turtle dove",
+				"house sparrow",
+				"song thrush"
+			]
+		},
 		"nz_residents": {
 			"name": "New Zealand Residents",
 			"_comment": "Note that both the names given in this data file and scientific names are valid entries in the species list.",
