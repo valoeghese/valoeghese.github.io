@@ -17,13 +17,13 @@ regions = [
 # data stuff
 
 with open('birds.json','r',encoding='utf8') as bird_file:
-    bird_data = json.load(bird_file)["birds"]
+    bird_data = json.load(bird_file)
 
 genuses = {}
 families = {}
 
-for order in bird_data:
-    order_data = bird_data[order]
+for order in bird_data["birds"]:
+    order_data = bird_data["birds"][order]
     
     for family in order_data:
         family_data = order_data[family]
