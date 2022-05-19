@@ -9,7 +9,7 @@ regions = [
     "Afrotropical",
     "Nearctic",
     "Neotropical",
-    "Australasian",
+    "Australasia",
     "Oceanian",
     "Antarctic"
 ]
@@ -34,11 +34,13 @@ for order in bird_data["birds"]:
                 continue
             genuses[genus] = family_data[genus]
 
-def add_bird(popup, common_name_e, scientific_name_e, region_e, size_e):
+def add_bird(popup, common_name_e, scientific_name_e, region, region_cleaner, size_e):
     common_name = common_name_e.get().lower()
     scientific_name = scientific_name_e.get().lower()
-    region = region_e.get().lower()
     size = size_e.get().lower()
+
+    if len(region) == 1:
+        region = region[0]
     
     if common_name and scientific_name and region and size:
         binomial_parts = scientific_name.split(" ", 1)
@@ -47,10 +49,12 @@ def add_bird(popup, common_name_e, scientific_name_e, region_e, size_e):
         def clean():
             common_name_e.delete(0,len(common_name))
             scientific_name_e.delete(0,len(scientific_name))
-            region_e.set("Palearctic")
             size_e.delete(0,len(size))
+            region_cleaner()
 
         if (binomial_parts[0] in genuses):
+            print("Bird Data Added:", end=" ")
+            print(data) # test
             genuses[binomial_parts[0]][binomial_parts[1]] = data
 
             # prepare for next bird
@@ -122,6 +126,7 @@ def add_genus_form(window, genus_name, species, data, cleaner):
     Button(subframe, text="Add Genus", width=20, bd=3, command=add_genus).pack()
     Button(subframe, text="Cancel", width=20, bd=3, command=lambda:popup.destroy()).pack()
 
+# good luck reading this
 def add_bird_form():
     global window, regions
     popup = Toplevel(window)
@@ -137,19 +142,62 @@ def add_bird_form():
     sci_entry = Entry(subframe)
     sci_entry.grid(row=1,column=1)
 
-    Label(subframe, text="Region", bd=5).grid(row=2)
+    Label(subframe, text="Average Size", bd=5).grid(row=2)
+    size_entry = Entry(subframe)
+    size_entry.grid(row=2,column=1)
+
+    Label(subframe, text="Region", bd=5).grid(row=3)
+    rfwrapper = Frame(subframe)
+    rfwrapper.grid(row=3,column=1)
+
+    rfinner = []
+    rfinner.append(Frame(rfwrapper, bd=5))
+    rfinner[0].pack()
+
+    # required in init region frame and outside, so goes here
+    bird_regions = []
     region = StringVar()
     region.set("Palearctic")
-    OptionMenu(subframe, region, *regions).grid(row=2,column=1)
 
-    Label(subframe, text="Average Size", bd=5).grid(row=3)
-    size_entry = Entry(subframe)
-    size_entry.grid(row=3,column=1)
+    def initialise_region_frame(regionframe):
+        # Region Section
+        other_regions_frame = Frame(regionframe)
+        other_regions_frame.pack()
+        
+        OptionMenu(regionframe, region, *regions).pack()
 
+        killme = []
+
+        def next_region():
+            killme[0].destroy()
+            Label(other_regions_frame, text=region.get(), bd=5).pack()
+            bird_regions.append(region.get().lower())
+            killme[0] = Button(regionframe, text="+", command=next_region)
+            killme[0].pack()
+            region.set("Palearctic")
+
+        killme.append(Button(regionframe, text="+", command=next_region))
+        killme[0].pack()
+
+    initialise_region_frame(rfinner[0])
+
+    # Button Bit
     subframe = Frame(popup, bd=10)
     subframe.pack()
+
+    def cleaner():
+        del bird_regions[:]
+        rfinner[0].destroy()
+        rfinner[0] = Frame(rfwrapper, bd=5)
+        rfinner[0].pack()
+        region.set("Palearctic")
+        initialise_region_frame(rfinner[0])
     
-    Button(subframe, text="Add Bird", width=20, bd=3, command=lambda:add_bird(popup, name_entry, sci_entry, region, size_entry)).pack()
+    def add_bird_():
+        bird_regions.append(region.get().lower())
+        add_bird(popup, name_entry, sci_entry, bird_regions, cleaner, size_entry)
+
+    Button(subframe, text="Add Bird", width=20, bd=3, command=add_bird_).pack()
     Button(subframe, text="Exit", width=20, bd=3, command=lambda:close(popup)).pack()
 
 def save_and_exit(window):

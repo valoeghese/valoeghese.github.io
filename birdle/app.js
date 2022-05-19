@@ -266,13 +266,16 @@ try {
 										commonName = commonName[0];
 									}
 									
+									if (typeof cSpecies.region === 'string') {
+										cSpecies.region = [cSpecies.region];
+									}
+									
 									// entry
 									
 									birds[scientificName] = {
 										"binomial": scientificName,
 										"common": capitalise(commonName),
 										"region": cSpecies.region,
-										"region2": cSpecies.secondary_region == undefined ? undefined : cSpecies.secondary_region,
 										"size": cSpecies.size
 									};
 								}
@@ -417,8 +420,21 @@ try {
 				let species_similarity = similarity(binomial_split[0], binomial_split[1], binomial2_split[0], binomial2_split[1]);
 				
 				let section_2b3 = family1 in family_names ? (family_names[family1] + entry_2c + capitalise(family1) + entry_2d) : capitalise(family1); // either just the scientific name or the common and scientific names, depending on whether the common name is present.
-				let region_similar = entry.region == top_secret_solution.region || entry.region == top_secret_solution.region2; // TODO multiple regions
-				document.getElementById("guesses").innerHTML += entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3 + `<img width=32 src="icons/` + entry.region + (region_similar ? "-y" : "") + `.png"/>` + entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
+
+				// Add a new element to the document
+				let newElement = entry_0 + species_similarity + entry_0b + entry.common + entry_1 + entry.binomial + entry_2 + similarity(family1, orders[family1], family2, orders[family2]) + entry_2b + section_2b3 + entry_3;
+				
+				for (let region_i in entry.region) {
+					let region = entry.region[region_i];
+					let similar_region = top_secret_solution.region.includes(region);
+					
+					newElement += `<img width=32 src="icons/` + region + (similar_region ? "-y" : "") + `.png"/>`;
+				}
+				
+				newElement += entry_4 + (variation == 0 ? "every60secondsinafricaaminutepasses" : (variation < 5 ? "nearly" : "")) + entry_4b + (variation == 0 ? "" : (entry.size < top_secret_solution.size ? "&#9650; " : "&#9660; ")) + entry.size + entry_5;
+				
+				document.getElementById("guesses").innerHTML += newElement;
+				// ================================
 				
 				document.getElementById("guesses-left").innerText = (--guesses_left) + (guesses_left == 1 ? " Guess Left": " Guesses Left");
 				
