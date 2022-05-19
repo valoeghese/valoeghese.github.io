@@ -316,6 +316,17 @@
                     }
                 }
             },
+			"muscicapidae": {
+				"name": "Old World Flycatchers",
+				
+				"erithacus": {
+					"rubecula": {
+						"name": ["european robin", "robin redbreast"],
+						"size": 13,
+						"region": "palearctic"
+					}
+				}
+			},
             "petroicidae": {
                 "name": "Australasian Robins",
                 "petroica": {
@@ -355,7 +366,33 @@
                 }
             },
             "paridae": {
-                "name": "Tits"
+                "name": "Tits",
+                "cyanistes": {
+                    "caeruleus": {
+                        "name": "eurasian blue tit",
+                        "size": 12,
+                        "region": "palearctic"
+                    }
+                },
+                "parus": {
+                    "major": {
+                        "name": "great tit",
+                        "size": 14,
+                        "region": "palearctic"
+                    }
+                },
+                "poecile": {
+                    "palustris": {
+                        "name": "marsh tit",
+                        "size": 12,
+                        "region": "palearctic"
+                    },
+                    "atricapillus": {
+                        "name": "black-capped chickadee",
+                        "size": 14,
+                        "region": "nearctic"
+                    }
+                }
             },
             "pycnonotidae": {
                 "name": "Bulbuls",
@@ -593,11 +630,15 @@
             "name": "English Garden Birds",
             "species": [
                 "common blackbird",
+				"eurasian blue tit",
                 "eurasian tree sparrow",
                 "european turtle dove",
+				"great tit",
                 "house sparrow",
-				"indian ringneck parrot",
-                "song thrush"
+                "indian ringneck parrot",
+				"marsh tit",
+                "song thrush",
+				"robin redbreast"
             ]
         },
         "nz_residents": {
@@ -626,6 +667,7 @@
                 "piwakawaka",
                 "red-crowned parakeet",
                 "rock pigeon",
+                "royal spoonbill",
                 "silvereye",
                 "silver gull",
                 "song thrush",

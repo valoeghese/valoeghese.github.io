@@ -92,7 +92,6 @@ def close(window):
     Button(subframe, text="No", width=15, bd=3, command=lambda:popup.destroy()).grid(row=0,column=1)
 
 def add_genus_form(window, genus_name, species, data, cleaner):
-    global families
     popup = Toplevel(window)
     popup.title("Add Genus")
 
@@ -107,7 +106,11 @@ def add_genus_form(window, genus_name, species, data, cleaner):
     Label(subframe, text="Family", bd=5).grid(row=1)
     family = StringVar()
     family.set("columbidae")
-    OptionMenu(subframe, family, *(families.keys())).grid(row=1,column=1)
+
+    family_names = families.keys()
+    family_names.sort()
+    
+    OptionMenu(subframe, family, *family_names).grid(row=1,column=1)
 
     subframe = Frame(popup, bd=10)
     subframe.pack()
@@ -119,6 +122,7 @@ def add_genus_form(window, genus_name, species, data, cleaner):
             genus = {}
             genus[species] = data
             families[family.get()][genus_name_i] = genus
+            genuses[genus_name_i] = genus
             
             cleaner()
             popup.destroy()

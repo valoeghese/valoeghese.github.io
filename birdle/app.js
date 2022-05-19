@@ -496,8 +496,13 @@ try {
 							searchResults += `<div class="searchable searchy" onclick="autocomplete('`;
 							searchResults += capitalise(term == entry.binomial ? entry.binomial : entry.common);
 							searchResults += `')">`;
-							searchResults += entry.common + " (" + entry.binomial + ")" + "<div></div><span class=\"scientific-name\">" + familyOf(entry.binomial) + "</span><span class=\"not-scientific-name\"> &bull; " + entry.region + "</span>"; // using scientific-name class for family to use similar formatting
-							searchResults += `</div>`;
+							searchResults += entry.common + " (" + entry.binomial + ")" + "<div></div><span class=\"scientific-name\">" + familyOf(entry.binomial) + "</span><span class=\"not-scientific-name\"> &bull; "; // using scientific-name class for family to use similar formatting
+							
+							for (let region_i in entry.region) {
+								newElement += `<img width=16 src="icons/` + entry.region[region_i] + `.png"/>`;
+							}
+							
+							searchResults += `</span></div>`;
 						}
 					}
 				}
