@@ -82,6 +82,10 @@ h2 {
 	font-size: 14px;
 }
 
+.not-scientific-name img {
+	vertical-align: middle;
+}
+
 .borders {
 	margin-left: auto;
 	margin-right: auto;
