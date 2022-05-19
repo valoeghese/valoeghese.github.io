@@ -178,6 +178,67 @@ a:hover {
 	margin-right: auto;
 }
 
+#how-2-play-stoppa {
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 5;
+	
+	background-color: #ddda;
+	transition: opacity 0.7s;
+}
+
+#how-2-play {
+	position: fixed;
+	top: 14%;
+	bottom: 14%;
+	left: 20%;
+	right: 20%;
+	
+	background-color: #eee;
+	border: 4px double #444;
+	text-align: center;
+	
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	
+	overflow-y: auto;
+	transition: opacity 0.7s;
+}
+
+.spacer {
+	height: 10px;
+}
+
+.button {
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+}
+
+#continue {
+	background-color: #2de55b;
+}
+
+#back {
+	border: 1px solid #2e2e2e;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#continue:focus {
+	background-color: #22a342;
+}
+
+#back:hover {
+	background-color: #c3c3c3;
+}
+
 @media (max-width: 800px) {
 	#game {
 		width: 100%;

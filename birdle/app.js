@@ -4,10 +4,56 @@ const urlParams = new URLSearchParams(window.location.search);
 
 // the 'screw safari' collection
 var setDailyCookie;
-var getCookie;
+var getDailyCookie;
+
+function setLifetimeCookie(cname, cvalue) {
+	if (!urlParams.has("nocookies")) {
+		cname = "FOREVER-" + cname;
+				
+		const forever = new Date();
+		forever.setDate(forever.getDate() + 1000000000000);
+	  
+		let expires = "expires=" + forever.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+}
+
+function getCookie(cname) {
+	if (urlParams.has("nocookies")) {
+		return undefined;
+	}
+	
+	let name = cname + "=";
+	let decodedCookie = decodeURIComponent(document.cookie);
+	let ca = decodedCookie.split(';');
+	for(let i = 0; i <ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}
 
 try {
 	if (urlParams.has("mode")) {
+		if (getCookie("FOREVER-seenhowto")) {
+			document.getElementById("how-2-play-stoppa").style.display = "none";
+		}
+		
+		function startGame() {
+			document.getElementById("how-2-play-stoppa").style.pointerEvents = "none";
+			document.getElementById("how-2-play").style.opacity = 0;
+			setLifetimeCookie("seenhowto", "true");
+			
+			setTimeout(function() {
+				document.getElementById("how-2-play-stoppa").style.opacity = 0;
+			}, 300);
+		}
+		
 		// https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
 		String.prototype.hashCode = function() {
 			var hash = 0, i, chr;
@@ -38,26 +84,8 @@ try {
 		}
 
 		// https://www.w3schools.com/js/js_cookies.asp
-		getCookie = function(cname) {
-			if (urlParams.has("nocookies")) {
-				return undefined;
-			}
-			
-			cname = MODE + "-" + cname;
-			
-			let name = cname + "=";
-			let decodedCookie = decodeURIComponent(document.cookie);
-			let ca = decodedCookie.split(';');
-			for(let i = 0; i <ca.length; i++) {
-				let c = ca[i];
-				while (c.charAt(0) == ' ') {
-					c = c.substring(1);
-				}
-				if (c.indexOf(name) == 0) {
-					return c.substring(name.length, c.length);
-				}
-			}
-			return "";
+		getDailyCookie = function(cname) {
+			return getCookie(MODE + "-" + cname);
 		}
 
 		const entry_0 = `
@@ -87,7 +115,7 @@ try {
 		family_names = {}; // common names for families of birds
 		orders = {};
 
-		var top_secret_solution = getCookie("not-the-solution");
+		var top_secret_solution = getDailyCookie("not-the-solution");
 		const MAX_GUESSES = 6;
 		var guesses_left = MAX_GUESSES;
 
@@ -314,11 +342,11 @@ try {
 					}
 					
 					// now add stored guesses
-					let guessesStored = getCookie("guesses");
+					let guessesStored = getDailyCookie("guesses");
 					
 					if (guessesStored) {
 						for (let i = 1; i <= guessesStored; i++) {
-							guess(getCookie("guess" + i));
+							guess(getDailyCookie("guess" + i));
 						}
 					}
 					
@@ -552,6 +580,7 @@ try {
 		<h2>Select a Mode</h2>
 		<div style="margin-top:10px;font-size:18px;">Loading Game Modes...
 		`;
+		document.getElementById("how-2-play-stoppa").style.display = "none";
 		
 		fetch("birds.json")
 			.then(response => response.json())
