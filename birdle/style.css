@@ -222,6 +222,12 @@ a:hover {
 	cursor: pointer;
 }
 
+.howto-container {
+	width:80%;
+	padding-left:10%;
+	padding-right:10%;
+}
+
 #continue {
 	background-color: #2de55b;
 }
@@ -291,6 +297,12 @@ a:hover {
 	
 	#how-2-play {
 		font-size: 10px;
+	}
+	
+	.howto-container {
+		width: 95%;
+		padding-left: 2.5%;
+		padding-right: 2.5%;
 	}
 }
 
