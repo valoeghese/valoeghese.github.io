@@ -5,6 +5,7 @@ const urlParams = new URLSearchParams(window.location.search);
 // the 'screw safari' collection
 var setDailyCookie;
 var getDailyCookie;
+const MAX_GUESSES = 6;
 // moved the consts of the runtime-generated divs to this collection too
 const entry_0 = `
 <div class="borders ">
@@ -116,7 +117,6 @@ try {
 		orders = {};
 
 		var top_secret_solution = getDailyCookie("not-the-solution");
-		const MAX_GUESSES = 6;
 		var guesses_left = MAX_GUESSES;
 
 		function mulberry32(a) {
