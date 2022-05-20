@@ -252,6 +252,27 @@
                     }
                 }
             },
+            "cinclidae": {
+                "name": "Dippers",
+                "cinclus": {
+                    "cinclus": {
+                        "name": [
+                            "white-throated dipper",
+                            "european dipper"
+                        ],
+                        "size": 18,
+                        "region": "palearctic"
+                    },
+                    "mexicanus": {
+                        "name": [
+                            "american dipper",
+                            "water ouzel"
+                        ],
+                        "size": 17,
+                        "region": "nearctic"
+                    }
+                }
+            },
             "fringillidae": {
                 "name": "True Finches"
             },
@@ -316,17 +337,51 @@
                     }
                 }
             },
-			"muscicapidae": {
-				"name": "Old World Flycatchers",
-				
-				"erithacus": {
-					"rubecula": {
-						"name": ["european robin", "robin redbreast"],
-						"size": 13,
-						"region": "palearctic"
+            "motacillidae": {
+                "name": "Wagtails and Pipits",
+                "motacilla": {
+                    "alba": {
+                        "name": ["white wagtail", "pied wagtail"],
+                        "size": 18,
+                        "region": ["palearctic", "indomalayan"]
+                    },
+					"cinerea": {
+						"name": "grey wagtail",
+						"size": 19,
+						"region": ["palearctic", "indomalayan"]
 					}
-				}
-			},
+                },
+                "anthus": {
+                    "novaeseelandiae": {
+                        "name": ["new zealand pipit", "australasian pipit"],
+                        "size": 18,
+                        "region": "australasia"
+                    },
+					"nyassae": {
+                        "name": ["wood pipit","woodland pipit"],
+                        "size": 17,
+                        "region": "afrotropical"
+                    },
+                    "pratensis": {
+                        "name": "meadow pipit",
+                        "size": 15,
+                        "region": "palearctic"
+                    }
+                }
+            },
+            "muscicapidae": {
+                "name": "Old World Flycatchers",
+                "erithacus": {
+                    "rubecula": {
+                        "name": [
+                            "european robin",
+                            "robin redbreast"
+                        ],
+                        "size": 13,
+                        "region": "palearctic"
+                    }
+                }
+            },
             "petroicidae": {
                 "name": "Australasian Robins",
                 "petroica": {
@@ -630,15 +685,17 @@
             "name": "English Garden Birds",
             "species": [
                 "common blackbird",
-				"eurasian blue tit",
+                "eurasian blue tit",
                 "eurasian tree sparrow",
                 "european turtle dove",
-				"great tit",
+                "great tit",
                 "house sparrow",
                 "indian ringneck parrot",
-				"marsh tit",
+                "marsh tit",
                 "song thrush",
-				"robin redbreast"
+                "robin redbreast",
+				"rock pigeon",
+				"white wagtail"
             ]
         },
         "nz_residents": {
@@ -660,6 +717,7 @@
                 "korimako",
                 "little owl",
                 "morepork",
+				"new zealand pipit",
                 "north island kokako",
                 "north island robin",
                 "north island saddleback",

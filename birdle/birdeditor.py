@@ -107,7 +107,7 @@ def add_genus_form(window, genus_name, species, data, cleaner):
     family = StringVar()
     family.set("columbidae")
 
-    family_names = families.keys()
+    family_names = list(families.keys())
     family_names.sort()
     
     OptionMenu(subframe, family, *family_names).grid(row=1,column=1)
