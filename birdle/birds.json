@@ -748,7 +748,7 @@
 				"name": "Barn Owls",
 				"tyto": {
 					"alba": {
-						"name": ["Barn Owl", "Common Barn Owl"],
+						"name": ["barn owl", "common barn owl"],
 						"size": 35,
 						"region": ["nearctic", "neotropical", "palearctic", "afrotropical", "indomalayan", "australasia", "oceanian"]
 					}
