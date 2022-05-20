@@ -57,8 +57,8 @@ function getCookie(cname) {
 
 try {
 	if (urlParams.has("mode")) {
-		if (getCookie("FOREVER-seenhowto")) {
-			document.getElementById("how-2-play-stoppa").style.display = "none";
+		if (!getCookie("FOREVER-seenhowto")) {
+			document.getElementById("how-2-play-stoppa").style.display = "block";
 		}
 		
 		function startGame() {
