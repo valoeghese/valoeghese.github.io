@@ -341,24 +341,39 @@
                 "name": "Wagtails and Pipits",
                 "motacilla": {
                     "alba": {
-                        "name": ["white wagtail", "pied wagtail"],
+                        "name": [
+                            "white wagtail",
+                            "pied wagtail"
+                        ],
                         "size": 18,
-                        "region": ["palearctic", "indomalayan"]
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ]
                     },
-					"cinerea": {
-						"name": "grey wagtail",
-						"size": 19,
-						"region": ["palearctic", "indomalayan"]
-					}
+                    "cinerea": {
+                        "name": "grey wagtail",
+                        "size": 19,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ]
+                    }
                 },
                 "anthus": {
                     "novaeseelandiae": {
-                        "name": ["new zealand pipit", "australasian pipit"],
+                        "name": [
+                            "new zealand pipit",
+                            "australasian pipit"
+                        ],
                         "size": 18,
                         "region": "australasia"
                     },
-					"nyassae": {
-                        "name": ["wood pipit","woodland pipit"],
+                    "nyassae": {
+                        "name": [
+                            "wood pipit",
+                            "woodland pipit"
+                        ],
                         "size": 17,
                         "region": "afrotropical"
                     },
@@ -694,8 +709,8 @@
                 "marsh tit",
                 "song thrush",
                 "robin redbreast",
-				"rock pigeon",
-				"white wagtail"
+                "rock pigeon",
+                "white wagtail"
             ]
         },
         "nz_residents": {
@@ -717,7 +732,7 @@
                 "korimako",
                 "little owl",
                 "morepork",
-				"new zealand pipit",
+                "new zealand pipit",
                 "north island kokako",
                 "north island robin",
                 "north island saddleback",
