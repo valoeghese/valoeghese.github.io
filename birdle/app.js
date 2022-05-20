@@ -413,11 +413,11 @@ try {
 			return "";
 		}
 
-		function maybeenter(event) {
+		function maybeenter(event, buttony) {
 			try {
 				let textbox = document.getElementById("bird-entry");
 				
-				if (event.keyCode == 13) {
+				if (buttony || event.keyCode == 13) {
 					let term = textbox.value.toLowerCase();
 					let guessno = guess(term);
 
