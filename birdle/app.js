@@ -414,17 +414,21 @@ try {
 		}
 
 		function maybeenter(event) {
-			let textbox = document.getElementById("bird-entry");
-			
-			if (event.keyCode == 13) {
-				let term = textbox.value.toLowerCase();
-				let guessno = guess(term);
+			try {
+				let textbox = document.getElementById("bird-entry");
+				
+				if (event.keyCode == 13) {
+					let term = textbox.value.toLowerCase();
+					let guessno = guess(term);
 
-				if (guessno) {
-					textbox.value = "";
-					setDailyCookie("guesses", MAX_GUESSES - guesses_left);
-					setDailyCookie("guess" + guessno, term);
+					if (guessno) {
+						textbox.value = "";
+						setDailyCookie("guesses", MAX_GUESSES - guesses_left);
+						setDailyCookie("guess" + guessno, term);
+					}
 				}
+			} catch (e) {
+				document.getElementById("game").innerHTML = "Error while guessing bird: " + e + "\n" + e.stack;
 			}
 		}
 
@@ -468,6 +472,7 @@ try {
 				
 				if (guesses_left == 0 || species_similarity == "every60secondsinafricaaminutepasses") {
 					document.getElementById("bird-entry").remove();
+					document.getElementById("submit").remove();
 					document.getElementById("title").classList.add("faded");
 					
 					setTimeout(function() {
