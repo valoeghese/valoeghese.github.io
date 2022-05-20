@@ -5,6 +5,22 @@ const urlParams = new URLSearchParams(window.location.search);
 // the 'screw safari' collection
 var setDailyCookie;
 var getDailyCookie;
+// moved the consts of the runtime-generated divs to this collection too
+const entry_0 = `
+<div class="borders ">
+<div class="entry larger `;
+const entry_0b = `">`;
+const entry_1 = `<div></div><span class="scientific-name">`;
+const entry_2 = `</span></div>
+<div class="entry `;
+const entry_2b = `" >`;
+const entry_2c = `<div></div><span class="scientific-name">`;
+const entry_2d = `</span>`;
+const entry_3 = `</div><div class="entry">`;
+const entry_4 =`</div>
+<div class="entry `;
+const entry_4b = `" >`;
+const entry_5 = `</div></div>`;
 
 function setLifetimeCookie(cname, cvalue) {
 	if (!urlParams.has("nocookies")) {
@@ -87,22 +103,6 @@ try {
 		getDailyCookie = function(cname) {
 			return getCookie(MODE + "-" + cname);
 		}
-
-		const entry_0 = `
-		<div class="borders ">
-		<div class="entry larger `;
-		const entry_0b = `">`;
-		const entry_1 = `<div></div><span class="scientific-name">`;
-		const entry_2 = `</span></div>
-		<div class="entry `;
-		const entry_2b = `" >`;
-		const entry_2c = `<div></div><span class="scientific-name">`;
-		const entry_2d = `</span>`;
-		const entry_3 = `</div><div class="entry">`;
-		const entry_4 =`</div>
-		<div class="entry `;
-		const entry_4b = `" >`;
-		const entry_5 = `</div></div>`;
 
 		// Searchables is all possible search terms. These are all lowercase for search reasons.
 		// Birds maps scientific names to bird data (1st common name, region) and other names to scientific names
