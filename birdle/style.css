@@ -141,6 +141,7 @@ h2 {
 	background-color: #c3c3c3;
 	
 	border: 3px double #2e2e2e;
+	margin-left: calc(10px + 2vh); /* make up for submit button*/
 }
 
 #bird-entry:focus {
@@ -237,6 +238,15 @@ a:hover {
 
 #back:hover {
 	background-color: #c3c3c3;
+}
+
+#submit {
+	background-image: url("icons/enter.png");
+	background-size: contain;
+	width: 2vh;
+	height: 2vh;
+	border-radius: 0px;
+	margin-left: 10px;
 }
 
 @media (max-width: 800px) {
