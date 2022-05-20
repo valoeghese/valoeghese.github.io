@@ -252,6 +252,23 @@
                     }
                 }
             },
+			"calcariidae": {
+				"name": "Longspurs and Snow Buntings",
+				"calcarius": {
+					"lapponicus": {
+						"name": ["lapland longspur", "lapland bunting"],
+						"size": 16,
+						"region": ["nearctic", "palearctic"]
+					}
+				},
+				"plectrophenax": {
+					"nivalis": {
+						"name": "snow bunting",
+						"size": 15,
+						"region": ["nearctic", "palearctic"]
+					}
+				}
+			},
             "cinclidae": {
                 "name": "Dippers",
                 "cinclus": {
@@ -273,6 +290,26 @@
                     }
                 }
             },
+			"emberizidae": {
+				"name": "Old World Buntings",
+				"emberiza": {
+					"cirlus": {
+						"name": "cirl bunting",
+						"size": 16,
+						"region": "palearctic"
+					},
+					"citrinella": {
+						"name": "yellowhammer",
+						"size": 16,
+						"region": "palearctic"
+					},
+					"leucocephalos": {
+						"name": "pine bunting",
+						"size": 17,
+						"region": "palearctic"
+					}
+				}
+			},
             "fringillidae": {
                 "name": "True Finches"
             },
@@ -420,8 +457,18 @@
                     }
                 }
             },
+			"passerellidae": {
+				"name": "New World Sparrows",
+				"melospiza": {
+					"melodia": {
+						"name": "song sparrow",
+						"size": 15,
+						"region": "nearctic"
+					}
+				}
+			}
             "passeridae": {
-                "name": "Old-World Sparrows",
+                "name": "Old World Sparrows",
                 "passer": {
                     "montanus": {
                         "name": "eurasian tree sparrow",
@@ -435,6 +482,9 @@
                     }
                 }
             },
+			"passerina": {
+				"name": "North American Buntings"
+			},
             "paridae": {
                 "name": "Tits",
                 "cyanistes": {
@@ -464,6 +514,21 @@
                     }
                 }
             },
+			"prunellidae": {
+				"name": "Accentors",
+				"prunella": {
+					"collaris": {
+						"name": "alpine accentor",
+						"size": 16,
+						"region": "palearctic"
+					},
+					"modularis": {
+						"name": ["dunnock", "hedge sparrow", "hedge accentor", "hedge warbler"],
+						"size": 14,
+						"region": "palearctic"
+					}
+				}
+			},
             "pycnonotidae": {
                 "name": "Bulbuls",
                 "pycnonotus": {
@@ -678,7 +743,17 @@
                         ]
                     }
                 }
-            }
+            },
+			"tytonidae": {
+				"name": "Barn Owls",
+				"tyto": {
+					"alba": {
+						"name": ["Barn Owl", "Common Barn Owl"],
+						"size": 35,
+						"region": ["nearctic", "neotropical", "palearctic", "afrotropical", "indomalayan", "australasia", "oceanian"]
+					}
+				}
+			}
         },
         "suliformes": {
             "anhingidae": {
@@ -688,7 +763,19 @@
                 "name": "Frigatebirds"
             },
             "phalacrocoracidae": {
-                "name": "Cormorants"
+                "name": "Cormorants",
+				"phalacrocorax": {
+					"carbo": {
+						"name": ["great cormorant", "black shag", "black cormorant"],
+						"size": 88,
+						"region": ["nearctic", "palearctic", "indomalayan", "australasia"]
+					},
+					"varius": {
+						"name": ["australian pied cormorant", "pied shag", "karuhiruhi"],
+						"size": 81,
+						"region": "australasia"
+					}
+				}
             },
             "sulidae": {
                 "name": "Gannets and Boobies"
@@ -700,6 +787,7 @@
             "name": "English Garden Birds",
             "species": [
                 "common blackbird",
+				"dunnock",
                 "eurasian blue tit",
                 "eurasian tree sparrow",
                 "european turtle dove",
@@ -718,11 +806,15 @@
             "_comment": "Note that both the names given in this data file and scientific names are valid entries in the species list.",
             "species": [
                 "barbary dove",
+				"barn owl",
+				"black shag",
                 "brown quail",
                 "california quail",
                 "chicken",
+				"cirl bunting",
                 "common blackbird",
                 "common myna",
+				"dunnock",
                 "eurasian skylark",
                 "european starling",
                 "fairy tern",
@@ -736,6 +828,7 @@
                 "north island kokako",
                 "north island robin",
                 "north island saddleback",
+				"pied shag",
                 "pipipi",
                 "piwakawaka",
                 "red-crowned parakeet",
@@ -749,6 +842,7 @@
                 "spotted dove",
                 "tui",
                 "yellow-crowned parakeet",
+				"yellowhammer",
                 "yellowhead",
                 "whitehead"
             ]
