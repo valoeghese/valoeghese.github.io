@@ -34,6 +34,11 @@
                             "palearctic",
                             "nearctic"
                         ]
+                    },
+                    "crassirostris": {
+                        "name": ["black-tailed gull", "umineko", "sea cat"],
+                        "size": 46,
+                        "region": "palearctic"
                     }
                 },
                 "chroicocephalus": {
@@ -208,6 +213,16 @@
                     }
                 }
             },
+			"aegithalidae": {
+				"name": "Bushtits",
+				"aegithalos": {
+					"caudatus": {
+						"name": ["long-tailed tit", "long-tailed bushtit"],
+						"size": 13,
+						"region": "palearctic"
+					}
+				}
+			},
             "alaudidae": {
                 "name": "Larks",
                 "alauda": {
@@ -252,23 +267,32 @@
                     }
                 }
             },
-			"calcariidae": {
-				"name": "Longspurs and Snow Buntings",
-				"calcarius": {
-					"lapponicus": {
-						"name": ["lapland longspur", "lapland bunting"],
-						"size": 16,
-						"region": ["nearctic", "palearctic"]
-					}
-				},
-				"plectrophenax": {
-					"nivalis": {
-						"name": "snow bunting",
-						"size": 15,
-						"region": ["nearctic", "palearctic"]
-					}
-				}
-			},
+            "calcariidae": {
+                "name": "Longspurs and Snow Buntings",
+                "calcarius": {
+                    "lapponicus": {
+                        "name": [
+                            "lapland longspur",
+                            "lapland bunting"
+                        ],
+                        "size": 16,
+                        "region": [
+                            "nearctic",
+                            "palearctic"
+                        ]
+                    }
+                },
+                "plectrophenax": {
+                    "nivalis": {
+                        "name": "snow bunting",
+                        "size": 15,
+                        "region": [
+                            "nearctic",
+                            "palearctic"
+                        ]
+                    }
+                }
+            },
             "cinclidae": {
                 "name": "Dippers",
                 "cinclus": {
@@ -290,28 +314,35 @@
                     }
                 }
             },
-			"emberizidae": {
-				"name": "Old World Buntings",
-				"emberiza": {
-					"cirlus": {
-						"name": "cirl bunting",
-						"size": 16,
-						"region": "palearctic"
-					},
-					"citrinella": {
-						"name": "yellowhammer",
-						"size": 16,
-						"region": "palearctic"
-					},
-					"leucocephalos": {
-						"name": "pine bunting",
-						"size": 17,
-						"region": "palearctic"
-					}
-				}
-			},
+            "emberizidae": {
+                "name": "Old World Buntings",
+                "emberiza": {
+                    "cirlus": {
+                        "name": "cirl bunting",
+                        "size": 16,
+                        "region": "palearctic"
+                    },
+                    "citrinella": {
+                        "name": "yellowhammer",
+                        "size": 16,
+                        "region": "palearctic"
+                    },
+                    "leucocephalos": {
+                        "name": "pine bunting",
+                        "size": 17,
+                        "region": "palearctic"
+                    }
+                }
+            },
             "fringillidae": {
-                "name": "True Finches"
+                "name": "True Finches",
+                "carduelis": {
+                    "carduelis": {
+                        "name": "european goldfinch",
+                        "size": 13,
+                        "region": "palearctic"
+                    }
+                }
             },
             "meliphagidae": {
                 "name": "Honeyeaters",
@@ -432,6 +463,16 @@
                         "size": 13,
                         "region": "palearctic"
                     }
+                },
+                "tarsiger": {
+                    "cyanurus": {
+                        "name": ["red-flanked bluetail", "orange-flanked bush robin"],
+                        "size": 14,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ]
+                    }
                 }
             },
             "petroicidae": {
@@ -457,16 +498,16 @@
                     }
                 }
             },
-			"passerellidae": {
-				"name": "New World Sparrows",
-				"melospiza": {
-					"melodia": {
-						"name": "song sparrow",
-						"size": 15,
-						"region": "nearctic"
-					}
-				}
-			},
+            "passerellidae": {
+                "name": "New World Sparrows",
+                "melospiza": {
+                    "melodia": {
+                        "name": "song sparrow",
+                        "size": 15,
+                        "region": "nearctic"
+                    }
+                }
+            },
             "passeridae": {
                 "name": "Old World Sparrows",
                 "passer": {
@@ -479,12 +520,17 @@
                         "name": "house sparrow",
                         "size": 15,
                         "region": "palearctic"
+                    },
+                    "melanurus": {
+                        "name": "cape sparrow",
+                        "size": 15,
+                        "region": "afrotropical"
                     }
                 }
             },
-			"passerina": {
-				"name": "North American Buntings"
-			},
+            "passerina": {
+                "name": "North American Buntings"
+            },
             "paridae": {
                 "name": "Tits",
                 "cyanistes": {
@@ -499,7 +545,12 @@
                         "name": "great tit",
                         "size": 14,
                         "region": "palearctic"
-                    }
+                    },
+					"minor": {
+						"name": ["japanese tit", "oriental tit"],
+						"size": 14,
+						"region": "palearctic"
+					}
                 },
                 "poecile": {
                     "palustris": {
@@ -514,21 +565,26 @@
                     }
                 }
             },
-			"prunellidae": {
-				"name": "Accentors",
-				"prunella": {
-					"collaris": {
-						"name": "alpine accentor",
-						"size": 16,
-						"region": "palearctic"
-					},
-					"modularis": {
-						"name": ["dunnock", "hedge sparrow", "hedge accentor", "hedge warbler"],
-						"size": 14,
-						"region": "palearctic"
-					}
-				}
-			},
+            "prunellidae": {
+                "name": "Accentors",
+                "prunella": {
+                    "collaris": {
+                        "name": "alpine accentor",
+                        "size": 16,
+                        "region": "palearctic"
+                    },
+                    "modularis": {
+                        "name": [
+                            "dunnock",
+                            "hedge sparrow",
+                            "hedge accentor",
+                            "hedge warbler"
+                        ],
+                        "size": 14,
+                        "region": "palearctic"
+                    }
+                }
+            },
             "pycnonotidae": {
                 "name": "Bulbuls",
                 "pycnonotus": {
@@ -605,6 +661,16 @@
                     "philomelos": {
                         "name": "song thrush",
                         "size": 23,
+                        "region": "palearctic"
+                    },
+                    "viscivorus": {
+                        "name": ["mistle thrush", "stormcock"],
+                        "size": 28,
+                        "region": "palearctic"
+                    },
+                    "pilaris": {
+                        "name": "fieldfare",
+                        "size": 25,
                         "region": "palearctic"
                     }
                 },
@@ -744,16 +810,27 @@
                     }
                 }
             },
-			"tytonidae": {
-				"name": "Barn Owls",
-				"tyto": {
-					"alba": {
-						"name": ["barn owl", "common barn owl"],
-						"size": 35,
-						"region": ["nearctic", "neotropical", "palearctic", "afrotropical", "indomalayan", "australasia", "oceanian"]
-					}
-				}
-			}
+            "tytonidae": {
+                "name": "Barn Owls",
+                "tyto": {
+                    "alba": {
+                        "name": [
+                            "barn owl",
+                            "common barn owl"
+                        ],
+                        "size": 35,
+                        "region": [
+                            "nearctic",
+                            "neotropical",
+                            "palearctic",
+                            "afrotropical",
+                            "indomalayan",
+                            "australasia",
+                            "oceanian"
+                        ]
+                    }
+                }
+            }
         },
         "suliformes": {
             "anhingidae": {
@@ -764,18 +841,31 @@
             },
             "phalacrocoracidae": {
                 "name": "Cormorants",
-				"phalacrocorax": {
-					"carbo": {
-						"name": ["great cormorant", "black shag", "black cormorant"],
-						"size": 88,
-						"region": ["nearctic", "palearctic", "indomalayan", "australasia"]
-					},
-					"varius": {
-						"name": ["australian pied cormorant", "pied shag", "karuhiruhi"],
-						"size": 81,
-						"region": "australasia"
-					}
-				}
+                "phalacrocorax": {
+                    "carbo": {
+                        "name": [
+                            "great cormorant",
+                            "black shag",
+                            "black cormorant"
+                        ],
+                        "size": 88,
+                        "region": [
+                            "nearctic",
+                            "palearctic",
+                            "indomalayan",
+                            "australasia"
+                        ]
+                    },
+                    "varius": {
+                        "name": [
+                            "australian pied cormorant",
+                            "pied shag",
+                            "karuhiruhi"
+                        ],
+                        "size": 81,
+                        "region": "australasia"
+                    }
+                }
             },
             "sulidae": {
                 "name": "Gannets and Boobies"
@@ -787,35 +877,50 @@
             "name": "English Garden Birds",
             "species": [
                 "common blackbird",
-				"dunnock",
+                "dunnock",
                 "eurasian blue tit",
                 "eurasian tree sparrow",
+				"european goldfinch",
                 "european turtle dove",
                 "great tit",
                 "house sparrow",
                 "indian ringneck parrot",
+				"long-tailed tit",
                 "marsh tit",
+				"mistle thrush",
                 "song thrush",
                 "robin redbreast",
                 "rock pigeon",
                 "white wagtail"
             ]
         },
+		"japanese_birds": {
+			"name": "Japanese Residents",
+			"species": [
+			    "eurasian tree sparrow",
+			    "japanese tit",
+			    "long-tailed tit",
+			    "red-flanked bluetail",
+			    "umineko",
+				"warbling white-eye"
+			]
+		},
         "nz_residents": {
             "name": "New Zealand Residents",
             "_comment": "Note that both the names given in this data file and scientific names are valid entries in the species list.",
             "species": [
                 "barbary dove",
-				"barn owl",
-				"black shag",
+                "barn owl",
+                "black shag",
                 "brown quail",
                 "california quail",
                 "chicken",
-				"cirl bunting",
+                "cirl bunting",
                 "common blackbird",
                 "common myna",
-				"dunnock",
+                "dunnock",
                 "eurasian skylark",
+				"european goldfinch",
                 "european starling",
                 "fairy tern",
                 "grey warbler",
@@ -828,7 +933,7 @@
                 "north island kokako",
                 "north island robin",
                 "north island saddleback",
-				"pied shag",
+                "pied shag",
                 "pipipi",
                 "piwakawaka",
                 "red-crowned parakeet",
@@ -842,7 +947,7 @@
                 "spotted dove",
                 "tui",
                 "yellow-crowned parakeet",
-				"yellowhammer",
+                "yellowhammer",
                 "yellowhead",
                 "whitehead"
             ]
