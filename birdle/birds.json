@@ -362,7 +362,7 @@
                 },
                 "pica": {
                     "pica": {
-                        "name": "eurasian magpie",
+                        "name": ["eurasian magpie", "common magpie"],
                         "size": 45,
                         "region": "palearctic"
                     }
@@ -973,6 +973,7 @@
                 "common blackbird",
                 "dunnock",
                 "eurasian blue tit",
+                "eurasian magpie",
                 "eurasian tree sparrow",
                 "european goldfinch",
                 "european turtle dove",
