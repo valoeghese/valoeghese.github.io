@@ -13,6 +13,20 @@
                             "australasia"
                         ]
                     }
+                },
+                "vanellus": {
+                    "vanellus": {
+                        "name": [
+                            "northern lapwing",
+                            "peewit",
+                            "green plover"
+                        ],
+                        "size": 31,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ]
+                    }
                 }
             },
             "laridae": {
@@ -362,7 +376,10 @@
                 },
                 "pica": {
                     "pica": {
-                        "name": ["eurasian magpie", "common magpie"],
+                        "name": [
+                            "eurasian magpie",
+                            "common magpie"
+                        ],
                         "size": 45,
                         "region": "palearctic"
                     }
@@ -723,6 +740,23 @@
                     }
                 }
             },
+            "troglodytidae": {
+                "name": "Wrens",
+                "troglodytes": {
+                    "troglodytes": {
+                        "name": "eurasian wren",
+                        "size": 10,
+                        "region": "palearctic"
+                    }
+                },
+                "cistothorus": {
+                    "palustris": {
+                        "name": "marsh wren",
+                        "size": 12,
+                        "region": "nearctic"
+                    }
+                }
+            },
             "turdidae": {
                 "name": "True Thrushes",
                 "turdus": {
@@ -975,6 +1009,7 @@
                 "eurasian blue tit",
                 "eurasian magpie",
                 "eurasian tree sparrow",
+                "eurasian wren",
                 "european goldfinch",
                 "european turtle dove",
                 "great tit",
@@ -996,8 +1031,10 @@
                 "common gull",
                 "common raven",
                 "eurasian tree sparrow",
+                "eurasian wren",
                 "japanese tit",
                 "marsh tit",
+                "northern lapwing",
                 "long-eared owl",
                 "long-tailed tit",
                 "red-flanked bluetail",
