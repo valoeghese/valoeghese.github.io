@@ -36,7 +36,11 @@
                         ]
                     },
                     "crassirostris": {
-                        "name": ["black-tailed gull", "umineko", "sea cat"],
+                        "name": [
+                            "black-tailed gull",
+                            "umineko",
+                            "sea cat"
+                        ],
                         "size": 46,
                         "region": "palearctic"
                     }
@@ -80,7 +84,34 @@
                 "name": "Stilts and Avocets"
             },
             "scolopacidae": {
-                "name": "Sandpipers"
+                "name": "Sandpipers",
+                "arenaria": {
+                    "interpres": {
+                        "name": "ruddy turnstone",
+                        "size": 23,
+                        "region": [
+                            "palearctic",
+                            "indomalayan",
+                            "nearctic",
+                            "neotropical",
+                            "oceanian",
+                            "australasia",
+                            "afrotropical"
+                        ]
+                    }
+                },
+                "calidris": {
+                    "pugnax": {
+                        "name": "ruff",
+                        "size": 27,
+                        "region": [
+                            "palearctic",
+                            "indomalayan",
+                            "afrotropical",
+                            "australasia"
+                        ]
+                    }
+                }
             }
         },
         "ciconiiformes": {
@@ -213,16 +244,19 @@
                     }
                 }
             },
-			"aegithalidae": {
-				"name": "Bushtits",
-				"aegithalos": {
-					"caudatus": {
-						"name": ["long-tailed tit", "long-tailed bushtit"],
-						"size": 13,
-						"region": "palearctic"
-					}
-				}
-			},
+            "aegithalidae": {
+                "name": "Bushtits",
+                "aegithalos": {
+                    "caudatus": {
+                        "name": [
+                            "long-tailed tit",
+                            "long-tailed bushtit"
+                        ],
+                        "size": 13,
+                        "region": "palearctic"
+                    }
+                }
+            },
             "alaudidae": {
                 "name": "Larks",
                 "alauda": {
@@ -314,6 +348,26 @@
                     }
                 }
             },
+            "corvidae": {
+                "name": "Crows and other Corvids",
+                "corvus": {
+                    "corax": {
+                        "name": "common raven",
+                        "size": 63,
+                        "region": [
+                            "palearctic",
+                            "nearctic"
+                        ]
+                    }
+                },
+                "pica": {
+                    "pica": {
+                        "name": "eurasian magpie",
+                        "size": 45,
+                        "region": "palearctic"
+                    }
+                }
+            },
             "emberizidae": {
                 "name": "Old World Buntings",
                 "emberiza": {
@@ -341,6 +395,27 @@
                         "name": "european goldfinch",
                         "size": 13,
                         "region": "palearctic"
+                    }
+                }
+            },
+            "hirundinidae": {
+                "name": "Swallows and Martins",
+                "hirundo": {
+                    "rustica": {
+                        "name": "barn swallow",
+                        "size": 18,
+                        "region": [
+                            "palearctic",
+                            "indomalayan",
+                            "afrotropical",
+                            "nearctic",
+                            "neotropical"
+                        ]
+                    },
+                    "neoxena": {
+                        "name": "welcome swallow",
+                        "size": 15,
+                        "region": "australasia"
                     }
                 }
             },
@@ -466,7 +541,10 @@
                 },
                 "tarsiger": {
                     "cyanurus": {
-                        "name": ["red-flanked bluetail", "orange-flanked bush robin"],
+                        "name": [
+                            "red-flanked bluetail",
+                            "orange-flanked bush robin"
+                        ],
                         "size": 14,
                         "region": [
                             "palearctic",
@@ -546,11 +624,14 @@
                         "size": 14,
                         "region": "palearctic"
                     },
-					"minor": {
-						"name": ["japanese tit", "oriental tit"],
-						"size": 14,
-						"region": "palearctic"
-					}
+                    "minor": {
+                        "name": [
+                            "japanese tit",
+                            "oriental tit"
+                        ],
+                        "size": 14,
+                        "region": "palearctic"
+                    }
                 },
                 "poecile": {
                     "palustris": {
@@ -664,7 +745,10 @@
                         "region": "palearctic"
                     },
                     "viscivorus": {
-                        "name": ["mistle thrush", "stormcock"],
+                        "name": [
+                            "mistle thrush",
+                            "stormcock"
+                        ],
                         "size": 28,
                         "region": "palearctic"
                     },
@@ -808,6 +892,16 @@
                             "nearctic"
                         ]
                     }
+                },
+                "asio": {
+                    "otus": {
+                        "name": "long-eared owl",
+                        "size": 35,
+                        "region": [
+                            "palearctic",
+                            "nearctic"
+                        ]
+                    }
                 }
             },
             "tytonidae": {
@@ -880,31 +974,36 @@
                 "dunnock",
                 "eurasian blue tit",
                 "eurasian tree sparrow",
-				"european goldfinch",
+                "european goldfinch",
                 "european turtle dove",
                 "great tit",
                 "house sparrow",
                 "indian ringneck parrot",
-				"long-tailed tit",
+                "long-tailed tit",
                 "marsh tit",
-				"mistle thrush",
+                "mistle thrush",
                 "song thrush",
                 "robin redbreast",
                 "rock pigeon",
                 "white wagtail"
             ]
         },
-		"japanese_birds": {
-			"name": "Japanese Residents",
-			"species": [
-			    "eurasian tree sparrow",
-			    "japanese tit",
-			    "long-tailed tit",
-			    "red-flanked bluetail",
-			    "umineko",
-				"warbling white-eye"
-			]
-		},
+        "japanese_birds": {
+            "name": "Japanese Residents",
+            "species": [
+                "barn swallow",
+                "common gull",
+                "common raven",
+                "eurasian tree sparrow",
+                "japanese tit",
+                "marsh tit",
+                "long-eared owl",
+                "long-tailed tit",
+                "red-flanked bluetail",
+                "umineko",
+                "warbling white-eye"
+            ]
+        },
         "nz_residents": {
             "name": "New Zealand Residents",
             "_comment": "Note that both the names given in this data file and scientific names are valid entries in the species list.",
@@ -920,7 +1019,7 @@
                 "common myna",
                 "dunnock",
                 "eurasian skylark",
-				"european goldfinch",
+                "european goldfinch",
                 "european starling",
                 "fairy tern",
                 "grey warbler",
@@ -949,6 +1048,7 @@
                 "yellow-crowned parakeet",
                 "yellowhammer",
                 "yellowhead",
+                "welcome swallow",
                 "whitehead"
             ]
         }

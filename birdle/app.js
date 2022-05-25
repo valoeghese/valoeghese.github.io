@@ -25,13 +25,11 @@ const entry_5 = `</div></div>`;
 
 function setLifetimeCookie(cname, cvalue) {
 	if (!urlParams.has("nocookies")) {
-		cname = "FOREVER-" + cname;
-				
 		const forever = new Date();
-		forever.setDate(forever.getDate() + 1000000000000);
+		forever.setDate(forever.getDate() + 1000000000);
 	  
 		let expires = "expires=" + forever.toUTCString();
-		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		document.cookie = "FOREVER-" + cname + "=" + cvalue + ";" + expires + ";path=/";
 	}
 }
 
