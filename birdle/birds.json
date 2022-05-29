@@ -1,5 +1,17 @@
 {
     "birds": {
+        "apterygiformes": {
+            "apterygidae": {
+                "name": "Kiwi",
+                "apteryx": {
+                    "mantelli": {
+                        "name": "north island brown kiwi",
+                        "size": 40,
+                        "region": "australasia"
+                    }
+                }
+            }
+        },
         "charadriiformes": {
             "charadriidae": {
                 "name": "Plovers",
@@ -1011,6 +1023,7 @@
                 "eurasian tree sparrow",
                 "eurasian wren",
                 "european goldfinch",
+                "european starling",
                 "european turtle dove",
                 "great tit",
                 "house sparrow",
@@ -1067,6 +1080,7 @@
                 "little owl",
                 "morepork",
                 "new zealand pipit",
+                "north island brown kiwi",
                 "north island kokako",
                 "north island robin",
                 "north island saddleback",
