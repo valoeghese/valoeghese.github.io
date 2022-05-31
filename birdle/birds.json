@@ -672,6 +672,11 @@
                         "name": "black-capped chickadee",
                         "size": 14,
                         "region": "nearctic"
+                    },
+                    "montanus": {
+                        "name": "willow tit",
+                        "size": 12,
+                        "region": "palearctic"
                     }
                 }
             },
@@ -1026,6 +1031,7 @@
                 "european starling",
                 "european turtle dove",
                 "great tit",
+                "grey wagtail",
                 "house sparrow",
                 "indian ringneck parrot",
                 "long-tailed tit",
@@ -1034,11 +1040,49 @@
                 "song thrush",
                 "robin redbreast",
                 "rock pigeon",
+                "willow tit",
                 "white wagtail"
             ]
         },
+        "european_birds": {
+            "name": "European Birds",
+            "species": [
+                "barn owl",
+                "cirl bunting",
+                "common blackbird",
+                "common cuckoo",
+                "common gull",
+                "common raven",
+                "dunnock",
+                "eurasian blue tit",
+                "eurasian magpie",
+                "eurasian tree sparrow",
+                "eurasian wren",
+                "european goldfinch",
+                "european starling",
+                "european turtle dove",
+                "fieldfare",
+                "great cormorant",
+                "great tit",
+                "house sparrow",
+                "lapland longspur",
+                "long-tailed tit",
+                "peewit",
+                "pine bunting",
+                "marsh tit",
+                "mistle thrush",
+                "snow bunting",
+                "song thrush",
+                "robin redbreast",
+                "rock pigeon",
+                "willow tit",
+                "white-throated dipper",
+                "white wagtail",
+                "yellowhammer"
+            ]
+        },
         "japanese_birds": {
-            "name": "Japanese Residents",
+            "name": "Japanese Birds",
             "species": [
                 "barn swallow",
                 "common gull",
