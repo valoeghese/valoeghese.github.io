@@ -42,7 +42,7 @@
 		function UpdateCount() {
 			console.log("updating count...");
 			
-			fetch("http://api.cosmetica.cc/get/servicestats").then(response => response.json()).then(object => object.players).then(count => {
+			fetch("https://api.cosmetica.cc/get/servicestats").then(response => response.json()).then(object => object.players).then(count => {
 				if (document.querySelector("#child").children.length == 0) {
 					document.querySelector("#child").innerHTML = 'Cosmetica Has <span id="count"></span> Users.';
 				}
