@@ -7,7 +7,23 @@
                     "mantelli": {
                         "name": "north island brown kiwi",
                         "size": 40,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/955810/download",
+                            "https://xeno-canto.org/794785/download"
+                        ]
+                    },
+                    "owenii": {
+                        "name": [
+                            "little spotted kiwi",
+                            "kiwi pukupuku"
+                        ],
+                        "size": 30,
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/958221/download",
+                            "https://xeno-canto.org/33754/download"
+                        ]
                     }
                 }
             }
@@ -23,6 +39,10 @@
                             "oceanian",
                             "nearctic",
                             "australasia"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1106593/download",
+                            "https://xeno-canto.org/962866/download"
                         ]
                     }
                 },
@@ -37,6 +57,10 @@
                         "region": [
                             "palearctic",
                             "indomalayan"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1146941/download",
+                            "https://xeno-canto.org/1145921/download"
                         ]
                     }
                 }
@@ -51,7 +75,11 @@
                             "sea mew"
                         ],
                         "size": 40,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1168405/download",
+                            "https://xeno-canto.org/1167929/download"
+                        ]
                     },
                     "marinus": {
                         "name": "great black-backed gull",
@@ -59,6 +87,10 @@
                         "region": [
                             "palearctic",
                             "nearctic"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1149234/download",
+                            "https://xeno-canto.org/1041755/download"
                         ]
                     },
                     "crassirostris": {
@@ -68,7 +100,29 @@
                             "sea cat"
                         ],
                         "size": 46,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1016634/download",
+                            "https://xeno-canto.org/1008519/download"
+                        ]
+                    },
+                    "dominicanus": {
+                        "name": [
+                            "southern black-backed gull",
+                            "kelp gull",
+                            "dominican gull",
+                            "karoro"
+                        ],
+                        "size": 60,
+                        "region": [
+                            "australasia",
+                            "afrotropical",
+                            "neotropical"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1088468/download",
+                            "https://xeno-canto.org/958066/download"
+                        ]
                     }
                 },
                 "chroicocephalus": {
@@ -80,7 +134,11 @@
                             "tar\u0101punga"
                         ],
                         "size": 37,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/1085651/download",
+                            "https://xeno-canto.org/938218/download"
+                        ]
                     }
                 },
                 "gygis": {
@@ -92,7 +150,11 @@
                             "white noddy"
                         ],
                         "size": 31,
-                        "region": "oceanian"
+                        "region": "oceanian",
+                        "recordings": [
+                            "https://xeno-canto.org/713890/download",
+                            "https://xeno-canto.org/620163/download"
+                        ]
                     }
                 },
                 "sternula": {
@@ -102,7 +164,11 @@
                             "tara-iti"
                         ],
                         "size": 25,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/609299/download",
+                            "https://xeno-canto.org/326397/download"
+                        ]
                     }
                 }
             },
@@ -123,6 +189,10 @@
                             "oceanian",
                             "australasia",
                             "afrotropical"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1166525/download",
+                            "https://xeno-canto.org/1165830/download"
                         ]
                     }
                 },
@@ -135,6 +205,10 @@
                             "indomalayan",
                             "afrotropical",
                             "australasia"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1168503/download",
+                            "https://xeno-canto.org/1168400/download"
                         ]
                     }
                 }
@@ -160,6 +234,11 @@
                         "region": [
                             "palearctic",
                             "indomalayan"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/977797/download",
+                            "https://xeno-canto.org/485507/download",
+                            "https://xeno-canto.org/541143/download"
                         ]
                     }
                 },
@@ -172,7 +251,11 @@
                             "new zealand wood pigeon"
                         ],
                         "size": 51,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/957125/download",
+                            "https://xeno-canto.org/207658/download"
+                        ]
                     }
                 },
                 "spilopelia": {
@@ -182,7 +265,11 @@
                             "spotted turtle-dove"
                         ],
                         "size": 30,
-                        "region": "indomalayan"
+                        "region": "indomalayan",
+                        "recordings": [
+                            "https://xeno-canto.org/879489/download",
+                            "https://xeno-canto.org/348751/download"
+                        ]
                     }
                 },
                 "streptopelia": {
@@ -191,15 +278,24 @@
                             "european turtle dove"
                         ],
                         "size": 27,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1153227/download",
+                            "https://xeno-canto.org/1153228/download"
+                        ]
                     },
                     "risoria": {
                         "name": [
+                            "african collared dove",
                             "barbary dove",
                             "african ring-necked dove"
                         ],
                         "size": 28,
-                        "region": "afrotropical"
+                        "region": "afrotropical",
+                        "recordings": [
+                            "https://xeno-canto.org/1163976/download",
+                            "https://xeno-canto.org/1163975/download"
+                        ]
                     }
                 }
             }
@@ -211,7 +307,11 @@
                     "canorus": {
                         "name": "common cuckoo",
                         "size": 33,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1151786/download",
+                            "https://xeno-canto.org/1151785/download"
+                        ]
                     }
                 }
             }
@@ -226,7 +326,11 @@
                             "california valley quail"
                         ],
                         "size": 25,
-                        "region": "nearctic"
+                        "region": "nearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1152858/download",
+                            "https://xeno-canto.org/1040445/download"
+                        ]
                     }
                 }
             },
@@ -240,14 +344,22 @@
                             "domestic chicken"
                         ],
                         "size": 40,
-                        "region": "indomalayan"
+                        "region": "indomalayan",
+                        "recordings": [
+                            "https://xeno-canto.org/1065950/download",
+                            "https://xeno-canto.org/1153683/download"
+                        ]
                     }
                 },
                 "synoicus": {
-                    "ypsilophora": {
+                    "ypsilophorus": {
                         "name": "brown quail",
                         "size": 18,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/842500/download",
+                            "https://xeno-canto.org/689257/download"
+                        ]
                     }
                 }
             }
@@ -263,10 +375,15 @@
                             "riroriro",
                             "rainbird",
                             "gray warbler",
+                            "gray gerygone",
                             "new zealand gerygone"
                         ],
                         "size": 10,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/1063601/download",
+                            "https://xeno-canto.org/1060266/download"
+                        ]
                     }
                 }
             },
@@ -279,7 +396,11 @@
                             "long-tailed bushtit"
                         ],
                         "size": 13,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1169690/download",
+                            "https://xeno-canto.org/1141669/download"
+                        ]
                     }
                 }
             },
@@ -289,7 +410,11 @@
                     "arvensis": {
                         "name": "eurasian skylark",
                         "size": 18,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1151851/download",
+                            "https://xeno-canto.org/1151849/download"
+                        ]
                     }
                 }
             },
@@ -302,7 +427,11 @@
                             "blue-wattled crow"
                         ],
                         "size": 38,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/534282/download",
+                            "https://xeno-canto.org/956968/download"
+                        ]
                     }
                 },
                 "philesturnus": {
@@ -313,7 +442,11 @@
                             "tiaki"
                         ],
                         "size": 25,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/960640/download",
+                            "https://xeno-canto.org/958847/download"
+                        ]
                     },
                     "carunculatus": {
                         "name": [
@@ -323,7 +456,11 @@
                         ],
                         "_comment": "SI Saddleback has name priority so I gave it tieke (the way it's currently set up birdle can't have two birds having the same name so NI got tieke_)",
                         "size": 25,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/112765/download",
+                            "https://xeno-canto.org/345380/download"
+                        ]
                     }
                 }
             },
@@ -339,6 +476,10 @@
                         "region": [
                             "nearctic",
                             "palearctic"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1168672/download",
+                            "https://xeno-canto.org/1168671/download"
                         ]
                     }
                 },
@@ -349,6 +490,30 @@
                         "region": [
                             "nearctic",
                             "palearctic"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1143779/download",
+                            "https://xeno-canto.org/1143780/download"
+                        ]
+                    }
+                }
+            },
+            "cettidae": {
+                "name": "Typical Bush Warblers and Relatives",
+                "horornis": {
+                    "diphone": {
+                        "name": [
+                            "japanese bush warbler",
+                            "uguisu",
+                            "japanese nightingale"
+                        ],
+                        "size": 15,
+                        "region": [
+                            "palearctic"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1148086/download",
+                            "https://xeno-canto.org/1101246/download"
                         ]
                     }
                 }
@@ -362,7 +527,11 @@
                             "european dipper"
                         ],
                         "size": 18,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1074256/download",
+                            "https://xeno-canto.org/1058400/download"
+                        ]
                     },
                     "mexicanus": {
                         "name": [
@@ -370,7 +539,11 @@
                             "water ouzel"
                         ],
                         "size": 17,
-                        "region": "nearctic"
+                        "region": "nearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1059136/download",
+                            "https://xeno-canto.org/368598/download"
+                        ]
                     }
                 }
             },
@@ -378,11 +551,34 @@
                 "name": "Crows and other Corvids",
                 "corvus": {
                     "corax": {
-                        "name": "common raven",
+                        "name": [
+                            "common raven",
+                            "northern raven"
+                        ],
                         "size": 63,
                         "region": [
                             "palearctic",
                             "nearctic"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1152935/download",
+                            "https://xeno-canto.org/1102930/download"
+                        ]
+                    },
+                    "macrorhynchos": {
+                        "name": [
+                            "large-billed crow",
+                            "jungle crow",
+                            "large billed crow"
+                        ],
+                        "size": 50,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1164575/download",
+                            "https://xeno-canto.org/1164574/download"
                         ]
                     }
                 },
@@ -521,6 +717,10 @@
                         "region": [
                             "palearctic",
                             "indomalayan"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1169481/download",
+                            "https://xeno-canto.org/1142756/download"
                         ]
                     },
                     "cinerea": {
@@ -566,6 +766,20 @@
                         ],
                         "size": 13,
                         "region": "palearctic"
+                    }
+                },
+                "monticola": {
+                    "solitarius": {
+                        "name": "blue rock thrush",
+                        "size": 22,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1134574/download",
+                            "https://xeno-canto.org/1134570/download"
+                        ]
                     }
                 },
                 "tarsiger": {
@@ -619,14 +833,28 @@
                 "name": "Old World Sparrows",
                 "passer": {
                     "montanus": {
-                        "name": "eurasian tree sparrow",
+                        "name": [
+                            "eurasian tree sparrow",
+                            "suzume"
+                        ],
                         "size": 13,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1157664/download",
+                            "https://xeno-canto.org/1146588/download"
+                        ]
                     },
                     "domesticus": {
-                        "name": "house sparrow",
+                        "name": [
+                            "house sparrow",
+                            "iesuzume"
+                        ],
                         "size": 15,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1169184/download",
+                            "https://xeno-canto.org/1167340/download"
+                        ]
                     },
                     "melanurus": {
                         "name": "cape sparrow",
@@ -743,6 +971,28 @@
                         "region": [
                             "indomalayan",
                             "palearctic"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1157330/download",
+                            "https://xeno-canto.org/1157329/download"
+                        ]
+                    }
+                },
+                "spodiopsar": {
+                    "cineraceus": {
+                        "name": [
+                            "white-cheeked starling",
+                            "mukudori",
+                            "white cheeked starling"
+                        ],
+                        "size": 24,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1027908/download",
+                            "https://xeno-canto.org/1015975/download"
                         ]
                     }
                 },
@@ -1085,18 +1335,23 @@
             "name": "Japanese Birds",
             "species": [
                 "barn swallow",
+                "blue rock thrush",
                 "common gull",
                 "common raven",
                 "eurasian tree sparrow",
                 "eurasian wren",
                 "japanese tit",
+                "jungle crow",
                 "marsh tit",
+                "mukudori",
                 "northern lapwing",
                 "long-eared owl",
                 "long-tailed tit",
                 "red-flanked bluetail",
+                "uguisu",
                 "umineko",
-                "warbling white-eye"
+                "warbling white-eye",
+                "white wagtail"
             ]
         },
         "nz_residents": {
@@ -1122,6 +1377,7 @@
                 "kereru",
                 "korimako",
                 "little owl",
+                "little spotted kiwi",
                 "morepork",
                 "new zealand pipit",
                 "north island brown kiwi",
@@ -1137,6 +1393,7 @@
                 "silvereye",
                 "silver gull",
                 "song thrush",
+                "southern black-backed gull",
                 "south island robin",
                 "south island saddleback",
                 "spotted dove",

@@ -302,7 +302,8 @@ try {
 										"binomial": scientificName,
 										"common": capitalise(commonName),
 										"region": cSpecies.region,
-										"size": cSpecies.size
+										"size": cSpecies.size,
+										"recordings": cSpecies.recordings ?? null
 									};
 								}
 							}
@@ -350,15 +351,34 @@ try {
 					
 					// load sound
 					try {
-						let splitbinomail = top_secret_solution.binomial.split(" ");//yeah I realised I made a typo once I started typing the next line but it's not that important so no reason to correct it lol
+						//let splitbinomail = top_secret_solution.binomial.split(" ");
 						
-						fetch("https://xeno-canto.org/api/2/recordings?query=" + splitbinomail[0] + "+" + splitbinomail[1])
+						// API v3 requires app key, easier to just handpick recordings?
+						if (top_secret_solution.recordings) {
+							setSound(top_secret_solution.recordings[0]);
+
+							// if alternate recording, add that
+							if (top_secret_solution.recordings.length > 1) {
+								const changeSoundButton = document.getElementById("changesound");
+								changeSoundButton.style.display = "inline";
+								
+								changeSoundButton.onclick = () => {
+									setSound(top_secret_solution.recordings[1]);
+									changeSoundButton.style.display = "none";
+								};
+							}
+						}
+						
+						/*fetch(`https://xeno-canto.org/api/3/recordings?query=sp:"${splitbinomail[0]} ${splitbinomail[1]}"`)
 							.then(response2 => response2.json())
 							.then(apiJson => {
 								if (apiJson.recordings.length > 0) {
 									let x = top_secret_solution.binomial == "zosterops lateralis" ? 1 : 0; // the first sound for this bird sounds more like a saddleback? and yet no other bird is declared in metadata.
-									
-									setSound(apiJson.recordings[x]);
+									if (top_secret_solution.binomial == "passer domesticus") {
+										x = 5;
+									}
+
+									setSound(apiJson.recordings[x]["file"]);
 									
 									// if alternate recording, add that
 									if (apiJson.recordings.length > 1) {
@@ -366,7 +386,7 @@ try {
 										changeSoundButton.style.display = "inline";
 										
 										changeSoundButton.onclick = () => {
-											setSound(apiJson.recordings[x + 1]);
+											setSound(apiJson.recordings[x + 1]["file"]);
 											changeSoundButton.style.display = "none";
 										};
 									}
@@ -374,7 +394,7 @@ try {
 								else {
 									document.getElementById("playsound").innerHTML = "<text style=\"color:red;\">Error: Unable to find Sound Recording!</text>";
 								}
-							});
+							});*/
 					} catch (e) {
 						console.log(e);
 						document.getElementById("playsound").innerHTML = "<text style=\"color:red;\">Error: Fatal error while retrieving sound recording. :(</text>";
