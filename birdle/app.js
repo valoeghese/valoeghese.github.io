@@ -159,10 +159,13 @@ try {
 		}
 
 		function setSound(recording) {
-			let funnyString = recording.sono.small.substring("//xeno-canto.org/sounds/uploaded/".length);
-			funnyString = funnyString.substring(0, funnyString.indexOf('/'));
-			
-			let sound = "https://xeno-canto.org/sounds/uploaded/" + funnyString + "/" + recording["file-name"];
+			let sound = recording;
+			if (recording.sono) {
+				let funnyString = recording.sono.small.substring("//xeno-canto.org/sounds/uploaded/".length);
+				funnyString = funnyString.substring(0, funnyString.indexOf('/'));
+				
+				sound = "https://xeno-canto.org/sounds/uploaded/" + funnyString + "/" + recording["file-name"];
+			}
 			let soundPlay = document.getElementById("actualsound");
 			
 			// thanks eyezah

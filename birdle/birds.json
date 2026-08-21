@@ -1093,6 +1093,43 @@
             }
         },
         "pelicaniformes": {
+            "ardeidae": {
+                "name": "Herons",
+                "ardea": {
+                    "alba": {
+                        "name": [
+                            "great egret",
+                            "white heron"
+                        ],
+                        "size": 92,
+                        "region": [
+                            "palearctic",
+                            "indomalayan",
+                            "australasia",
+                            "nearctic",
+                            "neotropical",
+                            "oceanian"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1166667/download",
+                            "https://xeno-canto.org/1045560/download"
+                        ]
+                    },
+                    "cinerea": {
+                        "name": "grey heron",
+                        "size": 93,
+                        "region": [
+                            "palearctic",
+                            "indomalayan",
+                            "neotropical"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1153360/download",
+                            "https://xeno-canto.org/1102109/download"
+                        ]
+                    }
+                }
+            },
             "threskiornithidae": {
                 "name": "Ibises and Spoonbills",
                 "platalea": {
@@ -1327,6 +1364,7 @@
                 "rock pigeon",
                 "willow tit",
                 "white-throated dipper",
+                "white heron",
                 "white wagtail",
                 "yellowhammer"
             ]
@@ -1351,6 +1389,7 @@
                 "uguisu",
                 "umineko",
                 "warbling white-eye",
+                "white heron",
                 "white wagtail"
             ]
         },
@@ -1402,7 +1441,8 @@
                 "yellowhammer",
                 "yellowhead",
                 "welcome swallow",
-                "whitehead"
+                "whitehead",
+                "white heron"
             ]
         }
     }
