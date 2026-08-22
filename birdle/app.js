@@ -356,10 +356,11 @@ try {
 						
 						// API v3 requires app key, easier to just handpick recordings?
 						if (top_secret_solution.recordings) {
-							const recordingNum = Math.abs(prng()) % top_secret_solution.recordings.length;
+							const recordingNum = Math.floor(Math.abs(prng()) % top_secret_solution.recordings.length);
 							const recording2Num = (recordingNum + 1) % top_secret_solution.recordings.length;
 
 							console.log("Recording count: " + top_secret_solution.recordings.length + `. Picked #${recordingNum} and #${recording2Num}`);
+							console.log(`Recording data: ${top_secret_solution.recordings[recordingNum]}`);
 
 							setSound(top_secret_solution.recordings[recordingNum]);
 

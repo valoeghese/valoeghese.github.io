@@ -9,8 +9,14 @@
                         "size": 40,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/955810/download",
-                            "https://xeno-canto.org/794785/download"
+                            {
+                                "url": "https://xeno-canto.org/955810/download",
+                                "rec": "Meena Haribal"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/794785/download",
+                                "rec": "Barry Edmonston"
+                            }
                         ]
                     },
                     "owenii": {
@@ -21,8 +27,14 @@
                         "size": 30,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/958221/download",
-                            "https://xeno-canto.org/33754/download"
+                            {
+                                "url": "https://xeno-canto.org/958221/download",
+                                "rec": "Meena Haribal"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/33754/download",
+                                "rec": "Patrik Åberg"
+                            }
                         ]
                     }
                 }
@@ -435,6 +447,26 @@
                         "recordings": [
                             "https://xeno-canto.org/1151851/download",
                             "https://xeno-canto.org/1151849/download"
+                        ]
+                    }
+                }
+            },
+            "artamidae": {
+                "name": "Woodswallows, Bell-Magpies, and allies",
+                "gymnorhina": {
+                    "tibicen": {
+                        "name": "australian magpie",
+                        "size": 41,
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1170181/download",
+                                "rec": "Romuald Mikusek"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1169115/download",
+                                "rec": "Romuald Mikusek"
+                            }
                         ]
                     }
                 }
@@ -1503,6 +1535,7 @@
             "name": "New Zealand Residents",
             "_comment": "Note that both the names given in this data file and scientific names are valid entries in the species list.",
             "species": [
+                "australian magpie",
                 "barbary dove",
                 "barn owl",
                 "black shag",
