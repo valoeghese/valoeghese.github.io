@@ -160,11 +160,8 @@ try {
 
 		function setSound(recording) {
 			let sound = recording;
-			if (recording.sono) {
-				let funnyString = recording.sono.small.substring("//xeno-canto.org/sounds/uploaded/".length);
-				funnyString = funnyString.substring(0, funnyString.indexOf('/'));
-				
-				sound = "https://xeno-canto.org/sounds/uploaded/" + funnyString + "/" + recording["file-name"];
+			if (recording.url) {
+				sound = recording.url;
 			}
 			let soundPlay = document.getElementById("actualsound");
 			
@@ -335,6 +332,7 @@ try {
 					let prng = mulberry32(MODE.hashCode() + new Date().getYear() * 365 + new Date().getMonth() * 69420 + new Date().getDate());
 					
 					if (top_secret_solution) {
+						prng();
 						if (typeof top_secret_solution === 'string') top_secret_solution = entryOf(top_secret_solution);
 					} else {
 						console.log("e");
@@ -358,7 +356,10 @@ try {
 						
 						// API v3 requires app key, easier to just handpick recordings?
 						if (top_secret_solution.recordings) {
-							setSound(top_secret_solution.recordings[0]);
+							const recordingNum = Math.abs(prng()) % top_secret_solution.recordings.length;
+							const recording2Num = (recordingNum + 1) % top_secret_solution.recordings.length;
+
+							setSound(top_secret_solution.recordings[recordingNum]);
 
 							// if alternate recording, add that
 							if (top_secret_solution.recordings.length > 1) {
@@ -366,7 +367,7 @@ try {
 								changeSoundButton.style.display = "inline";
 								
 								changeSoundButton.onclick = () => {
-									setSound(top_secret_solution.recordings[1]);
+									setSound(top_secret_solution.recordings[recording2Num]);
 									changeSoundButton.style.display = "none";
 								};
 							}

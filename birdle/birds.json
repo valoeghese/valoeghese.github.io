@@ -273,15 +273,25 @@
                     }
                 },
                 "streptopelia": {
-                    "turtur": {
+                    "orientalis": {
                         "name": [
-                            "european turtle dove"
+                            "oriental turtle dove",
+                            "rufous turtle dove"
                         ],
-                        "size": 27,
-                        "region": "palearctic",
+                        "size": 34,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ],
                         "recordings": [
-                            "https://xeno-canto.org/1153227/download",
-                            "https://xeno-canto.org/1153228/download"
+                            {
+                                "url": "https://xeno-canto.org/875246/download",
+                                "rec": "Ray Tsu 诸仁"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/470246/download",
+                                "rec": "Rolf A. de By"
+                            }
                         ]
                     },
                     "risoria": {
@@ -295,6 +305,17 @@
                         "recordings": [
                             "https://xeno-canto.org/1163976/download",
                             "https://xeno-canto.org/1163975/download"
+                        ]
+                    },
+                    "turtur": {
+                        "name": [
+                            "european turtle dove"
+                        ],
+                        "size": 27,
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1153227/download",
+                            "https://xeno-canto.org/1153228/download"
                         ]
                     }
                 }
@@ -589,7 +610,11 @@
                             "common magpie"
                         ],
                         "size": 45,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1170202/download",
+                            "https://xeno-canto.org/1170153/download"
+                        ]
                     }
                 }
             },
@@ -599,17 +624,38 @@
                     "cirlus": {
                         "name": "cirl bunting",
                         "size": 16,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1166155/download",
+                            "https://xeno-canto.org/1164162/download"
+                        ]
                     },
                     "citrinella": {
                         "name": "yellowhammer",
                         "size": 16,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1157651/download",
+                            "https://xeno-canto.org/1153081/download"
+                        ]
                     },
                     "leucocephalos": {
                         "name": "pine bunting",
                         "size": 17,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1050056/download",
+                            "https://xeno-canto.org/1050058/download"
+                        ]
+                    },
+                    "cioides": {
+                        "name": "meadow bunting",
+                        "size": 16,
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/992954/download",
+                            "https://xeno-canto.org/1151928/download"
+                        ]
                     }
                 }
             },
@@ -619,7 +665,25 @@
                     "carduelis": {
                         "name": "european goldfinch",
                         "size": 13,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1156318/download",
+                            "https://xeno-canto.org/1169573/download"
+                        ]
+                    }
+                },
+                "fringilla": {
+                    "coelebs": {
+                        "name": [
+                            "common chaffinch",
+                            "eurasian chaffinch"
+                        ],
+                        "size": 15,
+                        "region": "palearctic",
+                        "recordings": [
+                            "https://xeno-canto.org/1167219/download",
+                            "https://xeno-canto.org/1167182/download"
+                        ]
                     }
                 }
             },
@@ -635,12 +699,20 @@
                             "afrotropical",
                             "nearctic",
                             "neotropical"
+                        ],
+                        "recordings": [
+                            "https://xeno-canto.org/1169570/download",
+                            "https://xeno-canto.org/1166650/download"
                         ]
                     },
                     "neoxena": {
                         "name": "welcome swallow",
                         "size": 15,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            "https://xeno-canto.org/526611/download",
+                            "https://xeno-canto.org/690879/download"
+                        ]
                     }
                 }
             },
@@ -650,7 +722,17 @@
                     "carunculata": {
                         "name": "red wattlebird",
                         "size": 35,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1169116/download",
+                                "rec": "Romuald Mikusek"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1163878/download",
+                                "rec": "Romuald Mikusek"
+                            }
+                        ]
                     }
                 },
                 "anthornis": {
@@ -661,7 +743,17 @@
                             "makomako"
                         ],
                         "size": 20,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1059099/download",
+                                "rec": "Craig Wilson"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1093633/download",
+                                "rec": "Ken George"
+                            }
+                        ]
                     }
                 },
                 "prosthemadera": {
@@ -671,7 +763,17 @@
                             "parson bird"
                         ],
                         "size": 30,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1169417/download",
+                                "rec": "Ken George"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/979583/download",
+                                "rec": "David Boyle"
+                            }
+                        ]
                     }
                 }
             },
@@ -1309,6 +1411,7 @@
             "name": "English Garden Birds",
             "species": [
                 "common blackbird",
+                "common chaffinch",
                 "dunnock",
                 "eurasian blue tit",
                 "eurasian magpie",
@@ -1337,6 +1440,7 @@
                 "barn owl",
                 "cirl bunting",
                 "common blackbird",
+                "common chaffinch",
                 "common cuckoo",
                 "common gull",
                 "common raven",
@@ -1381,6 +1485,7 @@
                 "japanese tit",
                 "jungle crow",
                 "marsh tit",
+                "meadow bunting",
                 "mukudori",
                 "northern lapwing",
                 "long-eared owl",
@@ -1405,6 +1510,7 @@
                 "chicken",
                 "cirl bunting",
                 "common blackbird",
+                "common chaffinch",
                 "common myna",
                 "dunnock",
                 "eurasian skylark",
