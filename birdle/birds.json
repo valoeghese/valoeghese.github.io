@@ -53,8 +53,14 @@
                             "australasia"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1106593/download",
-                            "https://xeno-canto.org/962866/download"
+                            {
+                                "url": "https://xeno-canto.org/1106593/download",
+                                "rec": "Guus van Duin"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/962866/download",
+                                "rec": "Peter Ericsson"
+                            }
                         ]
                     }
                 },
@@ -71,8 +77,14 @@
                             "indomalayan"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1146941/download",
-                            "https://xeno-canto.org/1145921/download"
+                            {
+                                "url": "https://xeno-canto.org/1146941/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1145921/download",
+                                "rec": "Miika Silfverberg"
+                            }
                         ]
                     }
                 }
@@ -89,8 +101,14 @@
                         "size": 40,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1168405/download",
-                            "https://xeno-canto.org/1167929/download"
+                            {
+                                "url": "https://xeno-canto.org/1168405/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1167929/download",
+                                "rec": "Stanislas Wroza"
+                            }
                         ]
                     },
                     "marinus": {
@@ -101,8 +119,14 @@
                             "nearctic"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1149234/download",
-                            "https://xeno-canto.org/1041755/download"
+                            {
+                                "url": "https://xeno-canto.org/1149234/download",
+                                "rec": "Aku Kalliomäki"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1041755/download",
+                                "rec": "David Darrell-Lambert"
+                            }
                         ]
                     },
                     "crassirostris": {
@@ -114,8 +138,14 @@
                         "size": 46,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1016634/download",
-                            "https://xeno-canto.org/1008519/download"
+                            {
+                                "url": "https://xeno-canto.org/1016634/download",
+                                "rec": "Uku Paal"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1008519/download",
+                                "rec": "Shuangqi Liu"
+                            }
                         ]
                     },
                     "dominicanus": {
@@ -132,8 +162,14 @@
                             "neotropical"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1088468/download",
-                            "https://xeno-canto.org/958066/download"
+                            {
+                                "url": "https://xeno-canto.org/1088468/download",
+                                "rec": "JJSUN"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/958066/download",
+                                "rec": "Meena Haribal"
+                            }
                         ]
                     }
                 },
