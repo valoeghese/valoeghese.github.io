@@ -359,6 +359,8 @@ try {
 							const recordingNum = Math.abs(prng()) % top_secret_solution.recordings.length;
 							const recording2Num = (recordingNum + 1) % top_secret_solution.recordings.length;
 
+							console.log("Recording count: " + top_secret_solution.recordings.length + `. Picked #${recordingNum} and #${recording2Num}`);
+
 							setSound(top_secret_solution.recordings[recordingNum]);
 
 							// if alternate recording, add that
