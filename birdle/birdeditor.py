@@ -34,14 +34,16 @@ for order in bird_data["birds"]:
                 continue
             genuses[genus] = family_data[genus]
 
-def add_bird(popup, common_name_e, scientific_name_e, region, cleaner, size_e):
+def add_bird(popup, common_name_e, scientific_name_e, region, recording_e, recording2_e, cleaner, size_e):
     common_name = common_name_e.get().lower()
     scientific_name = scientific_name_e.get().lower()
     size = size_e.get().lower()
+    recording = recording_e.get()
+    recording2 = recording2_e.get()
     
-    if common_name and scientific_name and region and size:
+    if common_name and scientific_name and region and size and recording and recording2:
         binomial_parts = scientific_name.split(" ", 1)
-        data = {"name":common_name, "size":int(size), "region":region}
+        data = {"name":common_name, "size":int(size), "region":region, "recordings": [ recording, recording2 ]}
 
         if (binomial_parts[0] in genuses):
             print("Bird Data Added:", end=" ")
@@ -145,6 +147,12 @@ def add_bird_form():
     rfwrapper = Frame(subframe)
     rfwrapper.grid(row=3,column=1)
 
+    Label(subframe, text="Recording URLs", bd=5).grid(row=4)
+    recording = Entry(subframe)
+    recording.grid(row=4,column=1)
+    recording2 = Entry(subframe)
+    recording2.grid(row=5,column=1)
+
     rfinner = []
     rfinner.append(Frame(rfwrapper, bd=5))
     rfinner[0].pack()
@@ -184,6 +192,8 @@ def add_bird_form():
         name_entry.delete(0,len(name_entry.get()))
         sci_entry.delete(0,len(sci_entry.get()))
         size_entry.delete(0,len(size_entry.get()))
+        recording.delete(0,len(recording.get()))
+        recording2.delete(0,len(recording2.get()))
         
         del bird_regions[:]
         rfinner[0].destroy()
@@ -194,7 +204,7 @@ def add_bird_form():
     
     def add_bird_():
         bird_regions.append(region.get().lower())
-        add_bird(popup, name_entry, sci_entry, bird_regions[0] if len(bird_regions) == 1 else bird_regions.copy(), cleaner, size_entry)
+        add_bird(popup, name_entry, sci_entry, bird_regions[0] if len(bird_regions) == 1 else bird_regions.copy(), recording, recording2, cleaner, size_entry)
 
     Button(subframe, text="Add Bird", width=20, bd=3, command=add_bird_).pack()
     Button(subframe, text="Exit", width=20, bd=3, command=lambda:close(popup)).pack()
