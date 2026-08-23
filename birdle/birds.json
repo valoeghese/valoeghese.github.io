@@ -855,7 +855,17 @@
                             "p\u014dpokotea"
                         ],
                         "size": 15,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/526621/download",
+                                "rec": "James Lidster"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/526620/download",
+                                "rec": "James Lidster"
+                            }
+                        ]
                     },
                     "novaeseelandiae": {
                         "name": [
@@ -863,7 +873,17 @@
                             "brown creeper"
                         ],
                         "size": 13,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/796385/download",
+                                "rec": "Barry Edmonston"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/428745/download",
+                                "rec": "David Welch"
+                            }
+                        ]
                     },
                     "ochrocephala": {
                         "name": [
@@ -871,7 +891,17 @@
                             "mohua"
                         ],
                         "size": 15,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/872111/download",
+                                "rec": "Dave Pullan"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/796803/download",
+                                "rec": "Barry Edmonston"
+                            }
+                        ]
                     }
                 }
             },
