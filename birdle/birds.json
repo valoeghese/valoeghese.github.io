@@ -112,7 +112,10 @@
                         ]
                     },
                     "marinus": {
-                        "name": "great black-backed gull",
+                        "name": [
+                            "great black-backed gull",
+                            "greater black-backed gull"
+                        ],
                         "size": 68,
                         "region": [
                             "palearctic",
@@ -919,8 +922,14 @@
                             "indomalayan"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1169481/download",
-                            "https://xeno-canto.org/1142756/download"
+                            {
+                                "url": "https://xeno-canto.org/1169481/download",
+                                "rec": "Paul Kelly"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1142756/download",
+                                "rec": "Walter Wallner"
+                            }
                         ]
                     },
                     "cinerea": {
@@ -929,6 +938,16 @@
                         "region": [
                             "palearctic",
                             "indomalayan"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1151601/download",
+                                "rec": "Romuald Mikusek"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1148026/download",
+                                "rec": "Eduard Leinwand"
+                            }
                         ]
                     }
                 },
@@ -939,7 +958,21 @@
                             "australasian pipit"
                         ],
                         "size": 18,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1002392/download",
+                                "rec": "David Boyle"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/537877/download",
+                                "rec": "Matt Slaymaker"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/973177/download",
+                                "rec": "David Boyle"
+                            }
+                        ]
                     },
                     "nyassae": {
                         "name": [
@@ -947,12 +980,36 @@
                             "woodland pipit"
                         ],
                         "size": 17,
-                        "region": "afrotropical"
+                        "region": "afrotropical",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/566351/download",
+                                "rec": "Dries Van de Loock"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/584717/download",
+                                "rec": "Dries Van de Loock"
+                            }
+                        ]
                     },
                     "pratensis": {
                         "name": "meadow pipit",
                         "size": 15,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1167991/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1167984/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1035153/download",
+                                "rec": "Lars Edenius"
+                            }
+                        ]
                     }
                 }
             },
@@ -965,7 +1022,21 @@
                             "robin redbreast"
                         ],
                         "size": 13,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1156419/download",
+                                "rec": "SWIFT Olivier"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1165259/download",
+                                "rec": "Lars Edenius"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1165146/download",
+                                "rec": "Zsombor K\u00E1rolyi"
+                            }
+                        ]
                     }
                 },
                 "monticola": {
@@ -977,8 +1048,14 @@
                             "indomalayan"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1134574/download",
-                            "https://xeno-canto.org/1134570/download"
+                            {
+                                "url": "https://xeno-canto.org/1134574/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1134570/download",
+                                "rec": "Stanislas Wroza"
+                            }
                         ]
                     }
                 },
@@ -1305,6 +1382,7 @@
                         "region": [
                             "palearctic",
                             "indomalayan",
+                            "afrotropical",
                             "australasia",
                             "nearctic",
                             "neotropical",
@@ -1536,6 +1614,7 @@
             "name": "European Birds",
             "species": [
                 "barn owl",
+                "barn swallow",
                 "cirl bunting",
                 "common blackbird",
                 "common chaffinch",
@@ -1551,6 +1630,7 @@
                 "european starling",
                 "european turtle dove",
                 "fieldfare",
+                "great black-backed gull",
                 "great cormorant",
                 "great tit",
                 "house sparrow",
@@ -1580,6 +1660,7 @@
                 "common raven",
                 "eurasian tree sparrow",
                 "eurasian wren",
+                "grey wagtail",
                 "japanese tit",
                 "jungle crow",
                 "marsh tit",
