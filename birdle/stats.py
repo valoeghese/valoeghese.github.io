@@ -13,6 +13,7 @@ missing = []
 url_only = []
 correct = []
 species_objects = {}
+recorders = set()
 
 for order in data["birds"].values():
     for family in order.values():
@@ -44,6 +45,10 @@ for order in data["birds"].values():
                     for recording in recordings
                 ):
                     url_only.append(species_name)
+
+                for recording in recordings:
+                    if isinstance(recording, dict) and isinstance(recording["rec"], str) and recording["rec"] != "":
+                        recorders.add(recording["rec"])
 
 
 root = tk.Tk()
@@ -322,9 +327,11 @@ recorder_label.grid(
 
 recorder_var = tk.StringVar()
 
-recorder_entry = ttk.Entry(
+recorder_entry = ttk.Combobox(
     form_frame,
-    textvariable=recorder_var
+    textvariable=recorder_var,
+    values=sorted(recorders),
+    state="normal"
 )
 recorder_entry.grid(
     row=1,
@@ -333,6 +340,22 @@ recorder_entry.grid(
     sticky="ew"
 )
 
+def autocomplete_recorder(event):
+    typed_text = recorder_var.get().lower()
+
+    matching_recorders = [
+        recorder
+        for recorder in sorted(recorders)
+        if typed_text in recorder.lower()
+    ]
+
+    recorder_entry["values"] = matching_recorders
+
+
+recorder_entry.bind(
+    "<KeyRelease>",
+    autocomplete_recorder
+)
 
 # ---------------------------------------------------------------------
 # Buttons

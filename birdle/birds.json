@@ -317,9 +317,18 @@
                             "indomalayan"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/977797/download",
-                            "https://xeno-canto.org/485507/download",
-                            "https://xeno-canto.org/541143/download"
+                            {
+                                "url": "https://xeno-canto.org/977797/download",
+                                "rec": "Pietro Bonanno"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/485507/download",
+                                "rec": "Paul Marvin"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/541143/download",
+                                "rec": "Marie-Lan Taÿ Pamart"
+                            }
                         ]
                     }
                 },
@@ -334,8 +343,14 @@
                         "size": 51,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/957125/download",
-                            "https://xeno-canto.org/207658/download"
+                            {
+                                "url": "https://xeno-canto.org/957125/download",
+                                "rec": "Ken George"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/207658/download",
+                                "rec": "Dan Lane"
+                            }
                         ]
                     }
                 },
@@ -348,8 +363,14 @@
                         "size": 30,
                         "region": "indomalayan",
                         "recordings": [
-                            "https://xeno-canto.org/879489/download",
-                            "https://xeno-canto.org/348751/download"
+                            {
+                                "url": "https://xeno-canto.org/879489/download",
+                                "rec": "Geoff Carey"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/348751/download",
+                                "rec": "Tony Fulford"
+                            }
                         ]
                     }
                 },
@@ -384,8 +405,14 @@
                         "size": 28,
                         "region": "afrotropical",
                         "recordings": [
-                            "https://xeno-canto.org/1163976/download",
-                            "https://xeno-canto.org/1163975/download"
+                            {
+                                "url": "https://xeno-canto.org/1163976/download",
+                                "rec": "Zsombor Károlyi"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1163975/download",
+                                "rec": "Zsombor Károlyi"
+                            }
                         ]
                     },
                     "turtur": {
@@ -395,8 +422,14 @@
                         "size": 27,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1153227/download",
-                            "https://xeno-canto.org/1153228/download"
+                            {
+                                "url": "https://xeno-canto.org/1153227/download",
+                                "rec": "Arjun Dutta"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1153228/download",
+                                "rec": "Arjun Dutta"
+                            }
                         ]
                     }
                 }
@@ -411,8 +444,14 @@
                         "size": 33,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1151786/download",
-                            "https://xeno-canto.org/1151785/download"
+                            {
+                                "url": "https://xeno-canto.org/1151786/download",
+                                "rec": "Aku Kalliomäki"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1151785/download",
+                                "rec": "Aku Kalliomäki"
+                            }
                         ]
                     }
                 }
@@ -430,8 +469,14 @@
                         "size": 25,
                         "region": "nearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1152858/download",
-                            "https://xeno-canto.org/1040445/download"
+                            {
+                                "url": "https://xeno-canto.org/1152858/download",
+                                "rec": "Paul Driver"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1040445/download",
+                                "rec": "Greg Irving"
+                            }
                         ]
                     }
                 }
@@ -448,8 +493,14 @@
                         "size": 40,
                         "region": "indomalayan",
                         "recordings": [
-                            "https://xeno-canto.org/1065950/download",
-                            "https://xeno-canto.org/1153683/download"
+                            {
+                                "url": "https://xeno-canto.org/1065950/download",
+                                "rec": "Arend Wassink"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1153683/download",
+                                "rec": "Aku Kalliomäki"
+                            }
                         ]
                     }
                 },
@@ -459,8 +510,14 @@
                         "size": 18,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/842500/download",
-                            "https://xeno-canto.org/689257/download"
+                            {
+                                "url": "https://xeno-canto.org/842500/download",
+                                "rec": "Andrew Galbraith"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/689257/download",
+                                "rec": "nick talbot"
+                            }
                         ]
                     }
                 }
