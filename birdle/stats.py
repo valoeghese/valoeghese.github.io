@@ -377,6 +377,21 @@ def open_recording_webpage():
 
     webbrowser.open(webpage_url)
 
+def search_species():
+    if current_species is None:
+        messagebox.showerror(
+            "No species selected",
+            "Select a species first."
+        )
+        return
+
+    search_url = (
+        "https://xeno-canto.org/explore"
+        f"?query=sp:%22{current_species}%22"
+    )
+
+    webbrowser.open(search_url)
+
 button_frame = ttk.Frame(right_frame)
 button_frame.grid(
     row=4,
@@ -426,12 +441,25 @@ open_button.grid(
     sticky="ew"
 )
 
+search_species_button = ttk.Button(
+    right_frame,
+    text="Search Species",
+    command=search_species
+)
+search_species_button.grid(
+    row=5,
+    column=0,
+    columnspan=2,
+    pady=(10, 0),
+    sticky="ew"
+)
+
 save_button = ttk.Button(
     right_frame,
     text="Save JSON file"
 )
 save_button.grid(
-    row=5,
+    row=6,
     column=0,
     columnspan=2,
     pady=(15, 0),

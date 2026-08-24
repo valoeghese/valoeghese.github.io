@@ -229,8 +229,14 @@
                         "size": 25,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/609299/download",
-                            "https://xeno-canto.org/326397/download"
+                            {
+                                "url": "https://xeno-canto.org/609299/download",
+                                "rec": "Drew Davison"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/326397/download",
+                                "rec": "Pieter de Groot Boersma"
+                            }
                         ]
                     }
                 }
@@ -254,8 +260,14 @@
                             "afrotropical"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1166525/download",
-                            "https://xeno-canto.org/1165830/download"
+                            {
+                                "url": "https://xeno-canto.org/1166525/download",
+                                "rec": "Ricardo Hevia"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1165830/download",
+                                "rec": "Ricardo Hevia"
+                            }
                         ]
                     }
                 },
@@ -270,8 +282,14 @@
                             "australasia"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1168503/download",
-                            "https://xeno-canto.org/1168400/download"
+                            {
+                                "url": "https://xeno-canto.org/1168503/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1168400/download",
+                                "rec": "Stanislas Wroza"
+                            }
                         ]
                     }
                 }
@@ -1585,7 +1603,17 @@
                             "common starling"
                         ],
                         "size": 21,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1142838/download",
+                                "rec": "Uku Paal"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/904982/download",
+                                "rec": "Martin Billard"
+                            }
+                        ]
                     }
                 }
             },
@@ -1595,7 +1623,17 @@
                     "troglodytes": {
                         "name": "eurasian wren",
                         "size": 10,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1173353/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1173079/download",
+                                "rec": "Paul Gosling"
+                            }
+                        ]
                     }
                 },
                 "cistothorus": {
