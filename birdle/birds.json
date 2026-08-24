@@ -741,8 +741,14 @@
                         "size": 13,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1156318/download",
-                            "https://xeno-canto.org/1169573/download"
+                            {
+                                "url": "https://xeno-canto.org/1156318/download",
+                                "rec": "Andrew McCafferty"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1169573/download",
+                                "rec": "David Darrell-Lambert"
+                            }
                         ]
                     }
                 },
@@ -755,8 +761,14 @@
                         "size": 15,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1167219/download",
-                            "https://xeno-canto.org/1167182/download"
+                            {
+                                "url": "https://xeno-canto.org/1167219/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1167182/download",
+                                "rec": "Stanislas Wroza"
+                            }
                         ]
                     }
                 }
