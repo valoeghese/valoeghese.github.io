@@ -732,7 +732,7 @@
             },
             "fringillidae": {
                 "name": "True Finches",
-                "queries": [ "finch "],
+                "queries": [ "finch"],
                 "carduelis": {
                     "carduelis": {
                         "name": [
@@ -1084,6 +1084,24 @@
                         "region": [
                             "palearctic",
                             "indomalayan"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1168805/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/832445/download",
+                                "rec": "Martin Billard"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1168804/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/805903/download",
+                                "rec": "Vadim Ivushkin"
+                            }
                         ]
                     }
                 }
@@ -1098,16 +1116,66 @@
                             "kakaruwai"
                         ],
                         "size": 18,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/796378/download",
+                                "rec": "Barry Edmonston"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/500859/download",
+                                "rec": "SWIFT Olivier"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/428584/download",
+                                "rec": "David Welch"
+                            }
+                        ]
                     },
-                    "longpipes": {
+                    "longipes": {
                         "name": [
                             "north island robin",
                             "new zealand robin_",
                             "toutouwai"
                         ],
                         "size": 18,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/526614/download",
+                                "rec": "James Lidster"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1090729/download",
+                                "rec": "Ken George"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1060764/download",
+                                "rec": "Andrew McCafferty"
+                            }
+                        ]
+                    },
+                    "rosea": {
+                        "name": [
+                            "rose robin"
+                        ],
+                        "size": 11,
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/640365/download",
+                                "rec": "Andrew McConville"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/510778/download",
+                                "rec": "Geoffrey Monchaux"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1166613/download",
+                                "rec": "Romuald Mikusek",
+                                "_comment": "Also has brown gerygone"
+                            }
+                        ]
                     }
                 }
             },
@@ -1117,7 +1185,21 @@
                     "melodia": {
                         "name": "song sparrow",
                         "size": 15,
-                        "region": "nearctic"
+                        "region": "nearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/549199/download",
+                                "rec": "Joseph Morlan"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/540254/download",
+                                "rec": "Thomas Magarian"
+                            },
+                            {
+                                "url" : "https://xeno-canto.org/1021076/download",
+                                "rec": "Stanislas Wroza"
+                            }
+                        ]
                     }
                 }
             },
@@ -1132,8 +1214,14 @@
                         "size": 13,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1157664/download",
-                            "https://xeno-canto.org/1146588/download"
+                            {
+                                "url": "https://xeno-canto.org/1157664/download",
+                                "rec": "João Ferreira Tomás"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1146588/download",
+                                "rec": "Louis-Marie Gourmelon"
+                            }
                         ]
                     },
                     "domesticus": {
@@ -1144,14 +1232,30 @@
                         "size": 15,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1169184/download",
-                            "https://xeno-canto.org/1167340/download"
+                            {
+                                "url": "https://xeno-canto.org/1169184/download",
+                                "rec": "Philippe Grange"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1167340/download",
+                                "rec": "Stanislas Wroza"
+                            }
                         ]
                     },
                     "melanurus": {
                         "name": "cape sparrow",
                         "size": 15,
-                        "region": "afrotropical"
+                        "region": "afrotropical",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1078342/download",
+                                "rec": "JJSUN"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1059148/download",
+                                "rec": "Yoann Blanchon"
+                            }
+                        ]
                     }
                 }
             },
