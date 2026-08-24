@@ -187,8 +187,14 @@
                         "size": 37,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/1085651/download",
-                            "https://xeno-canto.org/938218/download"
+                            {
+                                "url": "https://xeno-canto.org/1085651/download",
+                                "rec": "Marcin Przymencki"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/938218/download",
+                                "rec": "David Boyle"
+                            }
                         ]
                     }
                 },
