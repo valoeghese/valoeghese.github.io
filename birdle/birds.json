@@ -732,9 +732,12 @@
             },
             "fringillidae": {
                 "name": "True Finches",
+                "queries": [ "finch "],
                 "carduelis": {
                     "carduelis": {
-                        "name": "european goldfinch",
+                        "name": [
+                            "european goldfinch"
+                        ],
                         "size": 13,
                         "region": "palearctic",
                         "recordings": [

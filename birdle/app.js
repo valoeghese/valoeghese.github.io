@@ -235,6 +235,8 @@ try {
 						for (let family in cOrder) {
 							cFamily = cOrder[family];
 							orders[family] = order;
+
+							const queries = cFamily["queries"] ?? [];
 							
 							// etc...
 							for (let genus in cFamily) {
@@ -243,6 +245,9 @@ try {
 									family_names[family] = cFamily[genus];
 									continue; // continue to the next item in the loop instead of trying to process it as a genus
 									// some people don't like when you use a continue statement. To those people I say: "cope".
+								}
+								if (genus === "queries") {
+									continue;
 								}
 								
 								cGenus = cFamily[genus];
@@ -294,6 +299,14 @@ try {
 									
 									if (typeof cSpecies.region === 'string') {
 										cSpecies.region = [cSpecies.region];
+									}
+
+									// Add family query searches
+									// hack to group family since it must have unique names.
+									for (let query of queries) {
+										const n =`${query} ${commonName}`;
+										addSearchable(n, tertiaries);
+										birds[n] = scientificName;
 									}
 									
 									// entry
@@ -511,7 +524,7 @@ try {
 		}
 
 		function familyOf(binomial) {
-			let familyScientific = families[entry.binomial.split(" ")[0]];
+			let familyScientific = families[binomial.split(" ")[0]];
 
 			return (familyScientific in family_names) ? family_names[familyScientific] : familyScientific;
 		}
