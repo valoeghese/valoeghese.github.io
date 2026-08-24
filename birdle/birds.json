@@ -1697,7 +1697,25 @@
                     "palustris": {
                         "name": "marsh wren",
                         "size": 12,
-                        "region": "nearctic"
+                        "region": "nearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1139414/download",
+                                "rec": "Andrew McCafferty"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1034305/download",
+                                "rec": "Rory Nefdt"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1013498/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/741547/download",
+                                "rec": "Nicolas Martinez"
+                            }
+                        ]
                     }
                 }
             },
@@ -1720,7 +1738,25 @@
                     "philomelos": {
                         "name": "song thrush",
                         "size": 23,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/927308/download",
+                                "rec": "David Boyle"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1163376/download",
+                                "rec": "Zsombor Károlyi"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1149793/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1151540/download",
+                                "rec": "Susanne Kuijpers"
+                            }
+                        ]
                     },
                     "viscivorus": {
                         "name": [

@@ -14,6 +14,7 @@ url_only = []
 correct = []
 species_objects = {}
 recorders = set()
+unsaved_changes = False
 
 for order in data["birds"].values():
     for family in order.values():
@@ -631,6 +632,8 @@ def validate_recording():
 
 
 def update_recording():
+    global unsaved_changes
+
     recording = validate_recording()
 
     if recording is None:
@@ -651,6 +654,7 @@ def update_recording():
     )
 
     recordings[selection[0]] = recording
+    unsaved_changes = True
 
     refresh_recording_list(selection[0])
 
@@ -662,6 +666,8 @@ def update_recording():
 
 
 def add_new_recording():
+    global unsaved_changes
+
     recording = validate_recording()
 
     if recording is None:
@@ -673,6 +679,7 @@ def add_new_recording():
     )
 
     recordings.append(recording)
+    unsaved_changes = True
 
     refresh_recording_list(len(recordings) - 1)
 
@@ -684,6 +691,8 @@ def add_new_recording():
 
 
 def save_json():
+    global unsaved_changes
+
     try:
         with open(DATA, "w", encoding="utf-8") as f:
             json.dump(
@@ -692,6 +701,8 @@ def save_json():
                 indent=4,
                 ensure_ascii=False
             )
+
+        unsaved_changes = False
 
         messagebox.showinfo(
             "Saved",
@@ -703,6 +714,27 @@ def save_json():
             "Save error",
             f"Could not save {DATA}:\n\n{error}"
         )
+
+def close_program():
+    if not unsaved_changes:
+        root.destroy()
+        return
+
+    result = messagebox.askyesnocancel(
+        "Unsaved changes",
+        "You have unsaved changes.\n\n"
+        "Would you like to save before closing?"
+    )
+
+    if result is True:
+        save_json()
+
+        # Only close if saving succeeded.
+        if not unsaved_changes:
+            root.destroy()
+
+    elif result is False:
+        root.destroy()
 
 # ---------------------------------------------------------------------
 # Bind events and start the GUI
@@ -732,5 +764,9 @@ update_button.config(command=update_recording)
 add_button.config(command=add_new_recording)
 save_button.config(command=save_json)
 
+root.protocol(
+    "WM_DELETE_WINDOW",
+    close_program
+)
 
 root.mainloop()
