@@ -744,6 +744,31 @@
                             "https://xeno-canto.org/1102930/download"
                         ]
                     },
+                    "corone": {
+                        "name": [
+                            "carrion crow",
+                            "common crow"
+                        ],
+                        "size": 50,
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1085944/download",
+                                "rec": "Jacobo Ramil Millarengo"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1151417/download",
+                                "rec": "Olivier SWIFT"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/858015/download",
+                                "rec": "Joshua Chong"
+                            }
+                        ]
+                    },
                     "macrorhynchos": {
                         "name": [
                             "large-billed crow",
@@ -2106,6 +2131,7 @@
         "english_garden": {
             "name": "English Garden Birds",
             "species": [
+                "carrion crow",
                 "common blackbird",
                 "common chaffinch",
                 "dunnock",
@@ -2135,6 +2161,7 @@
             "species": [
                 "barn owl",
                 "barn swallow",
+                "carrion crow",
                 "cirl bunting",
                 "common blackbird",
                 "common chaffinch",
@@ -2177,6 +2204,7 @@
             "species": [
                 "barn swallow",
                 "blue rock thrush",
+                "carrion crow",
                 "common gull",
                 "common raven",
                 "eurasian tree sparrow",
