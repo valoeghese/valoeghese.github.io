@@ -182,7 +182,7 @@
                             "silver gull",
                             "red-billed gull",
                             "red billed gull",
-                            "tar\u0101punga"
+                            "tarāpunga"
                         ],
                         "size": 37,
                         "region": "australasia",
@@ -203,14 +203,20 @@
                         "name": [
                             "white tern",
                             "angel tern",
-                            "mano-o-k\u016b",
+                            "mano-o-kū",
                             "white noddy"
                         ],
                         "size": 31,
                         "region": "oceanian",
                         "recordings": [
-                            "https://xeno-canto.org/713890/download",
-                            "https://xeno-canto.org/620163/download"
+                            {
+                                "url": "https://xeno-canto.org/713890/download",
+                                "rec": "Alexander Schlatmann"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/620163/download",
+                                "rec": "AUDEVARD Aurélien"
+                            }
                         ]
                     }
                 },
@@ -738,7 +744,9 @@
             },
             "fringillidae": {
                 "name": "True Finches",
-                "queries": [ "finch"],
+                "queries": [
+                    "finch"
+                ],
                 "carduelis": {
                     "carduelis": {
                         "name": [
@@ -876,7 +884,7 @@
                         "name": [
                             "whitehead",
                             "popokotea",
-                            "p\u014dpokotea"
+                            "pōpokotea"
                         ],
                         "size": 15,
                         "region": "australasia",
@@ -1055,7 +1063,7 @@
                             },
                             {
                                 "url": "https://xeno-canto.org/1165146/download",
-                                "rec": "Zsombor K\u00E1rolyi"
+                                "rec": "Zsombor Károlyi"
                             }
                         ]
                     }
@@ -1202,7 +1210,7 @@
                                 "rec": "Thomas Magarian"
                             },
                             {
-                                "url" : "https://xeno-canto.org/1021076/download",
+                                "url": "https://xeno-canto.org/1021076/download",
                                 "rec": "Stanislas Wroza"
                             }
                         ]
@@ -1511,7 +1519,7 @@
                             },
                             {
                                 "url": "https://xeno-canto.org/1069909/download",
-                                "rec": "\u00C9tienne Leroy"
+                                "rec": "Étienne Leroy"
                             }
                         ]
                     }
@@ -1726,10 +1734,10 @@
                             "red crowned parakeet",
                             "red-fronted parakeet",
                             "red fronted parakeet",
-                            "red-crowned k\u0101k\u0101riki",
+                            "red-crowned kākāriki",
                             "red crowned kakariki",
                             "red-fronted kakariki",
-                            "red fronted k\u0101k\u0101riki"
+                            "red fronted kākāriki"
                         ],
                         "size": 28,
                         "region": "australasia"
@@ -1740,10 +1748,10 @@
                             "yellow crowned parakeet",
                             "yellow-fronted parakeet",
                             "yellow fronted parakeet",
-                            "yellow-crowned k\u0101k\u0101riki",
+                            "yellow-crowned kākāriki",
                             "yellow crowned kakariki",
                             "yellow-fronted kakariki",
-                            "yellow fronted k\u0101k\u0101riki"
+                            "yellow fronted kākāriki"
                         ],
                         "size": 25,
                         "region": "australasia"
