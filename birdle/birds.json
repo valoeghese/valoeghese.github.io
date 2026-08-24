@@ -1728,12 +1728,48 @@
                             "eurasian blackbird"
                         ],
                         "size": 25,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1165101/download",
+                                "rec": "Zsombor Károlyi"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1156705/download",
+                                "rec": "Radek Grochowski"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1156194/download",
+                                "rec": "Adrien Peillon"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1146580/download",
+                                "rec": "Amselforscher"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/923613/download",
+                                "rec": "David Boyle"
+                            }
+                        ]
                     },
                     "migratorius": {
                         "name": "american robin",
                         "size": 26,
-                        "region": "nearctic"
+                        "region": "nearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/364119/download",
+                                "rec": "Ted Floyd"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1139498/download",
+                                "rec": "Andrew McCafferty"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1135112/download",
+                                "rec": "Mario Reyes Jr"
+                            }
+                        ]
                     },
                     "philomelos": {
                         "name": "song thrush",
@@ -1764,19 +1800,57 @@
                             "stormcock"
                         ],
                         "size": 28,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1135178/download",
+                                "rec": "Shaun Micklewright"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1168890/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1086124/download",
+                                "rec": "Romuald Mikusek"
+                            }
+                        ]
                     },
                     "pilaris": {
                         "name": "fieldfare",
                         "size": 25,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1168710/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1168002/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1168691/download",
+                                "rec": "Stanislas Wroza"
+                            }
+                        ]
                     }
                 },
                 "sialia": {
                     "sialis": {
                         "name": "eastern bluebird",
                         "size": 19,
-                        "region": "nearctic"
+                        "region": "nearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1014698/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/844282/download",
+                                "rec": "Michael Hurben"
+                            }
+                        ]
                     }
                 }
             },
@@ -1973,6 +2047,16 @@
                             "indomalayan",
                             "australasia",
                             "oceanian"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1157967/download",
+                                "rec": "Esperanza Poveda"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1146082/download",
+                                "rec": "Lionel FREDERIC"
+                            }
                         ]
                     }
                 }
