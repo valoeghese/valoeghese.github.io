@@ -23,6 +23,9 @@ for order in data["birds"].values():
                 continue
 
             for epithet, species_obj in genus_obj.items():
+                if epithet == "queries":
+                    continue
+                
                 species_name = f"{genus} {epithet}"
                 species_objects[species_name] = species_obj
 

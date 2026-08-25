@@ -252,9 +252,15 @@ try {
 								
 								cGenus = cFamily[genus];
 								families[genus] = family;
+
+								const gQueries = cGenus["queries"] ?? [];
 								
 								for (let species in cGenus) {
 									cSpecies = cGenus[species];
+
+									if (species === "queries") {
+										continue;
+									}
 									
 									// scientific name
 									let scientificName = genus + " " + species;
@@ -304,6 +310,11 @@ try {
 									// Add family query searches
 									// hack to group family since it must have unique names.
 									for (let query of queries) {
+										const n =`${query} ${commonName}`;
+										addSearchable(n, tertiaries);
+										birds[n] = scientificName;
+									}
+									for (let query of gQueries) {
 										const n =`${query} ${commonName}`;
 										addSearchable(n, tertiaries);
 										birds[n] = scientificName;

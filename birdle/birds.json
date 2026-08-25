@@ -2172,12 +2172,14 @@
                     "owls"
                 ],
                 "ninox": {
+                    "queries": [
+                        "boobook"
+                    ],
                     "novaeseelandiae": {
                         "name": [
                             "morepork",
                             "ruru",
-                            "tasmanian spotted owl",
-                            "boobook"
+                            "tasmanian spotted owl"
                         ],
                         "size": 29,
                         "region": "australasia",
