@@ -540,8 +540,14 @@
                         "size": 10,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/1063601/download",
-                            "https://xeno-canto.org/1060266/download"
+                            {
+                                "url": "https://xeno-canto.org/1063601/download",
+                                "rec": "Craig Wilson"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1060266/download",
+                                "rec": "Craig Wilson"
+                            }
                         ]
                     }
                 }
@@ -557,8 +563,14 @@
                         "size": 13,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1169690/download",
-                            "https://xeno-canto.org/1141669/download"
+                            {
+                                "url": "https://xeno-canto.org/1169690/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1141669/download",
+                                "rec": "Pablo Guillemaud"
+                            }
                         ]
                     }
                 }
@@ -571,8 +583,14 @@
                         "size": 18,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1151851/download",
-                            "https://xeno-canto.org/1151849/download"
+                            {
+                                "url": "https://xeno-canto.org/1151851/download",
+                                "rec": "Manuel Grosselet"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1151849/download",
+                                "rec": "Manuel Grosselet"
+                            }
                         ]
                     }
                 }
@@ -608,8 +626,14 @@
                         "size": 38,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/534282/download",
-                            "https://xeno-canto.org/956968/download"
+                            {
+                                "url": "https://xeno-canto.org/534282/download",
+                                "rec": "David Bradley"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/956968/download",
+                                "rec": "Meena Haribal"
+                            }
                         ]
                     }
                 },
@@ -623,8 +647,14 @@
                         "size": 25,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/960640/download",
-                            "https://xeno-canto.org/958847/download"
+                            {
+                                "url": "https://xeno-canto.org/960640/download",
+                                "rec": "Meena Haribal"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/958847/download",
+                                "rec": "Meena Haribal"
+                            }
                         ]
                     },
                     "carunculatus": {
@@ -637,8 +667,14 @@
                         "size": 25,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/112765/download",
-                            "https://xeno-canto.org/345380/download"
+                            {
+                                "url": "https://xeno-canto.org/112765/download",
+                                "rec": "Chris Benesh"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/345380/download",
+                                "rec": "Dan Lane"
+                            }
                         ]
                     }
                 }
@@ -657,8 +693,14 @@
                             "palearctic"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1168672/download",
-                            "https://xeno-canto.org/1168671/download"
+                            {
+                                "url": "https://xeno-canto.org/1168672/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1168671/download",
+                                "rec": "Stanislas Wroza"
+                            }
                         ]
                     }
                 },
@@ -671,8 +713,14 @@
                             "palearctic"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1143779/download",
-                            "https://xeno-canto.org/1143780/download"
+                            {
+                                "url": "https://xeno-canto.org/1143779/download",
+                                "rec": "bert de bruin"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1143780/download",
+                                "rec": "bert de bruin"
+                            }
                         ]
                     }
                 }
@@ -691,8 +739,14 @@
                             "palearctic"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1148086/download",
-                            "https://xeno-canto.org/1101246/download"
+                            {
+                                "url": "https://xeno-canto.org/1148086/download",
+                                "rec": "Jerome Chie-Jen Ko"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1101246/download",
+                                "rec": "Dillen Ng"
+                            }
                         ]
                     }
                 }
@@ -1889,7 +1943,25 @@
                             "mountain white-eye"
                         ],
                         "size": 11,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1162483/download",
+                                "rec": "Kelle Moreau"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/576719/download",
+                                "rec": "Okamoto Keita Sin"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/570336/download",
+                                "rec": "Wonseok Jang"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/825300/download",
+                                "rec": "Greg Irving"
+                            }
+                        ]
                     },
                     "lateralis": {
                         "name": [
@@ -1899,7 +1971,17 @@
                             "tauhou"
                         ],
                         "size": 12,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1166620/download",
+                                "rec": "Romuald Mikusek"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1163887/download",
+                                "rec": "Romuald Mikusek"
+                            }
+                        ]
                     }
                 }
             }
@@ -1949,7 +2031,17 @@
                     "regia": {
                         "name": "royal spoonbill",
                         "size": 77,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/707576/download",
+                                "rec": "Khristos Nizamis"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1006599/download",
+                                "rec": "Malcolm Rutherford"
+                            }
+                        ]
                     }
                 }
             }
@@ -1970,7 +2062,21 @@
                             "red fronted kākāriki"
                         ],
                         "size": 28,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/428665/download",
+                                "rec": "David Welch"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/925463/download",
+                                "rec": "David Boyle"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/345385/download",
+                                "rec": "Dan Lane"
+                            }
+                        ]
                     },
                     "auriceps": {
                         "name": [
@@ -1984,19 +2090,53 @@
                             "yellow fronted kākāriki"
                         ],
                         "size": 25,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/962685/download",
+                                "rec": "Meena Haribal"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/795068/download",
+                                "rec": "Barry Edmonston"
+                            }
+                        ]
                     }
                 },
                 "platycercus": {
                     "elegans": {
                         "name": "crimson rosella",
                         "size": 35,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1166584/download",
+                                "rec": "Romuald Mikusek"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1069586/download",
+                                "rec": "Étienne Leroy"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/935795/download",
+                                "rec": "Romuald Mikusek"
+                            }
+                        ]
                     },
                     "eximius": {
                         "name": "eastern rosella",
                         "size": 32,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1017385/download",
+                                "rec": "Tim Morris"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/698757/download",
+                                "rec": "nick talbot"
+                            }
+                        ]
                     }
                 },
                 "psittacula": {
@@ -2010,6 +2150,16 @@
                         "region": [
                             "indomalayan",
                             "afrotropical"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1169692/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1142621/download",
+                                "rec": "Susanne Kuijpers"
+                            }
                         ]
                     }
                 }
@@ -2018,22 +2168,54 @@
         "strigiformes": {
             "strigidae": {
                 "name": "Typical Owls",
+                "queries": [
+                    "owls"
+                ],
                 "ninox": {
                     "novaeseelandiae": {
                         "name": [
                             "morepork",
                             "ruru",
-                            "tasmanian spotted owl"
+                            "tasmanian spotted owl",
+                            "boobook"
                         ],
                         "size": 29,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/668542/download",
+                                "rec": "David Boyle"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/638197/download",
+                                "rec": "Andrew McCafferty"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/553073/download",
+                                "rec": "Martin Overy"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/526193/download",
+                                "rec": "James Lidster"
+                            }
+                        ]
                     }
                 },
                 "athene": {
                     "noctua": {
                         "name": "little owl",
                         "size": 23,
-                        "region": "palearctic"
+                        "region": "palearctic",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1154122/download",
+                                "rec": "Arjun Dutta"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1153857/download",
+                                "rec": "Pere Josa"
+                            }
+                        ]
                     },
                     "cunicularia": {
                         "name": "burrowing owl",
@@ -2041,6 +2223,20 @@
                         "region": [
                             "neotropical",
                             "nearctic"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1162239/download",
+                                "rec": "JAYRSON ARAUJO DE OLIVEIRA"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/730164/download",
+                                "rec": "Alán Palacios"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1016001/download",
+                                "rec": "Dante Buzzetti"
+                            }
                         ]
                     }
                 },
@@ -2051,6 +2247,24 @@
                         "region": [
                             "palearctic",
                             "nearctic"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1085639/download",
+                                "rec": "Jean Pierre Sciolla"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/986925/download",
+                                "rec": "Lars Edenius"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/334326/download",
+                                "rec": "Kaspars Funts"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/793286/download",
+                                "rec": "Dominique Guillerme"
+                            }
                         ]
                     }
                 }
@@ -2109,6 +2323,16 @@
                             "palearctic",
                             "indomalayan",
                             "australasia"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1152639/download",
+                                "rec": "Sunny Tseng"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1074338/download",
+                                "rec": "András Schmidt"
+                            }
                         ]
                     },
                     "varius": {
@@ -2118,7 +2342,13 @@
                             "karuhiruhi"
                         ],
                         "size": 81,
-                        "region": "australasia"
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/215247/download",
+                                "rec": "Johannes Fischer"
+                            }
+                        ]
                     }
                 }
             },
