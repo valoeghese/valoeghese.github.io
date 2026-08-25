@@ -43,6 +43,27 @@
         "charadriiformes": {
             "charadriidae": {
                 "name": "Plovers",
+                "anarhynchus": {
+                    "obscurus": {
+                        "name": [
+                            "New Zealand Dotterel",
+                            "New Zealand Plover",
+                            "Red-Breasted Plover"
+                        ],
+                        "size": 25,
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/390381/download",
+                                "rec": "nick talbot"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/296049/download",
+                                "rec": "Johnny Rommens"
+                            }
+                        ]
+                    }
+                },
                 "pluvialis": {
                     "fulva": {
                         "name": "pacific golden plover",
@@ -2488,6 +2509,7 @@
                 "little owl",
                 "little spotted kiwi",
                 "morepork",
+                "new zealand dotterel",
                 "new zealand pipit",
                 "north island brown kiwi",
                 "north island kokako",

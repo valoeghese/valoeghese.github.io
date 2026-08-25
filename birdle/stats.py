@@ -25,7 +25,7 @@ for order in data["birds"].values():
             for epithet, species_obj in genus_obj.items():
                 if epithet == "queries":
                     continue
-                
+
                 species_name = f"{genus} {epithet}"
                 species_objects[species_name] = species_obj
 
@@ -56,7 +56,7 @@ for order in data["birds"].values():
 
 
 root = tk.Tk()
-root.title("Bird Recordings")
+root.title(f"Bird Recordings — {len(species_objects)} species loaded")
 root.geometry("1000x750")
 root.minsize(800, 550)
 
