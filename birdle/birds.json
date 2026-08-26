@@ -1,5 +1,191 @@
 {
     "birds": {
+        "anseriformes": {
+            "anatidae": {
+                "name": "Ducks, Geese, and Swans",
+                "anas": {
+                    "platyrhynchos": {
+                        "name": [
+                            "mallard",
+                            "wild duck"
+                        ],
+                        "region": [
+                            "palearctic",
+                            "nearctic",
+                            "indomalayan"
+                        ],
+                        "size": 58,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1142977/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1094846/download",
+                                "rec": "Petter Westberg"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1035831/download",
+                                "rec": "Miika Silfverberg"
+                            }
+                        ]
+                    },
+                    "zonorhyncha": {
+                        "name": [
+                            "eastern spot-billed duck",
+                            "chinese spot-billed duck"
+                        ],
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ],
+                        "size": 60,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/858061/download",
+                                "rec": "Joshua Chong"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/835962/download",
+                                "rec": "Martin Billard"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/194697/download",
+                                "rec": "Ross Gallardy"
+                            }
+                        ]
+                    }
+                },
+                "anser": {
+                    "anser": {
+                        "name": [
+                            "greylag goose",
+                            "feral goose"
+                        ],
+                        "region": [
+                            "palearctic",
+                            "indomalayan"
+                        ],
+                        "size": 80,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1173554/download",
+                                "rec": "Paul Gosling"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1037394/download",
+                                "rec": "Lars Edenius"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1031817/download",
+                                "rec": "David Darrell-Lambert"
+                            }
+                        ]
+                    }
+                },
+                "cygnus": {
+                    "atratus": {
+                        "name": [
+                            "black swan"
+                        ],
+                        "region": [
+                            "australasia"
+                        ],
+                        "size": 120,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1137165/download",
+                                "rec": "Timo S. Schnabel"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/737407/download",
+                                "rec": "nick talbot"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/591104/download",
+                                "rec": "Stanislas Wroza"
+                            }
+                        ]
+                    },
+                    "olor": {
+                        "name": [
+                            "mute swan"
+                        ],
+                        "region": [
+                            "palearctic",
+                            "nearctic"
+                        ],
+                        "size": 150,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1075288/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1041613/download",
+                                "rec": "Christian Kerihuel"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/925704/download",
+                                "rec": "Francesco Sottile"
+                            }
+                        ]
+                    }
+                },
+                "spatula": {
+                    "queries": [
+                        "duck"
+                    ],
+                    "clypeata": {
+                        "name": [
+                            "northern shoveler"
+                        ],
+                        "region": [
+                            "palearctic",
+                            "nearctic",
+                            "indomalayan",
+                            "neotropical",
+                            "afrotropical"
+                        ],
+                        "size": 50,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/996353/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/702315/download",
+                                "rec": "Nelson Conceição"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/683729/download",
+                                "rec": "Geoff Carey"
+                            }
+                        ]
+                    },
+                    "rhynchotis": {
+                        "name": [
+                            "australasian shoveler",
+                            "kuruwhengi"
+                        ],
+                        "region": [
+                            "australasia"
+                        ],
+                        "size": 49,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1135487/download",
+                                "rec": "Zebedee Muller"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/152947/download",
+                                "rec": "Fernand DEROUSSEN"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         "apterygiformes": {
             "apterygidae": {
                 "name": "Kiwi",
@@ -2467,7 +2653,7 @@
                         "name": [
                             "australian pied cormorant",
                             "pied shag",
-                            "karuhiruhi"
+                            "kāruhiruhi"
                         ],
                         "size": 81,
                         "region": "australasia",
@@ -2481,7 +2667,49 @@
                 }
             },
             "sulidae": {
-                "name": "Gannets and Boobies"
+                "name": "Gannets and Boobies",
+                "morus": {
+                    "bassanus": {
+                        "name": "northern gannet",
+                        "region": [
+                            "palearctic",
+                            "nearctic"
+                        ],
+                        "size": 94,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/438348/download",
+                                "rec": "Annette Hamann"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1094241/download",
+                                "rec": "Simon Gillings"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1076663/download",
+                                "rec": "Kelle Moreau"
+                            }
+                        ]
+                    },
+                    "serrator": {
+                        "name": [
+                            "australasian gannet",
+                            "takapu"
+                        ],
+                        "region": "australasia",
+                        "size": 89,
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/112823/download",
+                                "rec": "Chris Benesh"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/293327/download",
+                                "rec": "Dan Lane"
+                            }
+                        ]
+                    }
+                }
             }
         }
     },
@@ -2505,6 +2733,7 @@
                 "house sparrow",
                 "indian ringneck parrot",
                 "long-tailed tit",
+                "mallard",
                 "marsh tit",
                 "mistle thrush",
                 "song thrush",
@@ -2544,8 +2773,11 @@
                 "long-tailed tit",
                 "peewit",
                 "pine bunting",
+                "mallard",
                 "marsh tit",
                 "mistle thrush",
+                "northern gannet",
+                "northern shoveler",
                 "snow bunting",
                 "song thrush",
                 "robin redbreast",
@@ -2565,6 +2797,7 @@
                 "carrion crow",
                 "common gull",
                 "common raven",
+                "eastern spot-billed duck",
                 "eurasian tree sparrow",
                 "eurasian wren",
                 "great cormorant",
@@ -2572,10 +2805,12 @@
                 "grey wagtail",
                 "japanese tit",
                 "jungle crow",
+                "mallard",
                 "marsh tit",
                 "meadow bunting",
                 "mukudori",
                 "northern lapwing",
+                "northern shoveler",
                 "long-eared owl",
                 "long-tailed tit",
                 "oriental turtle dove",
@@ -2591,10 +2826,13 @@
             "name": "New Zealand Residents",
             "_comment": "Note that both the names given in this data file and scientific names are valid entries in the species list.",
             "species": [
+                "australasian gannet",
+                "australasian shoveler",
                 "australian magpie",
                 "barbary dove",
                 "barn owl",
                 "black shag",
+                "black swan",
                 "brown quail",
                 "california quail",
                 "chicken",
@@ -2607,13 +2845,16 @@
                 "european goldfinch",
                 "european starling",
                 "fairy tern",
+                "greylag goose",
                 "grey warbler",
                 "house sparrow",
                 "kereru",
                 "korimako",
                 "little owl",
                 "little spotted kiwi",
+                "mallard",
                 "morepork",
+                "mute swan",
                 "new zealand dotterel",
                 "new zealand pipit",
                 "north island brown kiwi",
