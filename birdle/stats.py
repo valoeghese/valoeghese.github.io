@@ -57,7 +57,7 @@ for order in data["birds"].values():
 
 root = tk.Tk()
 root.title(f"Bird Recordings — {len(species_objects)} species loaded")
-root.geometry("1000x750")
+root.geometry("700x500")
 root.minsize(800, 550)
 
 root.columnconfigure(0, weight=1)

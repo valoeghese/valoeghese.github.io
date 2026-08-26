@@ -783,8 +783,14 @@
                         "size": 18,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1074256/download",
-                            "https://xeno-canto.org/1058400/download"
+                            {
+                                "url": "https://xeno-canto.org/1074256/download",
+                                "rec": "bert de bruin"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1058400/download",
+                                "rec": "Stein Ø. Nilsen"
+                            }
                         ]
                     },
                     "mexicanus": {
@@ -795,8 +801,14 @@
                         "size": 17,
                         "region": "nearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1059136/download",
-                            "https://xeno-canto.org/368598/download"
+                            {
+                                "url": "https://xeno-canto.org/1059136/download",
+                                "rec": "Yoann Blanchon"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/368598/download",
+                                "rec": "Thomas Magarian"
+                            }
                         ]
                     }
                 }
@@ -815,8 +827,14 @@
                             "nearctic"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1152935/download",
-                            "https://xeno-canto.org/1102930/download"
+                            {
+                                "url": "https://xeno-canto.org/1152935/download",
+                                "rec": "Paul Driver"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1102930/download",
+                                "rec": "Grégoire Chauvot"
+                            }
                         ]
                     },
                     "corone": {
@@ -856,8 +874,14 @@
                             "indomalayan"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1164575/download",
-                            "https://xeno-canto.org/1164574/download"
+                            {
+                                "url": "https://xeno-canto.org/1164575/download",
+                                "rec": "Zsombor Károlyi"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1164574/download",
+                                "rec": "Zsombor Károlyi"
+                            }
                         ]
                     }
                 },
@@ -870,8 +894,14 @@
                         "size": 45,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1170202/download",
-                            "https://xeno-canto.org/1170153/download"
+                            {
+                                "url": "https://xeno-canto.org/1170202/download",
+                                "rec": "András Schmidt"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1170153/download",
+                                "rec": "András Schmidt"
+                            }
                         ]
                     }
                 }
@@ -884,8 +914,14 @@
                         "size": 16,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1166155/download",
-                            "https://xeno-canto.org/1164162/download"
+                            {
+                                "url": "https://xeno-canto.org/1166155/download",
+                                "rec": "Giuseppe Speranza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1164162/download",
+                                "rec": "András Schmidt"
+                            }
                         ]
                     },
                     "citrinella": {
@@ -893,8 +929,14 @@
                         "size": 16,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1157651/download",
-                            "https://xeno-canto.org/1153081/download"
+                            {
+                                "url": "https://xeno-canto.org/1157651/download",
+                                "rec": "João Ferreira Tomás"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1153081/download",
+                                "rec": "Arjun Dutta"
+                            }
                         ]
                     },
                     "leucocephalos": {
@@ -902,8 +944,14 @@
                         "size": 17,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/1050056/download",
-                            "https://xeno-canto.org/1050058/download"
+                            {
+                                "url": "https://xeno-canto.org/1050056/download",
+                                "rec": "Geoff Carey"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1050058/download",
+                                "rec": "Geoff Carey"
+                            }
                         ]
                     },
                     "cioides": {
@@ -911,8 +959,14 @@
                         "size": 16,
                         "region": "palearctic",
                         "recordings": [
-                            "https://xeno-canto.org/992954/download",
-                            "https://xeno-canto.org/1151928/download"
+                            {
+                                "url": "https://xeno-canto.org/992954/download",
+                                "rec": "Xavier Riera"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1151928/download",
+                                "rec": "wu555"
+                            }
                         ]
                     }
                 }
@@ -976,8 +1030,14 @@
                             "neotropical"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1169570/download",
-                            "https://xeno-canto.org/1166650/download"
+                            {
+                                "url": "https://xeno-canto.org/1169570/download",
+                                "rec": "David Darrell-Lambert"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1166650/download",
+                                "rec": "João Ferreira Tomás"
+                            }
                         ]
                     },
                     "neoxena": {
@@ -985,8 +1045,14 @@
                         "size": 15,
                         "region": "australasia",
                         "recordings": [
-                            "https://xeno-canto.org/526611/download",
-                            "https://xeno-canto.org/690879/download"
+                            {
+                                "url": "https://xeno-canto.org/526611/download",
+                                "rec": "James Lidster"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/690879/download",
+                                "rec": "Phil Gregory"
+                            }
                         ]
                     }
                 }
@@ -2027,8 +2093,14 @@
                             "oceanian"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1166667/download",
-                            "https://xeno-canto.org/1045560/download"
+                            {
+                                "url": "https://xeno-canto.org/1166667/download",
+                                "rec": "Esperanza Poveda"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1045560/download",
+                                "rec": "Erik Hansson"
+                            }
                         ]
                     },
                     "cinerea": {
@@ -2040,8 +2112,14 @@
                             "neotropical"
                         ],
                         "recordings": [
-                            "https://xeno-canto.org/1153360/download",
-                            "https://xeno-canto.org/1102109/download"
+                            {
+                                "url": "https://xeno-canto.org/1153360/download",
+                                "rec": "Manuel Grosselet"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1102109/download",
+                                "rec": "Paul Kelly"
+                            }
                         ]
                     }
                 }
