@@ -1016,6 +1016,33 @@
                     }
                 }
             },
+            "halcyonidae": {
+                "name": "Kingfishers",
+                "queries": [
+                    "kingfisher"
+                ],
+                "todiramphus": {
+                    "sanctus": {
+                        "name": [
+                            "sacred kingfisher",
+                            "new zealand kingfisher",
+                            "kōtare"
+                        ],
+                        "size": 23,
+                        "region": "australasia",
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1069720/download",
+                                "rec": "Étienne Leroy"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/842301/download",
+                                "rec": "Andrew Galbraith"
+                            }
+                        ]
+                    }
+                }
+            },
             "hirundinidae": {
                 "name": "Swallows and Martins",
                 "hirundo": {
@@ -2599,6 +2626,7 @@
                 "red-crowned parakeet",
                 "rock pigeon",
                 "royal spoonbill",
+                "sacred kingfisher",
                 "silvereye",
                 "silver gull",
                 "song thrush",

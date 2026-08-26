@@ -38,12 +38,12 @@ def add_bird(popup, common_name_e, scientific_name_e, region, recording_e, recor
     common_name = common_name_e.get().lower()
     scientific_name = scientific_name_e.get().lower()
     size = size_e.get().lower()
-    recording = recording_e.get()
-    recording2 = recording2_e.get()
+    #recording = recording_e.get()
+    #recording2 = recording2_e.get()
     
-    if common_name and scientific_name and region and size and recording and recording2:
+    if common_name and scientific_name and region and size:# and recording and recording2:
         binomial_parts = scientific_name.split(" ", 1)
-        data = {"name":common_name, "size":int(size), "region":region, "recordings": [ recording, recording2 ]}
+        data = {"name":common_name, "size":int(size), "region":region}
 
         if (binomial_parts[0] in genuses):
             print("Bird Data Added:", end=" ")
@@ -57,7 +57,7 @@ def add_bird(popup, common_name_e, scientific_name_e, region, recording_e, recor
 
 def save():
     with open('birds.json', 'w+', encoding='utf8') as bird_file:
-        json.dump(bird_data, bird_file, indent=4)
+        json.dump(bird_data, bird_file, indent=4, ensure_ascii=False)
 
 # gui stuff
 
@@ -147,11 +147,11 @@ def add_bird_form():
     rfwrapper = Frame(subframe)
     rfwrapper.grid(row=3,column=1)
 
-    Label(subframe, text="Recording URLs", bd=5).grid(row=4)
-    recording = Entry(subframe)
-    recording.grid(row=4,column=1)
-    recording2 = Entry(subframe)
-    recording2.grid(row=5,column=1)
+    Label(subframe, text="Please add recording URLs with stats.py", bd=5).grid(row=4)
+    #recording = Entry(subframe)
+    #recording.grid(row=4,column=1)
+    #recording2 = Entry(subframe)
+    #recording2.grid(row=5,column=1)
 
     rfinner = []
     rfinner.append(Frame(rfwrapper, bd=5))
