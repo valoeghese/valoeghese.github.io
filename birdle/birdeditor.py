@@ -2,6 +2,9 @@ from tkinter import *
 from PIL.ImageTk import PhotoImage
 from PIL import Image
 import json
+import subprocess
+import sys
+from pathlib import Path
 
 regions = [
     "Palearctic",
@@ -192,8 +195,8 @@ def add_bird_form():
         name_entry.delete(0,len(name_entry.get()))
         sci_entry.delete(0,len(sci_entry.get()))
         size_entry.delete(0,len(size_entry.get()))
-        recording.delete(0,len(recording.get()))
-        recording2.delete(0,len(recording2.get()))
+        #recording.delete(0,len(recording.get()))
+        #recording2.delete(0,len(recording2.get()))
         
         del bird_regions[:]
         rfinner[0].destroy()
@@ -204,7 +207,7 @@ def add_bird_form():
     
     def add_bird_():
         bird_regions.append(region.get().lower())
-        add_bird(popup, name_entry, sci_entry, bird_regions[0] if len(bird_regions) == 1 else bird_regions.copy(), recording, recording2, cleaner, size_entry)
+        add_bird(popup, name_entry, sci_entry, bird_regions[0] if len(bird_regions) == 1 else bird_regions.copy(), None, None, cleaner, size_entry)
 
     Button(subframe, text="Add Bird", width=20, bd=3, command=add_bird_).pack()
     Button(subframe, text="Exit", width=20, bd=3, command=lambda:close(popup)).pack()
@@ -212,6 +215,11 @@ def add_bird_form():
 def save_and_exit(window):
     save()
     window.destroy()
+
+def launch_stats():
+    here = Path(__file__).resolve().parent
+    stats = here / "stats.py"
+    subprocess.Popen([sys.executable, str(stats)])
 
 # create window
 window = Tk()
@@ -228,7 +236,7 @@ Label(window, image=img).pack()
 mainframe = Frame(window, bd=15)
 mainframe.pack()
 
-Button(mainframe, text="Browse Birds", width=50, bd=3, command=nothing_here).pack()
+Button(mainframe, text="Browse Birds", width=50, bd=3, command=launch_stats).pack()
 Button(mainframe, text="Add Bird", width=50, bd=3, command=add_bird_form).pack()
 
 Frame(mainframe, height=10).pack()
