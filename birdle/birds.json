@@ -640,6 +640,39 @@
                             }
                         ]
                     }
+                },
+                "zenaida": {
+                    "macroura": {
+                        "name": [
+                            "mourning dove",
+                            "rain dove",
+                            "carolina pigeon",
+                            "carolina turtledove"
+                        ],
+                        "size": 31,
+                        "region": [
+                            "nearctic",
+                            "neotropical"
+                        ],
+                        "recordings": [
+                            {
+                                "url": "https://xeno-canto.org/1013493/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/807126/download",
+                                "rec": "Paul Marvin"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/1013012/download",
+                                "rec": "Stanislas Wroza"
+                            },
+                            {
+                                "url": "https://xeno-canto.org/940517/download",
+                                "rec": "Richard E. Webster"
+                            }
+                        ]
+                    }
                 }
             }
         },
@@ -2772,35 +2805,10 @@
                 "red-flanked bluetail",
                 "red-vented bulbul",
                 "ring-necked parakeet",
-                "rock pigeon",
-                "rose robin",
-                "royal spoonbill",
-                "ruddy turnstone",
-                "ruff",
-                "sacred kingfisher",
-                "silver gull",
-                "silvereye",
                 "snow bunting",
-                "song sparrow",
-                "song thrush",
-                "south island robin",
-                "south island saddleback",
-                "southern black-backed gull",
                 "spotted dove",
-                "tui",
-                "warbling white-eye",
-                "welcome swallow",
-                "white tern",
                 "white wagtail",
-                "white-cheeked starling",
-                "white-throated dipper",
-                "whitehead",
-                "willie wagtail",
-                "willow tit",
-                "wood pipit",
-                "yellow-crowned parakeet",
-                "yellowhammer",
-                "yellowhead"
+                "willow tit"
             ],
             "species": [
                 "american robin",
@@ -2808,7 +2816,10 @@
                 "black-capped chickadee",
                 "burrowing owl",
                 "eastern bluebird",
-                "house sparrow"
+                "house sparrow",
+                "mourning dove",
+                "rock pigeon",
+                "song sparrow"
             ]
         },
         "english_garden": {
