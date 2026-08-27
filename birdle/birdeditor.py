@@ -212,6 +212,45 @@ def add_bird_form():
     Button(subframe, text="Add Bird", width=20, bd=3, command=add_bird_).pack()
     Button(subframe, text="Exit", width=20, bd=3, command=lambda:close(popup)).pack()
 
+def edit_categories_form():
+    global window, bird_data
+    popup = Toplevel(window)
+    popup.title("Edit Categories")
+
+    subframe = Frame(popup, bd=15)
+    subframe.pack()
+    
+    Label(subframe, text="Collections", bd=5).grid(row=0, column=0)
+    collection_label = Label(subframe, text="Select a Collection", bd=5)
+    collection_label.grid(row=0, column=1)
+
+    collections_list = Listbox(subframe)
+
+    def onselect(event):
+        w = event.widget
+        index = int(w.curselection()[0])
+        value = w.get(index)
+        #print('You selected item %d: "%s"' % (index, value))
+        collection_label.config(text=value)
+
+    i = 1
+    for item in bird_data["collections"]:
+        collection = bird_data["collections"][item]
+        collections_list.insert(i, collection["name"])
+        i += 1
+
+    collections_list.grid(row=1,column=0)
+    collections_list.bind('<<ListboxSelect>>', onselect)
+    
+    collection_editor = Frame(subframe)
+    collection_editor.grid(row=1,column=1)
+
+    collection_editor.rowconfigure(1, weight=1)
+    collection_editor.columnconfigure(0, weight=1)
+    collection_editor.columnconfigure(1, weight=1)
+
+    popup.geometry("400x400")
+
 def save_and_exit(window):
     save()
     window.destroy()
@@ -238,6 +277,7 @@ mainframe.pack()
 
 Button(mainframe, text="Browse Birds", width=50, bd=3, command=launch_stats).pack()
 Button(mainframe, text="Add Bird", width=50, bd=3, command=add_bird_form).pack()
+Button(mainframe, text="Collections Editor", width=50, bd=3, command=edit_categories_form).pack()
 
 Frame(mainframe, height=10).pack()
 
