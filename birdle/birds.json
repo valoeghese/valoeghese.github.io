@@ -2718,7 +2718,12 @@
         "american_garden": {
             "name": "American Garden Birds",
             "_unsorted": "*",
-            "species": []
+            "species": [
+                "american robin",
+                "black-capped chickadee",
+                "eastern bluebird",
+                "house sparrow"
+            ]
         },
         "english_garden": {
             "name": "English Garden Birds",
