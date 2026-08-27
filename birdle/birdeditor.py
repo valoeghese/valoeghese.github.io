@@ -218,7 +218,7 @@ def edit_categories_form():
     global window, bird_data
     popup = Toplevel(window)
     popup.title("Edit Categories")
-    popup.geometry("500x400")
+    popup.geometry("600x400")
 
     subframe = Frame(popup, bd=15)
     subframe.pack(fill="both", expand=True)
@@ -238,18 +238,88 @@ def edit_categories_form():
     added_list = None
     removed_list = None
     unsorted_list = None
+    add_button = None
+    remove_button = None
+    pend_button = None
     ##############
 
     collections_list = Listbox(subframe)
 
-
     def onselect(event):
         nonlocal added_list, removed_list, unsorted_list
+        nonlocal add_button, remove_button, pend_button
         w = event.widget
+        # guard against deselect (by focus change)
+        if len(w.curselection()) == 0:
+            return
+        
         index = int(w.curselection()[0])
         value = w.get(index)
         #print('You selected item %d: "%s"' % (index, value))
         collection_label.config(text=value)
+
+        # Find collection
+        collection = None
+        for item in bird_data["collections"]:
+            collection = bird_data["collections"][item]
+            if collection["name"] == value:
+                break
+
+        # Behaviours
+        selected_bird_i = None
+        selected_bird = None
+        selected_list = None
+        def on_bird_select(event):
+            nonlocal selected_bird_i, selected_bird, selected_list
+            w = event.widget
+            if len(w.curselection()) == 0:
+                return
+            index = int(w.curselection()[0])
+
+            selected_bird_i = index
+            selected_bird = w.get(index)
+            selected_list = w
+
+        def on_move_button(to_list: Listbox, to_arr: list):
+            # filter requests that don't do anything
+            if selected_list == to_list:
+                return
+            # filter no selection
+            if selected_bird_i is None:
+                return
+
+            # Transfer visually (yes this is not MVC)
+            selected_list.delete(selected_bird_i)
+
+            copy_tup = to_list.get(0, END)
+            insert_idx = to_list.size()
+            for i in range(len(copy_tup)):
+                if selected_bird.replace("-", " ") < copy_tup[i].replace("-", " "):
+                    insert_idx = i
+                    break
+            to_list.insert(insert_idx, selected_bird)
+
+            # Transfer actually (it should be same index)
+            from_arr = None
+            if selected_list == added_list:
+                from_arr = collection["species"]
+            elif selected_list == unsorted_list:
+                from_arr = collection["_unsorted"]
+            elif selected_list == removed_list:
+                # avoid error
+                from_arr = [ selected_bird ]
+            
+            from_arr.remove(selected_bird)
+            to_arr.insert(insert_idx, selected_bird)
+
+        def on_add_button():
+            on_move_button(added_list, collection["species"])
+
+        def on_remove_button():
+            on_move_button(removed_list, [])
+
+        def on_pend_button():
+            on_move_button(unsorted_list, collection["_unsorted"])
 
         # Update contents of internal listboxes (or add them)
         if added_list is None:
@@ -265,24 +335,27 @@ def edit_categories_form():
             Label(collection_editor, text="Unsorted").grid(row=1, column=0)
             Label(collection_editor, text="Removed").grid(row=1, column=1)
 
-            add_button = Button(collection_editor, text = "Add")
+            add_button = Button(collection_editor, text = "Add", command=on_add_button)
             add_button.grid(row=2, column=2, sticky="nsew")
-            remove_button = Button(collection_editor, text = "Remove")
+            remove_button = Button(collection_editor, text = "Remove", command=on_remove_button)
             remove_button.grid(row=3, column=2, sticky="nsew")
-            pend_button = Button(collection_editor, text = "Unsort")
+            pend_button = Button(collection_editor, text = "Unsort", command=on_pend_button)
             pend_button.grid(row=4, column=2, sticky="nsew")
+
+            added_list.bind('<<ListboxSelect>>', on_bird_select)
+            removed_list.bind('<<ListboxSelect>>', on_bird_select)
+            unsorted_list.bind('<<ListboxSelect>>', on_bird_select)
         else:
+            # update selection
+            selected_bird_i = None
+            selected_bird = None
+            selected_list = None
+
             added_list.delete(0, END)
             removed_list.delete(0, END)
             unsorted_list.delete(0, END)
 
         # Add new contents
-        collection = None
-        for item in bird_data["collections"]:
-            collection = bird_data["collections"][item]
-            if collection["name"] == value:
-                break
-
         all_birds = [species for _, genus in genuses.items() for epithet, species in genus.items() if epithet != "queries"]
 
         if "_unsorted" not in collection:
@@ -318,18 +391,22 @@ def edit_categories_form():
         temp_removelist.sort()
         temp_pendlist.sort()
 
-        i = 1
+        i = 0
         for name in temp_addlist:
             added_list.insert(i, name)
             i += 1
-        i = 1
+        i = 0
         for name in temp_removelist:
             removed_list.insert(i, name)
             i += 1
-        i = 1
+        i = 0
         for name in temp_pendlist:
             unsorted_list.insert(i, name)
             i += 1
+
+        # expand in the json too
+        if unsort_remaining:
+            collection["_unsorted"] = temp_pendlist
 
     i = 1
     for item in bird_data["collections"]:
