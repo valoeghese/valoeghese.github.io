@@ -35,6 +35,8 @@ for order in bird_data["birds"]:
         for genus in family_data:
             if genus == "name": # ignore this field
                 continue
+            if genus == "queries":
+                continue
             genuses[genus] = family_data[genus]
 
 def add_bird(popup, common_name_e, scientific_name_e, region, recording_e, recording2_e, cleaner, size_e):
@@ -216,22 +218,118 @@ def edit_categories_form():
     global window, bird_data
     popup = Toplevel(window)
     popup.title("Edit Categories")
+    popup.geometry("500x400")
 
     subframe = Frame(popup, bd=15)
-    subframe.pack()
+    subframe.pack(fill="both", expand=True)
+
+    subframe.rowconfigure(1, weight=1)
+    subframe.columnconfigure(0, weight=1, uniform="columns")
+    subframe.columnconfigure(1, weight=2, uniform="columns")
     
-    Label(subframe, text="Collections", bd=5).grid(row=0, column=0)
+    Label(subframe, text="Collections", bd=5).grid(row=0, column=0, sticky="nsew")
     collection_label = Label(subframe, text="Select a Collection", bd=5)
-    collection_label.grid(row=0, column=1)
+    collection_label.grid(row=0, column=1, sticky="nsew")
+
+    collection_editor = Frame(subframe)
+    collection_editor.grid(row=1,column=1, sticky="nsew")
+    
+    ## Collection subsubframe Contents ##
+    added_list = None
+    removed_list = None
+    unsorted_list = None
+    ##############
 
     collections_list = Listbox(subframe)
 
+
     def onselect(event):
+        nonlocal added_list, removed_list, unsorted_list
         w = event.widget
         index = int(w.curselection()[0])
         value = w.get(index)
         #print('You selected item %d: "%s"' % (index, value))
         collection_label.config(text=value)
+
+        # Update contents of internal listboxes (or add them)
+        if added_list is None:
+            collection_editor.rowconfigure(0, weight=1)
+
+            added_list = Listbox(collection_editor)
+            added_list.grid(row=0, column=0, columnspan=3, sticky="nsew")
+            unsorted_list = Listbox(collection_editor)
+            unsorted_list.grid(row=2, column=0, rowspan=3, sticky="nsew")
+            removed_list = Listbox(collection_editor)
+            removed_list.grid(row=2, column=1, rowspan=3, sticky="nsew")
+
+            Label(collection_editor, text="Unsorted").grid(row=1, column=0)
+            Label(collection_editor, text="Removed").grid(row=1, column=1)
+
+            add_button = Button(collection_editor, text = "Add")
+            add_button.grid(row=2, column=2, sticky="nsew")
+            remove_button = Button(collection_editor, text = "Remove")
+            remove_button.grid(row=3, column=2, sticky="nsew")
+            pend_button = Button(collection_editor, text = "Unsort")
+            pend_button.grid(row=4, column=2, sticky="nsew")
+        else:
+            added_list.delete(0, END)
+            removed_list.delete(0, END)
+            unsorted_list.delete(0, END)
+
+        # Add new contents
+        collection = None
+        for item in bird_data["collections"]:
+            collection = bird_data["collections"][item]
+            if collection["name"] == value:
+                break
+
+        all_birds = [species for _, genus in genuses.items() for epithet, species in genus.items() if epithet != "queries"]
+
+        if "_unsorted" not in collection:
+            collection["_unsorted"] = []
+        unsort_remaining = collection["_unsorted"] == "*"
+        
+        temp_addlist = []
+        temp_removelist = []
+        temp_pendlist = []
+
+        for bird in all_birds:
+            mode = "UNSORT" if unsort_remaining else "REMOVE"
+            names = [ bird["name"] ] if isinstance(bird["name"], str) else bird["name"]
+            the_name  = names[0]
+            for name in names:
+                if name in collection["species"]:
+                    mode = "ADD"
+                    the_name = name
+                    break
+                if not unsort_remaining and name in collection["_unsorted"]:
+                    mode = "UNSORT"
+                    the_name = name
+                    break
+            
+            if mode == "ADD":
+                temp_addlist.append(the_name)
+            elif mode == "REMOVE":
+                temp_removelist.append(the_name)
+            else:
+                temp_pendlist.append(the_name)
+
+        temp_addlist.sort()
+        temp_removelist.sort()
+        temp_pendlist.sort()
+
+        i = 1
+        for name in temp_addlist:
+            added_list.insert(i, name)
+            i += 1
+        i = 1
+        for name in temp_removelist:
+            removed_list.insert(i, name)
+            i += 1
+        i = 1
+        for name in temp_pendlist:
+            unsorted_list.insert(i, name)
+            i += 1
 
     i = 1
     for item in bird_data["collections"]:
@@ -239,17 +337,8 @@ def edit_categories_form():
         collections_list.insert(i, collection["name"])
         i += 1
 
-    collections_list.grid(row=1,column=0)
+    collections_list.grid(row=1,column=0, sticky="nsew")
     collections_list.bind('<<ListboxSelect>>', onselect)
-    
-    collection_editor = Frame(subframe)
-    collection_editor.grid(row=1,column=1)
-
-    collection_editor.rowconfigure(1, weight=1)
-    collection_editor.columnconfigure(0, weight=1)
-    collection_editor.columnconfigure(1, weight=1)
-
-    popup.geometry("400x400")
 
 def save_and_exit(window):
     save()

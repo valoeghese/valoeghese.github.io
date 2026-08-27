@@ -2715,6 +2715,11 @@
         }
     },
     "collections": {
+        "american_garden": {
+            "name": "American Garden Birds",
+            "_unsorted": "*",
+            "species": []
+        },
         "english_garden": {
             "name": "English Garden Birds",
             "species": [
